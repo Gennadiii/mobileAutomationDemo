@@ -29,7 +29,7 @@ class Component implements ComponentInterface {
   }
 
   waitUntilDisplayed(timeout) {
-    return helper.waiters.wait(async () => {
+    return helper.waiters.appiumWait(async () => {
       try {
         return await (await this.element).isDisplayed()
       } catch (err) {

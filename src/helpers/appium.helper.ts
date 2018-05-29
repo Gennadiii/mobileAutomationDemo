@@ -11,6 +11,7 @@ interface DriverInterface {
   appiumTerminate: () => Promise<any>;
   hideKeyboard: () => Promise<any>;
   appRelaunch: () => Promise<any>;
+  setImplicitTimeout: (time: number) => Promise<any>;
 }
 
 
@@ -50,6 +51,10 @@ class Driver implements DriverInterface {
       .setImplicitWaitTimeout(this.implicitWait);
     this.appium = driver;
     return this;
+  }
+
+  async setImplicitTimeout(time) {
+    await this.appium.setImplicitWaitTimeout(time);
   }
 
   async appiumTerminate() {

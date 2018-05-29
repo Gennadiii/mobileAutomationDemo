@@ -1,4 +1,5 @@
 import {dateTimeHelper} from "./dateTime.helper";
+import {driver} from "../../index";
 
 
 const waitersHelper = {
@@ -14,6 +15,15 @@ const waitersHelper = {
     const startTime = currentTime();
     const continuePolling = () => (currentTime() - startTime) < timeout;
     return poll(callback, continuePolling, interval, false);
+  },
+
+  async appiumWait(callback, timeout, interval = 100): Promise<any> {
+    try {
+      await (await driver).setImplicitTimeout(0);
+      return await this.wait(...arguments);
+    } finally {
+      await (await driver).setImplicitTimeout(+process.env.implicitWait);
+    }
   },
 
   /**

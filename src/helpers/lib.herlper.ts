@@ -43,7 +43,7 @@ const libHelper = {
     try {
       await waitersHelper.wait(
         () => !this.findBrokenParts(this.all).length,
-        1000, 0);
+        1000, 10);
     } catch (err) {
       log.error(err);
       throw new Error(`Lib didn't build correctly: 
