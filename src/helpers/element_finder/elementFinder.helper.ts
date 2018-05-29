@@ -6,33 +6,36 @@ const log = logger.get('ElementFinder');
 
 
 interface ElementFinderInterface {
-  all: ElementFinderInterface;
-  id: (id: string, options?) => () => Promise<any>;
-  xpath: (xpath: string, options?) => () => Promise<any>;
-  className: (className: string, options?) => () => Promise<any>;
-  text: (text: string, options?) => () => Promise<any>;
+  all: ElementsFinderInterface;
+  id: (id: string) => () => Promise<any>;
+  xpath: (xpath: string) => () => Promise<any>;
+  className: (className: string) => () => Promise<any>;
+  text: (text: string, options?: findElementByTextInterface) => () => Promise<any>;
 }
 
 
-class ElementFinder implements ElementFinderInterface {
+interface ElementsFinderInterface {
+  id: (id: string, options?: findElementsByInterface) => () => Promise<any>;
+  xpath: (xpath: string, options?: findElementsByInterface) => () => Promise<any>;
+  className: (className: string, options?: findElementsByInterface) => () => Promise<any>;
+  text: (text: string, options?: findElementsByTextInterface) => () => Promise<any>;
+}
 
-  constructor(private searchFunction: any) {
+
+class BaseElementFinder {
+  constructor(protected searchFunction: any) {
   }
 
-  get all() {
-    return new ElementFinder(findElementsBy);
-  }
-
-  id(id, options?) {
-    return this.searchFunction('id', id, options);
+  id(id) {
+    return this.searchFunction('id', id, arguments[1]);
   }
 
   xpath(xpath, options?) {
-    return this.searchFunction('xpath', xpath, options);
+    return this.searchFunction('xpath', xpath, arguments[1]);
   }
 
   className(className, options?) {
-    return this.searchFunction('class name', className, options);
+    return this.searchFunction('class name', className, arguments[1]);
   }
 
   text(text, options = {partial: false}) {
@@ -41,6 +44,27 @@ class ElementFinder implements ElementFinderInterface {
       ? `//*[contains(@text, '${text}']`
       : `//*[@text = '${text}']`;
     return this.searchFunction('xpath', locator, options);
+  }
+}
+
+
+class ElementFinder extends BaseElementFinder implements ElementFinderInterface {
+
+  constructor(protected searchFunction: any) {
+    super(searchFunction);
+  }
+
+  get all(): ElementsFinderInterface {
+    return new ElementsFinder(findElementsBy);
+  }
+
+}
+
+
+class ElementsFinder extends BaseElementFinder implements ElementsFinderInterface {
+
+  constructor(protected searchFunction: any) {
+    super(searchFunction);
   }
 
 }
@@ -56,12 +80,38 @@ function findElementBy(using: string, value: string) {
   return async () => (await driver).appium.element(using, value);
 }
 
-function findElementsBy(using: string, value: string, options?) {
-  options = options || {};
-  const {index} = options;
+function findElementsBy(using: string, value: string, options?: findElementsByInterface) {
+  const defaults = {index: null, strict: true};
+  const resultingOptions = Object.assign(defaults, options);
+  const {index, strict} = resultingOptions;
+
   return async () => {
     const elements = await (await driver).appium.elements(using, value);
-    elements.length === 0 && log.warn(`Couldn't find elements with search string: ${value}`);
-    return index !== undefined ? elements[index] : elements;
+    const errorMessage = `Couldn't find elements with search string: ${value}`;
+
+    if (elements.length === 0) {
+      if (strict) {
+        throw new Error(errorMessage);
+      }
+      log.warn(errorMessage);
+    }
+    return index !== null ? elements[index] : elements;
   }
 }
+
+
+interface findElementsByInterface {
+  index?: number;
+  strict?: boolean;
+}
+
+
+interface findElementByTextInterface {
+  partial?: boolean;
+}
+
+
+interface findElementsByTextInterface extends findElementsByInterface {
+  partial?: boolean;
+}
+
