@@ -48,7 +48,9 @@ async function poll(callback, continuePolling, interval, cbContinueCondition) {
     return Promise.reject(`Polling didn't give results.`);
   }
   const result = await callback();
+  process.stdout.write(".");
   if (result !== cbContinueCondition) {
+    console.log(); // New line after buffer write
     return result;
   }
   await dateTimeHelper.sleep(interval);
