@@ -77,7 +77,7 @@ export {ef, ElementFinderInterface};
 
 
 function findElementBy(using: string, value: string) {
-  return async () => (await driver).appium.element(using, value);
+  return () => driver.element(using, value);
 }
 
 function findElementsBy(using: string, value: string, options?: findElementsByInterface) {
@@ -86,7 +86,7 @@ function findElementsBy(using: string, value: string, options?: findElementsByIn
   const {index, strict} = resultingOptions;
 
   return async () => {
-    const elements = await (await driver).appium.elements(using, value);
+    const elements = await driver.elements(using, value);
     const errorMessage = `Couldn't find elements with search string: ${value}`;
 
     if (elements.length === 0) {

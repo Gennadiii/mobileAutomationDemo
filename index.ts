@@ -29,7 +29,8 @@ export const driver = new Driver({
   capabilities,
   implicitWait,
   appiumPort
-}).init();
+});
+const appium = driver.init();
 
 
 void async function main() {
@@ -42,6 +43,8 @@ void async function main() {
 
     const tests = specs || (await selectTests())
       .map(test => `${__dirname}/spec/${test}`);
+
+    await driver.waitUntilInitialized(appium);
 
     await jasmine.addSpecFiles(tests);
     await jasmine.execute();

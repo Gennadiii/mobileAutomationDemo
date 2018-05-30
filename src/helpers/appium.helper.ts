@@ -1,4 +1,5 @@
 import {logger} from "./logger.helper";
+import {waitersHelper} from "./waiters.helper";
 const wd = require('wd');
 
 
@@ -21,6 +22,7 @@ class Driver implements DriverInterface {
   private capabilities;
   private implicitWait;
   private appiumPort;
+  private appiumInitialized = false;
 
   constructor(private params: driverParams) {
     const {
@@ -59,12 +61,12 @@ class Driver implements DriverInterface {
 
   async appiumTerminate() {
     log.info(`Terminating appium`);
-    await (await this.appium).quit();
+    await this.appium.quit();
   }
 
   async hideKeyboard() {
     log.info(`Hiding keyboard`);
-    await (await this.appium).hideKeyboard();
+    await this.appium.hideKeyboard();
   }
 
   async appRelaunch() {
@@ -73,14 +75,33 @@ class Driver implements DriverInterface {
     await this.appLaunch();
   }
 
+  element(using, value) {
+    return this.appium.element(using, value);
+  }
+
+  elements(using, value) {
+    return this.appium.elements(using, value);
+  }
+
+  async waitUntilInitialized(appiumInitPromise) {
+    process.stdout.write("Waiting for appium to initialize");
+    await waitersHelper.wait(() => {
+        appiumInitPromise
+          .then(() => this.appiumInitialized = true);
+        return this.appiumInitialized;
+      }, 30 * 1000, 100
+    );
+    console.info();
+  }
+
   private async appClose() {
     log.info(`Closing application`);
-    await (await this.appium).closeApp();
+    await this.appium.closeApp();
   }
 
   private async appLaunch() {
     log.info(`Launching application`);
-    await (await this.appium).launchApp();
+    await this.appium.launchApp();
   }
 
 }
