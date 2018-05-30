@@ -13,7 +13,7 @@ class Button extends Component implements ButtonInterface {
   }
 
   async click() {
-    await (await this.element).click();
+    await this.element.click();
   }
 
 }

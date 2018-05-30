@@ -13,7 +13,7 @@ class InputField extends Component implements InputFieldInterface {
   }
 
   async sendKeys(text) {
-    await (await this.element).type(text);
+    await this.element.type(text);
   }
 
 }

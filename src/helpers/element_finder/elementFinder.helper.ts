@@ -81,28 +81,21 @@ function findElementBy(using: string, value: string) {
 }
 
 function findElementsBy(using: string, value: string, options?: findElementsByInterface) {
-  const defaults = {index: null, strict: true};
+  const defaults = {index: null};
   const resultingOptions = Object.assign(defaults, options);
-  const {index, strict} = resultingOptions;
+  const {index} = resultingOptions;
 
-  return async () => {
-    const elements = await driver.elements(using, value);
-    const errorMessage = `Couldn't find elements with search string: ${value}`;
-
-    if (elements.length === 0) {
-      if (strict) {
-        throw new Error(errorMessage);
-      }
-      log.warn(errorMessage);
-    }
-    return index !== null ? elements[index] : elements;
+  return () => {
+    log.info(`Looking for elements using "${using}" with value: ${value}`);
+    const elements = driver.elements(using, value);
+    return index !== null ? elements.at(index) : elements;
   }
+
 }
 
 
 interface findElementsByInterface {
   index?: number;
-  strict?: boolean;
 }
 
 
@@ -114,4 +107,3 @@ interface findElementByTextInterface {
 interface findElementsByTextInterface extends findElementsByInterface {
   partial?: boolean;
 }
-

@@ -21,17 +21,17 @@ class Component implements ComponentInterface {
   }
 
   async isDisplayed() {
-    return (await this.element).isDisplayed();
+    return this.element.isDisplayed();
   }
 
   async getText() {
-    return (await this.element).text();
+    return this.element.text();
   }
 
   waitUntilDisplayed(timeout) {
     return helper.waiters.appiumWait(async () => {
       try {
-        return await (await this.element).isDisplayed()
+        return await this.element.isDisplayed()
       } catch (err) {
         return false;
       }
