@@ -60,7 +60,7 @@ async function poll(callback, continuePolling, interval, cbContinueCondition) {
   const result = await callback();
   process.stdout.write(".");
   if (result !== cbContinueCondition) {
-    console.log(); // New line after buffer write
+    console.info(); // New line after buffer write
     return result;
   }
   await dateTimeHelper.sleep(interval);

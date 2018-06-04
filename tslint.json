@@ -19,7 +19,7 @@
     "no-trailing-whitespace": false,
     "one-variable-per-declaration": false,
     "no-unused-expression": false,
-    "no-console": [false],
+    "no-console": [true, "log"],
     "no-empty-interface": false
   },
   "rulesDirectory": []
