@@ -1,4 +1,4 @@
-import {helper} from "../../helpers/helper";
+import {helper} from "../../../helpers/helper";
 import {BasePagePo} from "../page_objects/basePage.po";
 
 const log = helper.logger.get('BasePagePa');

@@ -1,6 +1,6 @@
 import {androidServices} from "./platforms/android/androidAssembler";
-import {LoginService} from "./generic/services/login.service";
-import {LandingService} from "./generic/services/landing.service";
+import {LoginService} from "./lib/generic/services/login.service";
+import {LandingService} from "./lib/generic/services/landing.service";
 
 
 interface assemblerInterface {

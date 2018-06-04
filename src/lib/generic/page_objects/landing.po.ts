@@ -1,4 +1,4 @@
-import {ElementFinderInterface} from "../../helpers/element_finder/elementFinder.helper";
+import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
 import {Label} from "../components/label";
 import {BasePagePo} from "./basePage.po";
 

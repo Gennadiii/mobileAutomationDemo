@@ -14,17 +14,25 @@ const libHelper = {
   build() {
     log.info(`Building lib`);
     const lib = {};
-    const libTypes = fs.readdirSync(`${__dirname}/../generic`);
+    const libDir = `${__dirname}/../lib`;
 
-    libTypes.forEach(libType => {
-      lib[libType] = {};
-      fsHelper.getFiles(`${__dirname}/../generic/${libType}`)
-        .forEach(async file => {
-          const className = getClassName(file);
-          lib[libType][className] = null;
-          const importedFile = await import(file);
-          lib[libType][className] = importedFile[className];
-        });
+    const platforms = fs.readdirSync(libDir);
+    platforms.forEach(platform => {
+      lib[platform] = {};
+
+      const libTypes = fs.readdirSync(`${libDir}/${platform}`);
+      libTypes.forEach(libType => {
+        lib[platform][libType] = {};
+
+        fsHelper.getFiles(`${libDir}/${platform}/${libType}`)
+          .forEach(async file => {
+            const className = getClassName(file);
+            lib[platform][libType][className] = null;
+
+            const importedFile = await import(file);
+            lib[platform][libType][className] = importedFile[className];
+          });
+      });
     });
 
     this.all = lib;

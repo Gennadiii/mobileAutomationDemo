@@ -4,9 +4,11 @@ import {helper} from "../../helpers/helper";
 
 
 const {
-  page_objects: {LoginPo, LandingPo},
-  page_actions: {LoginPa, LandingPa},
-  services: {LoginService, LandingService}
+  generic: {
+    page_objects: {LoginPo, LandingPo},
+    page_actions: {LoginPa, LandingPa},
+    services: {LoginService, LandingService}
+  }
 } = (<any>helper.lib.all);
 const elementFinder = ef;
 

@@ -1,4 +1,4 @@
-import {helper} from "../../helpers/helper";
+import {helper} from "../../../helpers/helper";
 
 
 interface ComponentInterface {

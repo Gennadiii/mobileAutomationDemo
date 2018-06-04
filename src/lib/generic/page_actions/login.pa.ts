@@ -1,5 +1,5 @@
 import {LoginPo} from "../page_objects/login.po";
-import {helper} from "../../helpers/helper";
+import {helper} from "../../../helpers/helper";
 import {BasePagePa} from "./basePage.pa";
 
 
