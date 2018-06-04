@@ -24,7 +24,7 @@ async function selectTests(): Promise<string[]> {
 }
 
 
-export {selectTests}
+export {selectTests};
 
 
 function getPromptObj(arr) {
@@ -77,7 +77,7 @@ function writeInput(items) {
       fs.writeFileSync(testChoiseNumberPath, index);
       return true;
     }
-  })
+  });
 }
 
 function readRememberedInput() {

@@ -1,6 +1,6 @@
 import {assemblerInterface} from "../../assembler";
-import {ef} from "../../helpers/element_finder/elementFinder.helper";
 import {helper} from "../../helpers/helper";
+import {ef as elementFinder} from "../../helpers/element_finder/elementFinder.helper";
 
 
 const {
@@ -9,8 +9,7 @@ const {
     page_actions: {LoginPa, LandingPa},
     services: {LoginService, LandingService}
   }
-} = (<any>helper.lib.all);
-const elementFinder = ef;
+} = (helper.lib.all as any);
 
 
 const androidServices: assemblerInterface = {

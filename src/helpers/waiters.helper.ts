@@ -36,7 +36,7 @@ const waitersHelper = {
   async retry(callback, params = {interval: 2 * 1000, retryNumber: 2}) {
     const {interval} = params;
     let {retryNumber} = params;
-    let continuePolling = () => retryNumber--;
+    const continuePolling = () => retryNumber--;
     return poll(callback, continuePolling, interval, false);
   },
 

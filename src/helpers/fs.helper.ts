@@ -19,4 +19,4 @@ const fsHelper = {
 };
 
 
-export {fsHelper}
+export {fsHelper};

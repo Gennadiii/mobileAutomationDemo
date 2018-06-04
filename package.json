@@ -3,20 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "devDependencies": {
+  "scripts": {
+    "test": "node dist/index.js",
+    "linter": "tslint -p tsconfig.json"
+  },
+  "dependencies": {
     "@types/command-line-args": "4.0.2",
     "@types/jasmine": "2.8.2",
     "@types/node": "8.5.2",
-    "multiselect-prompt": "0.3.1"
-  },
-  "scripts": {
-    "test": "node dist/index.js"
-  },
-  "dependencies": {
+    "tslint": "5.10.0",
+    "multiselect-prompt": "0.3.1",
     "appium": "1.8.0",
     "dotenv-safe": "5.0.1",
     "jasmine": "2.8.0",
     "jasmine-console-reporter": "2.0.1",
+    "typescript": "2.9.1",
     "typescript-logging": "0.6.1",
     "wd": "0.3.12"
   },

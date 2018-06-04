@@ -2,7 +2,7 @@ import {assemblerInterface} from "../src/assembler";
 
 
 describe('Login', () => {
-  const service: assemblerInterface = (<any>jasmine.getEnv()).service;
+  const service: assemblerInterface = (jasmine.getEnv() as any).service;
 
   it('login success', async () => {
     await service.login.eyal();

@@ -47,7 +47,7 @@ class Driver implements DriverInterface {
 
   async init() {
     log.info(`Initializing appium`);
-    let driver = wd.promiseChainRemote('localhost', this.appiumPort);
+    const driver = wd.promiseChainRemote('localhost', this.appiumPort);
     await driver
       .init(this.capabilities)
       .setImplicitWaitTimeout(this.implicitWait);

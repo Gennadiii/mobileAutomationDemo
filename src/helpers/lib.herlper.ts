@@ -76,7 +76,7 @@ function getClassName(path) {
 }
 
 function findNestedObjects(obj, result = [obj]) {
-  (<any>Object).values(obj).forEach(value => {
+  (Object as any).values(obj).forEach(value => {
     if (value && typeof value === 'object') {
       result.push(value);
       return findNestedObjects(value, result);

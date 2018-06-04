@@ -1,7 +1,7 @@
 const Jasmine = require('jasmine');
 
 
-let jasmine = new Jasmine();
+const jasmine = new Jasmine();
 jasmine.jasmine.DEFAULT_TIMEOUT_INTERVAL = 70 * 1000;
 
 const JasmineConsoleReporter = require('jasmine-console-reporter');

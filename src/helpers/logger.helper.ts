@@ -1,5 +1,4 @@
 import {LoggerFactory, LoggerFactoryOptions, LFService, LogGroupRule, LogLevel} from 'typescript-logging';
-const fs = require('fs');
 
 
 // Create option instance and specify 1 LogGroupRules:

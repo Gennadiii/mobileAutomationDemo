@@ -18,5 +18,5 @@ export {promiseHelper};
 
 
 interface allTrueInterface {
-  arr: Promise<boolean>[];
+  arr: Array<Promise<boolean>>;
 }

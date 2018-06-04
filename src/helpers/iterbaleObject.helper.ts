@@ -3,9 +3,9 @@ class IterableObject {
   private values = null;
 
   constructor(private obj) {
-    this.values = (<any>Object).values(obj);
+    this.values = (Object as any).values(obj);
 
-    (<any>Object).entries(obj).forEach(pair => {
+    (Object as any).entries(obj).forEach(pair => {
       const [key, value] = pair;
       this[key] = value;
     });
@@ -27,7 +27,7 @@ class IterableObject {
 
   forEach(cb) {
     let index = 0;
-    for (const value of (<any>this)) {
+    for (const value of (this as any)) {
       cb(value, index++, this.values);
     }
   }
@@ -40,4 +40,4 @@ class IterableObject {
 }
 
 
-export {IterableObject}
+export {IterableObject};
