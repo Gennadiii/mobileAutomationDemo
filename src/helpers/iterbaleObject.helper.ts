@@ -1,9 +1,8 @@
 class IterableObject {
   private allowDebugIgnore = true;
-  private values = null;
 
   constructor(private obj) {
-    this.values = (Object as any).values(obj);
+    const values = (Object as any).values(obj);
 
     (Object as any).entries(obj).forEach(pair => {
       const [key, value] = pair;
@@ -15,10 +14,10 @@ class IterableObject {
       switch (process.env.DEBUG_LEVEL) {
         case '10':
         case !self.allowDebugIgnore && '20':
-          yield self.values[0];
+          yield values[0];
           return;
         default:
-          for (const value of self.values) {
+          for (const value of values) {
             yield value;
           }
       }
@@ -26,10 +25,7 @@ class IterableObject {
   }
 
   forEach(cb) {
-    let index = 0;
-    for (const value of (this as any)) {
-      cb(value, index++, this.values);
-    }
+    return [...this as any].forEach(cb);
   }
 
   forbidDebugIgnore() {
