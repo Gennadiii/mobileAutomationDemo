@@ -33,9 +33,11 @@ class Driver implements DriverInterface {
     switch (capabilities.platformName.toLowerCase()) {
       case 'ios':
         capabilities.platformName = 'iOS';
+        capabilities.automationName = 'UiAutomator2';
         break;
       case 'android':
         capabilities.platformName = 'Android';
+        capabilities.automationName = 'XCUITest';
         break;
       default:
         throw new Error(`Wrong platform name: ${capabilities.platformName}`);
@@ -114,6 +116,7 @@ interface capabilitiesInterface {
   deviceName: string;
   platformName: string;
   app: string;
+  automationName?: string;
 }
 
 
