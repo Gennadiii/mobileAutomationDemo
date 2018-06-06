@@ -11,18 +11,34 @@ const log = helper.logger.get('index');
 const {
   platform, deviceName, app, implicitWait, appiumPort, specs
 } = process.env;
+let platformName = null;
+let automationName = null;
+
+switch (platform.toLowerCase()) {
+  case 'ios':
+    platformName = 'iOS';
+    automationName = 'XCUITest';
+    break;
+  case 'android':
+    platformName = 'Android';
+    automationName = 'UiAutomator2';
+    break;
+  default:
+    throw new Error(`Wrong platform name: ${platform}`);
+}
 
 
 log.info(`Test run is about to start with next configuration:
 ${JSON.stringify(
-  {platform, deviceName, app, implicitWait, appiumPort, specs},
+  {platformName, deviceName, app, implicitWait, appiumPort, automationName, specs},
   null, 4)}`);
 
 
 const capabilities = {
   deviceName,
   app,
-  platformName: platform,
+  platformName,
+  automationName,
 };
 
 export const driver = new Driver({

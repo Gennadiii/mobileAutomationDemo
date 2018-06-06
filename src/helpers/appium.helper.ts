@@ -30,18 +30,6 @@ class Driver implements DriverInterface {
       capabilities,
       appiumPort
     } = this.params;
-    switch (capabilities.platformName.toLowerCase()) {
-      case 'ios':
-        capabilities.platformName = 'iOS';
-        capabilities.automationName = 'UiAutomator2';
-        break;
-      case 'android':
-        capabilities.platformName = 'Android';
-        capabilities.automationName = 'XCUITest';
-        break;
-      default:
-        throw new Error(`Wrong platform name: ${capabilities.platformName}`);
-    }
     this.capabilities = capabilities;
     this.implicitWait = +implicitWait; // Comes as user input from runtime (string)
     this.appiumPort = +appiumPort; // Comes as user input from runtime (string)
@@ -116,7 +104,7 @@ interface capabilitiesInterface {
   deviceName: string;
   platformName: string;
   app: string;
-  automationName?: string;
+  automationName: string;
 }
 
 
