@@ -1,12 +1,12 @@
-import {Component} from "./component";
+import {InteractableComponent} from "./InteractableComponent";
 
 
-interface InputFieldInterface extends Component {
+interface InputFieldInterface extends InteractableComponent {
   sendKeys: (text: string) => Promise<void>;
 }
 
 
-class InputField extends Component implements InputFieldInterface {
+class InputField extends InteractableComponent implements InputFieldInterface {
 
   constructor(protected ef) {
     super(ef);

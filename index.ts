@@ -1,4 +1,4 @@
-import {Driver} from "./src/helpers/appium.helper";
+import {capabilitiesInterface, Driver} from "./src/helpers/appium.helper";
 require('dotenv-safe').config();
 import {jasmine} from "./jasmine-conf";
 import {selectTests} from "./src/helpers/testsSelector.helper";
@@ -14,6 +14,7 @@ const {
 let platformName = null;
 let automationName = null;
 
+
 switch (platform.toLowerCase()) {
   case 'ios':
     platformName = 'iOS';
@@ -28,18 +29,21 @@ switch (platform.toLowerCase()) {
 }
 
 
-log.info(`Test run is about to start with next configuration:
-${JSON.stringify(
-  {platformName, deviceName, app, implicitWait, appiumPort, automationName, specs},
-  null, 4)}`);
-
-
-const capabilities = {
+const capabilities: capabilitiesInterface = {
   deviceName,
   app,
   platformName,
   automationName,
 };
+
+if (platformName === 'Android') {
+  capabilities.appPackage = 'com.payoneer.android';
+}
+
+log.info(`Test run is about to start with next configuration:
+${JSON.stringify({implicitWait, appiumPort, specs}, null, 4)}
+Capabilities:\n${JSON.stringify(capabilities, null, 4)}`);
+
 
 export const driver = new Driver({
   capabilities,

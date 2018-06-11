@@ -1,19 +1,14 @@
-import {Component} from "./component";
+import {InteractableComponent} from "./InteractableComponent";
 
 
-interface ButtonInterface extends Component {
-  click: () => Promise<void>;
+interface ButtonInterface extends InteractableComponent {
 }
 
 
-class Button extends Component implements ButtonInterface {
+class Button extends InteractableComponent implements ButtonInterface {
 
   constructor(protected ef) {
     super(ef);
-  }
-
-  async click() {
-    await this.element.click();
   }
 
 }

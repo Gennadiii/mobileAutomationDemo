@@ -6,7 +6,7 @@ describe('Login', () => {
 
   it('login success', async () => {
     await service.login.eyal();
-    expect(await service.landing.page.checkIsOpen())
+    expect(await service.home.page.checkIsOpen())
       .toBeTruthy(`Landing page didn't get opened`);
   });
 

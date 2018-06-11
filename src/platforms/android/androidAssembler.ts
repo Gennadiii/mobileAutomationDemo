@@ -5,25 +5,25 @@ import {ef as elementFinder} from "../../helpers/element_finder/elementFinder.he
 
 const {
   generic: {
-    page_objects: {LoginPo, LandingPo},
-    page_actions: {LoginPa, LandingPa},
-    services: {LoginService, LandingService}
+    page_objects: {LoginPo, HomePo},
+    page_actions: {LoginPa, HomePa},
+    services: {LoginService, HomeService}
   }
 } = (helper.lib.all as any);
 
 
 const androidServices: assemblerInterface = {
 
-  login: helper.assembler.buildService({
+  login: helper.assembler.serviceFactory({
     elementFinder,
     service: LoginService,
     parts: [{po: LoginPo, pa: LoginPa}]
   }),
 
-  landing: helper.assembler.buildService({
+  home: helper.assembler.serviceFactory({
     elementFinder,
-    service: LandingService,
-    parts: [{po: LandingPo, pa: LandingPa}]
+    service: HomeService,
+    parts: [{po: HomePo, pa: HomePa}]
   }),
 
 };

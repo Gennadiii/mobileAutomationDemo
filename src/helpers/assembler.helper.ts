@@ -3,7 +3,7 @@ import {ElementFinderInterface} from "./element_finder/elementFinder.helper";
 
 const assembler = {
 
-  buildService(params: buildServiceInterface) {
+  serviceFactory(params: serviceFactoryInterface) {
     const {service, elementFinder, parts} = params;
     const actions = parts.map(part => {
       const {po, pa} = part;
@@ -24,7 +24,7 @@ interface partInterface {
 }
 
 
-interface buildServiceInterface {
+interface serviceFactoryInterface {
   service: any;
   elementFinder: ElementFinderInterface;
   parts: partInterface[];

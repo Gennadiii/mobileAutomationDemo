@@ -17,7 +17,7 @@ class BaseElementFinder {
   text(text, options = {partial: false}) {
     const {partial} = options;
     const locator = partial
-      ? `//*[contains(@text, '${text}']`
+      ? `//*[contains(@text, '${text}')]`
       : `//*[@text = '${text}']`;
     return this.searchFunction('xpath', locator, options);
   }
