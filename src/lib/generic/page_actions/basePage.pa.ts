@@ -1,6 +1,7 @@
 import {helper} from "../../../helpers/helper";
 import {BasePagePo} from "../page_objects/basePage.po";
 
+
 const log = helper.logger.get('BasePagePa');
 const basePagePo = new BasePagePo();
 
@@ -12,7 +13,7 @@ interface BasePagePaInterface {
 }
 
 
-class BasePagePa extends BasePagePo implements BasePagePaInterface {
+class BasePagePa implements BasePagePaInterface {
 
   protected page: any = basePagePo; // Type any is to avoid inheritance issues
 
