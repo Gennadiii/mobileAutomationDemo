@@ -88,7 +88,9 @@ class Driver implements DriverInterface {
     }
     log.info(`Scrolling down: ${screenPercentage}%`);
     const screenPercentageWithoutNavigationSection = 0.92;
-    const screenSizeWithoutNavigationSection = (await this.getScreenSize()).height * screenPercentageWithoutNavigationSection * screenPercentage / 100;
+    const screenSizeWithoutNavigationSection = (await this.getScreenSize()).height *
+      screenPercentageWithoutNavigationSection *
+      screenPercentage / 100;
     await this.swipe({startPoint: {y: screenSizeWithoutNavigationSection}, endPoint: {y: 1}});
   }
 

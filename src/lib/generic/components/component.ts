@@ -45,6 +45,8 @@ class Component implements ComponentInterface {
   // wait
 
   waitUntilDisplayed(timeout) {
+    log.info(`Waiting until element is displayed using "${this.ef.using}" with value:
+    ${this.ef.value}`);
     return helper.waiters.appiumWait(async () => {
       try {
         return await this.element.isDisplayed();

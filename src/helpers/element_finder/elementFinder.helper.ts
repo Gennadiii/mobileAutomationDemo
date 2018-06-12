@@ -36,7 +36,10 @@ export {ef, ElementFinderInterface};
 
 
 function findElementBy(using: string, value: string) {
-  return () => driver.element(using, value);
+  const elementFinder: any = () => driver.element(using, value);
+  elementFinder.using = using;
+  elementFinder.value = value;
+  return elementFinder;
 }
 
 function findElementsBy(using: string, value: string, options?: findElementsByInterface) {
@@ -44,11 +47,14 @@ function findElementsBy(using: string, value: string, options?: findElementsByIn
   const resultingOptions = Object.assign(defaults, options);
   const {index} = resultingOptions;
 
-  return () => {
+  const elementsFinder: any = () => {
     log.info(`Looking for elements using "${using}" with value: ${value}`);
     const elements = driver.elements(using, value);
     return index !== null ? elements.at(index) : elements;
   };
+  elementsFinder.using = using;
+  elementsFinder.value = value;
+  return elementsFinder;
 
 }
 

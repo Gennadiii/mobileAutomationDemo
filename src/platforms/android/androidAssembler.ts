@@ -5,11 +5,36 @@ import {ef as elementFinder} from "../../helpers/element_finder/elementFinder.he
 
 const {
   generic: {
-    page_objects: {LoginPo, HomePo},
-    page_actions: {LoginPa, HomePa},
-    services: {LoginService, HomeService}
+    page_objects: {
+      LoginPo,
+      BalancePo,
+      LatestTransactionsPo,
+    },
+    page_actions: {
+      LoginPa,
+      BalancePa,
+      LatestTransactionsPa,
+    },
+    services: {
+      LoginService,
+      BalanceService,
+      LatestTransactionsService,
+      HomeService,
+    }
   }
 } = (helper.lib.all as any);
+
+
+const homeBalanceService = helper.assembler.serviceFactory({
+  elementFinder,
+  service: BalanceService,
+  parts: [{po: BalancePo, pa: BalancePa}]
+});
+const homeLatestTransactionsService = helper.assembler.serviceFactory({
+  elementFinder,
+  service: LatestTransactionsService,
+  parts: [{po: LatestTransactionsPo, pa: LatestTransactionsPa}]
+});
 
 
 const androidServices: assemblerInterface = {
@@ -20,11 +45,7 @@ const androidServices: assemblerInterface = {
     parts: [{po: LoginPo, pa: LoginPa}]
   }),
 
-  home: helper.assembler.serviceFactory({
-    elementFinder,
-    service: HomeService,
-    parts: [{po: HomePo, pa: HomePa}]
-  }),
+  home: new HomeService(homeBalanceService, homeLatestTransactionsService),
 
 };
 

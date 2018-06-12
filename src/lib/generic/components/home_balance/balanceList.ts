@@ -11,13 +11,14 @@ interface BalanceListInterface {
 }
 
 
-class BalanceList implements BalanceListInterface {
+class BalanceList extends Component implements BalanceListInterface {
 
   private currencyNames;
   private balances;
 
 
-  constructor(private currencyNamesEf, private balancesEf) {
+  constructor(private rootEf, private currencyNamesEf, private balancesEf) {
+    super(rootEf);
     this.currencyNames = new Component(this.currencyNamesEf);
     this.balances = new Component(this.balancesEf);
   }

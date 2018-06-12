@@ -25,6 +25,10 @@ class LoginPo extends BasePagePo implements LoginPoInterface {
     super();
   }
 
+  get staticElements() {
+    return [this.signInButton];
+  }
+
 }
 
 
