@@ -1,10 +1,10 @@
-import {Component} from "./component";
+import {InteractableComponent} from "./interactableComponent";
 
 
-interface LabelInterface extends Component {
+interface LabelInterface extends InteractableComponent {
 }
 
-class Label extends Component implements LabelInterface {
+class Label extends InteractableComponent implements LabelInterface {
 
   constructor(protected ef) {
     super(ef);

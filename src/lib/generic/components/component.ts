@@ -7,7 +7,6 @@ const log = helper.logger.get('Component');
 
 interface ComponentInterface {
   // get
-  getText: () => Promise<string>;
   getLocation: () => Promise<pointCoordinatesInterface>;
   // check
   isDisplayed: () => Promise<boolean>;
@@ -26,11 +25,6 @@ class Component implements ComponentInterface {
   }
 
   // get
-
-  async getText() {
-    log.info(`Getting text`);
-    return this.element.text();
-  }
 
   getLocation() {
     return this.element.getLocation();

@@ -6,10 +6,10 @@ const log = helper.logger.get('InteractableComponent');
 
 
 interface InteractableComponentInterface extends Component {
-  // actions
-  click: () => Promise<void>;
   // get
   getText: () => Promise<string>;
+  // actions
+  click: () => Promise<void>;
 }
 
 
@@ -17,6 +17,13 @@ class InteractableComponent extends Component implements InteractableComponentIn
 
   constructor(protected ef) {
     super(ef);
+  }
+
+  // get
+
+  async getText() {
+    log.info(`Getting text`);
+    return this.element.text();
   }
 
 
