@@ -10,7 +10,7 @@ interface BasePagePaInterface {
   // set
   setPages: (pages: any[]) => void;
   // checks
-  checkIsOpen: () => Promise<boolean>;
+  isOpen: () => Promise<boolean>;
   verifyIsOpen: () => Promise<void>;
 }
 
@@ -24,7 +24,7 @@ class BasePagePa implements BasePagePaInterface {
     this.pages = pageActions.map(pageAction => pageAction.page);
   }
 
-  async checkIsOpen(params = {timeout: 15 * 1000}) {
+  async isOpen(params = {timeout: 15 * 1000}) {
     const {timeout} = params;
     if (!this.pages) {
       this.pages = [this.page];
@@ -39,7 +39,7 @@ class BasePagePa implements BasePagePaInterface {
   }
 
   async verifyIsOpen() {
-    if (!await this.checkIsOpen()) {
+    if (!await this.isOpen()) {
       throw new Error(`Page didn't get opened`);
     }
   }
