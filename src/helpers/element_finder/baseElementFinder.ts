@@ -3,6 +3,7 @@ interface BaseElementFinderInterface {
   accessibilityId: (accessibilityId: string) => () => Promise<any>;
   xpath: (xpath: string) => () => Promise<any>;
   className: (className: string) => () => Promise<any>;
+  name: (name: string) => () => Promise<any>;
   text: (text: string, options?: findElementByTextInterface) => () => Promise<any>;
 }
 
@@ -25,6 +26,10 @@ class BaseElementFinder implements BaseElementFinderInterface {
 
   className(className, options?) {
     return this.searchFunction('class name', className, arguments[1]);
+  }
+
+  name(name, options?) {
+    return this.searchFunction('name', name, arguments[1]);
   }
 
   text(text, options = {partial: false}) {

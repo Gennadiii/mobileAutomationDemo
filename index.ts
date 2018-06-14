@@ -25,7 +25,7 @@ switch (platform.toLowerCase()) {
   case 'android':
     platformName = 'Android';
     automationName = 'UiAutomator2';
-    initializationWaitTimeout = 2 * 60 * 1000;
+    initializationWaitTimeout = 2.5 * 60 * 1000;
     break;
   default:
     throw new Error(`Wrong platform name: ${platform}`);

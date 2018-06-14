@@ -13,8 +13,8 @@ class IosResultPo extends ResultPo implements IosResultPoInterface {
 
   name = 'iOS Calc - Result';
 
-  acknowledgeAlertButton = new Button(this.ef.text(`Sure, I want OnePlus!`));
-  declineAlertButton = new Button(this.ef.text(`No, I wanna suffer`));
+  acknowledgeAlertButton = new Button(this.ef.name(`Sure, I want OnePlus!`));
+  declineAlertButton = new Button(this.ef.name(`No, I wanna suffer`));
 
 
   constructor(protected ef: ElementFinderInterface) {
