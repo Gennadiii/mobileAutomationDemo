@@ -7,12 +7,8 @@ import {ElementsFinder} from "./elementsFinder.helper";
 const log = logger.get('ElementFinder');
 
 
-interface ElementFinderInterface {
+interface ElementFinderInterface extends BaseElementFinder {
   all: ElementsFinder;
-  id: (id: string) => () => Promise<any>;
-  xpath: (xpath: string) => () => Promise<any>;
-  className: (className: string) => () => Promise<any>;
-  text: (text: string, options?: findElementByTextInterface) => () => Promise<any>;
 }
 
 
@@ -63,7 +59,3 @@ interface findElementsByInterface {
   index?: number;
 }
 
-
-interface findElementByTextInterface {
-  partial?: boolean;
-}

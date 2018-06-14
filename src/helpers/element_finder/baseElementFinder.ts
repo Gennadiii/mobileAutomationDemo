@@ -1,9 +1,22 @@
-class BaseElementFinder {
+interface BaseElementFinderInterface {
+  id: (id: string) => () => Promise<any>;
+  accessibilityId: (accessibilityId: string) => () => Promise<any>;
+  xpath: (xpath: string) => () => Promise<any>;
+  className: (className: string) => () => Promise<any>;
+  text: (text: string, options?: findElementByTextInterface) => () => Promise<any>;
+}
+
+
+class BaseElementFinder implements BaseElementFinderInterface {
   constructor(protected searchFunction: any) {
   }
 
   id(id) {
     return this.searchFunction('id', id, arguments[1]);
+  }
+
+  accessibilityId(accessibilityId) {
+    return this.searchFunction('accessibility id', accessibilityId, arguments[1]);
   }
 
   xpath(xpath, options?) {
@@ -25,3 +38,8 @@ class BaseElementFinder {
 
 
 export {BaseElementFinder};
+
+
+interface findElementByTextInterface {
+  partial?: boolean;
+}
