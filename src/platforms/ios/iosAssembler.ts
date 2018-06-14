@@ -5,9 +5,6 @@ import {ef as elementFinder} from "../../helpers/element_finder/elementFinder.he
 
 const {
   generic: {
-    page_objects: {
-      FieldsPo,
-    },
     page_actions: {
       FieldsPa,
       OperationsPa,
@@ -22,6 +19,7 @@ const {
   },
   ios: {
     page_objects: {
+      IosFieldsPo,
       IosCalcPo,
       IosResultPo,
       IosOperationsPo,
@@ -38,7 +36,7 @@ const {
 const fieldsService = helper.assembler.serviceFactory({
   elementFinder,
   service: FieldsService,
-  parts: [{po: FieldsPo, pa: FieldsPa}]
+  parts: [{po: IosFieldsPo, pa: FieldsPa}]
 });
 const operationsService = helper.assembler.serviceFactory({
   elementFinder,

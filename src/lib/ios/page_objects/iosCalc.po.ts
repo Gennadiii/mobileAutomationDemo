@@ -2,6 +2,7 @@ import {CalcPo} from "../../generic/page_objects/calc.po";
 import {Button} from "../../generic/components/button";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
 import {IosOperationsPicker} from "../components/iosOperationsPicker";
+import {IosInputField} from "../components/iosInputField";
 
 
 interface IosCalcPoInterface extends CalcPo {
@@ -15,9 +16,16 @@ class IosCalcPo extends CalcPo implements IosCalcPoInterface {
 
   name = 'IosCalc';
 
+  // override
+  firstNumField = new IosInputField(this.ef.accessibilityId('firstNumber'));
+
+  // override
+  secondNumField = new IosInputField(this.ef.accessibilityId('secondNumber'));
+
   acknowledgeAlertButton = new Button(this.ef.name(`Sure, I want OnePlus!`));
   declineAlertButton = new Button(this.ef.name(`No, I wanna suffer`));
 
+  // override
   operationsPicker = new IosOperationsPicker(this.ef.accessibilityId('operationsPicker'), this.ef);
 
   constructor(protected ef: ElementFinderInterface) {
