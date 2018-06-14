@@ -22,7 +22,7 @@ interface DriverInterface {
   elements: (using: string, value: string) => Promise<any>;
   getScreenSize: () => Promise<screenSizeInterface>;
   // wait
-  waitUntilInitialized: (appiumInitPromise: any) => Promise<void>;
+  waitUntilInitialized: (appiumInitPromise: any, initializationWaitTimeout: number) => Promise<void>;
 }
 
 
@@ -116,13 +116,13 @@ class Driver implements DriverInterface {
 
   // wait
 
-  async waitUntilInitialized(appiumInitPromise) {
+  async waitUntilInitialized(appiumInitPromise, timeout) {
     process.stdout.write("Waiting for appium to initialize");
     await waitersHelper.wait(() => {
         appiumInitPromise
           .then(() => this.appiumInitialized = true);
         return this.appiumInitialized;
-      }, 60 * 1000, 100
+      }, timeout, 100
     );
     console.info();
   }
