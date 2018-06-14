@@ -13,16 +13,19 @@ const {
 } = process.env;
 let platformName = null;
 let automationName = null;
+let initializationWaitTimeout = null;
 
 
 switch (platform.toLowerCase()) {
   case 'ios':
     platformName = 'iOS';
     automationName = 'XCUITest';
+    initializationWaitTimeout = 60 * 1000;
     break;
   case 'android':
     platformName = 'Android';
     automationName = 'UiAutomator2';
+    initializationWaitTimeout = 2 * 60 * 1000;
     break;
   default:
     throw new Error(`Wrong platform name: ${platform}`);
@@ -64,7 +67,7 @@ void async function main() {
     const tests = specs || (await selectTests())
       .map(test => `${__dirname}/spec/${test}`);
 
-    await driver.waitUntilInitialized(appium);
+    await driver.waitUntilInitialized(appium, initializationWaitTimeout);
 
     await jasmine.addSpecFiles(tests);
     await jasmine.execute();
