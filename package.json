@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node dist/index.js",
-    "linter": "tslint -p tsconfig.json"
+    "linter": "tslint -p tsconfig.json",
+    "postinstall": "tsc"
   },
   "dependencies": {
     "@types/command-line-args": "4.0.2",
