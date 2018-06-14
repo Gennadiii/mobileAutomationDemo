@@ -1,23 +1,23 @@
-import {AndroidOperationsPicker} from "../../generic/components/android/androidOperationsPicker";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
-import {OperationsPo} from "../../generic/page_objects/operations.po";
+import {BasePagePo} from "../../generic/page_objects/basePage.po";
+import {OperationsPicker} from "../../generic/components/operationsPicker";
 
 
-interface AndroidOperationsPoInterface extends OperationsPo {
-  operationsPicker: AndroidOperationsPicker;
+interface AndroidOperationsPoInterface extends BasePagePo {
+  operationsPicker: OperationsPicker;
 }
 
 
-class AndroidOperationsPo extends OperationsPo implements AndroidOperationsPoInterface {
+class AndroidOperationsPo extends BasePagePo implements AndroidOperationsPoInterface {
 
   name = 'Calc - Operations';
 
   // override
-  operationsPicker = new AndroidOperationsPicker(this.ef.accessibilityId('operationsPicker'), this.ef);
+  operationsPicker = new OperationsPicker(this.ef.accessibilityId('operationsPicker'), this.ef);
 
 
   constructor(protected ef: ElementFinderInterface) {
-    super(ef);
+    super();
   }
 
 }

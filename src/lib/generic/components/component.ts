@@ -8,6 +8,7 @@ const log = helper.logger.get('Component');
 interface ComponentInterface {
   // get
   getLocation: () => Promise<pointCoordinatesInterface>;
+  getSize: () => Promise<elementSizeInterface>;
   // check
   isDisplayed: () => Promise<boolean>;
   // wait
@@ -26,8 +27,12 @@ class Component implements ComponentInterface {
 
   // get
 
-  getLocation() {
+  getLocation(): Promise<pointCoordinatesInterface> {
     return this.element.getLocation();
+  }
+
+  getSize(): Promise<elementSizeInterface> {
+    return this.element.getSize();
   }
 
   // check
@@ -53,3 +58,10 @@ class Component implements ComponentInterface {
 
 
 export {Component};
+
+
+interface elementSizeInterface {
+  width: number;
+  height: number;
+}
+

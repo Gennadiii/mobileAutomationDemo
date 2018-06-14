@@ -1,32 +1,29 @@
-import {InteractableComponent} from "./interactableComponent";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
 import {helper} from "../../../helpers/helper";
+import {InteractableComponent} from "./interactableComponent";
 
 
-const log = helper.logger.get('OperationsPicker');
+const log = helper.logger.get('AndroidOperationsPicker');
 
 
 interface OperationsPickerInterface extends InteractableComponent {
-  sumOption: InteractableComponent;
-  substructOption: InteractableComponent;
-  multiplyOption: InteractableComponent;
-  devideOption: InteractableComponent;
   changeOperationTo: () => Promise<operationsInterface>;
 }
 
 
 class OperationsPicker extends InteractableComponent implements OperationsPickerInterface {
 
-  sumOption = new InteractableComponent(this.elementFinder.text('+'));
-  substructOption = new InteractableComponent(this.elementFinder.text('-'));
-  multiplyOption = new InteractableComponent(this.elementFinder.text('*'));
-  devideOption = new InteractableComponent(this.elementFinder.text('/'));
+  private sumOption = new InteractableComponent(this.elementFinder.text('+'));
+  private substructOption = new InteractableComponent(this.elementFinder.text('-'));
+  private multiplyOption = new InteractableComponent(this.elementFinder.text('*'));
+  private devideOption = new InteractableComponent(this.elementFinder.text('/'));
 
   constructor(protected rootEf, protected elementFinder: ElementFinderInterface) {
     super(rootEf);
   }
 
   async changeOperationTo() {
+    await this.open();
     const self = this;
     return {
       async sum() {
@@ -46,6 +43,11 @@ class OperationsPicker extends InteractableComponent implements OperationsPicker
         await self.devideOption.click();
       },
     };
+  }
+
+  private async open() {
+    log.info(`Opening picker`);
+    await this.element.click();
   }
 
 }

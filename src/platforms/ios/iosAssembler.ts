@@ -7,7 +7,6 @@ const {
   generic: {
     page_objects: {
       FieldsPo,
-      OperationsPo,
     },
     page_actions: {
       FieldsPa,
@@ -25,6 +24,8 @@ const {
     page_objects: {
       IosCalcPo,
       IosResultPo,
+      IosOperationsPo,
+
     },
     page_actions: {
       IosCalcPa,
@@ -42,7 +43,7 @@ const fieldsService = helper.assembler.serviceFactory({
 const operationsService = helper.assembler.serviceFactory({
   elementFinder,
   service: OperationsService,
-  parts: [{po: OperationsPo, pa: OperationsPa}]
+  parts: [{po: IosOperationsPo, pa: OperationsPa}]
 });
 const resultService = helper.assembler.serviceFactory({
   elementFinder,

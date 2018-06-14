@@ -2,8 +2,8 @@ import {BasePagePo} from "./basePage.po";
 import {InputField} from "../components/inputField";
 import {Button} from "../components/button";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
-import {OperationsPicker} from "../components/operationsPicker";
 import {Label} from "../components/label";
+import {OperationsPicker} from "../components/operationsPicker";
 
 
 interface CalcPoInterface extends BasePagePo {
