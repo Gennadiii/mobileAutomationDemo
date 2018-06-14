@@ -1,6 +1,6 @@
-import {IosOperationsPicker} from "../../generic/components/Ios/IosOperationsPicker";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
 import {BasePagePo} from "../../generic/page_objects/basePage.po";
+import {IosOperationsPicker} from "../components/iosOperationsPicker";
 
 
 interface IosOperationsPoInterface extends BasePagePo {

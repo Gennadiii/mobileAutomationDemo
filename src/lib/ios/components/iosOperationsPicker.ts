@@ -51,11 +51,11 @@ class IosOperationsPicker extends OperationsPicker implements IosOperationsPicke
     await driver.swipe(
       {
         startPoint: {
-          x: pickerLocation.x,
-          y: pickerBottomPoint
+          x: pickerLocation.x + 20,
+          y: pickerBottomPoint - 10
         },
         endPoint: {
-          x: pickerLocation.x,
+          x: pickerLocation.x + 20,
           y: pickerBottomPoint - scrollCoordinatesAmountForOneElement * numberOfElements
         }
       });

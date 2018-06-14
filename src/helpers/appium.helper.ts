@@ -33,6 +33,7 @@ class Driver implements DriverInterface {
   private implicitWait;
   private appiumPort;
   private appiumInitialized = false;
+  private firstLaunch = true;
 
   constructor(private params: driverParams) {
     const {
@@ -70,6 +71,10 @@ class Driver implements DriverInterface {
   }
 
   async appRelaunch() {
+    if (this.firstLaunch) {
+      this.firstLaunch = false;
+      return;
+    }
     log.info(`Relaunching app`);
     await this.appClose();
     await this.appLaunch();

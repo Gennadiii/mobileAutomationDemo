@@ -1,7 +1,7 @@
 import {CalcPo} from "../../generic/page_objects/calc.po";
 import {Button} from "../../generic/components/button";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
-import {IosOperationsPicker} from "../../generic/components/ios/iosOperationsPicker";
+import {IosOperationsPicker} from "../components/iosOperationsPicker";
 
 
 interface IosCalcPoInterface extends CalcPo {

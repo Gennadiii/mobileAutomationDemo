@@ -1,10 +1,14 @@
 import {assemblerInterface} from "../../src/assembler";
+import {driver} from "../../index";
 
 
 describe('Division', () => {
   const service: assemblerInterface = (jasmine.getEnv() as any).service;
 
-  beforeAll(async () => await service.accumulatedCalc.page.verifyIsOpen());
+  beforeAll(async () => {
+    await driver.appRelaunch();
+    await service.accumulatedCalc.page.verifyIsOpen();
+  });
 
   it('division calculates correctly', async () => {
     expect(await service.accumulatedCalc.divide(84, 2))
