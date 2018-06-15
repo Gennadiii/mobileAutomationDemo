@@ -21,6 +21,7 @@ const {
       OperationsService,
       ResultService,
       AccumulatedCalcService,
+      DividedCalcService,
     }
   },
   android: {
@@ -58,6 +59,16 @@ const androidServices: assemblerInterface = {
   }),
 
   accumulatedCalc: new AccumulatedCalcService(fieldsService, operationsService, resultService),
+
+  dividedCalcService: helper.assembler.serviceFactory({
+    elementFinder,
+    service: DividedCalcService,
+    parts: [
+      {po: FieldsPo, pa: FieldsPa},
+      {po: AndroidOperationsPo, pa: OperationsPa},
+      {po: ResultPo, pa: ResultPa}
+    ]
+  }),
 
 };
 

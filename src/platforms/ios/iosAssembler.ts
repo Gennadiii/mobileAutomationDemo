@@ -1,6 +1,7 @@
 import {assemblerInterface} from "../../assembler";
 import {helper} from "../../helpers/helper";
 import {ef as elementFinder} from "../../helpers/element_finder/elementFinder.helper";
+import {ResultPa} from "../../lib/generic/page_actions/result.pa";
 
 
 const {
@@ -15,6 +16,7 @@ const {
       OperationsService,
       ResultService,
       AccumulatedCalcService,
+      DividedCalcService,
     }
   },
   ios: {
@@ -59,6 +61,16 @@ const iosServices: assemblerInterface = {
   }),
 
   accumulatedCalc: new AccumulatedCalcService(fieldsService, operationsService, resultService),
+
+  dividedCalcService: helper.assembler.serviceFactory({
+    elementFinder,
+    service: DividedCalcService,
+    parts: [
+      {po: IosFieldsPo, pa: FieldsPa},
+      {po: IosOperationsPo, pa: OperationsPa},
+      {po: IosResultPo, pa: ResultPa}
+    ]
+  }),
 
 };
 

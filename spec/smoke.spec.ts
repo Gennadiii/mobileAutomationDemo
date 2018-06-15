@@ -10,6 +10,9 @@ describe('Smoke', () => {
   it('calculator screen loads', async () => {
     expect(await service.calc.page.isOpen())
       .toBeTruthy(`Landing page didn't get opened`);
+
+    expect(await service.dividedCalcService.fieldsPage.isOpen())
+      .toBeTruthy(`Landing page didn't get opened - fields are not found`);
   });
 
 });
