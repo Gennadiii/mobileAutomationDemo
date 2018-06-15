@@ -30,14 +30,14 @@ class BalanceList extends Component implements BalanceListInterface {
     if (!withScroll) {
       return (await this.balancesElements).length;
     }
-    const elementValues = [];
+    const elementValues = new Set();
 
     while (true) {
       const elements = await this.balancesElements;
-      const currentElementsNumber = elementValues.length;
-      elements.forEach(element => elementValues.includes(element.value) || elementValues.push(element.value));
-      if (currentElementsNumber === elementValues.length) {
-        return elementValues.length;
+      const currentElementsNumber = elementValues.size;
+      elements.forEach(element => elementValues.add(element.value));
+      if (currentElementsNumber === elementValues.size) {
+        return elementValues.size;
       }
       await driver.scrollDown();
     }
