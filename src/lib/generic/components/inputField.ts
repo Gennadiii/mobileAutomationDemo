@@ -1,4 +1,5 @@
 import {InteractableComponent} from "./InteractableComponent";
+import {driver} from "../../../../index";
 
 
 interface InputFieldInterface extends InteractableComponent {
@@ -8,14 +9,20 @@ interface InputFieldInterface extends InteractableComponent {
 
 class InputField extends InteractableComponent implements InputFieldInterface {
 
-  constructor(protected ef) {
+  private hideKeyboard;
+
+  constructor(protected ef, params = {hideKeyboard: false}) {
     super(ef);
+    const {hideKeyboard} = params;
+    this.hideKeyboard = hideKeyboard;
   }
 
   async sendKeys(text) {
     await this.element.type(text);
+    this.hideKeyboard && await driver.hideKeyboard();
   }
 
 }
+
 
 export {InputField};

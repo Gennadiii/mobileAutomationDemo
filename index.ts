@@ -38,7 +38,6 @@ const capabilities: capabilitiesInterface = {
   platformName,
   automationName,
 };
-
 if (platformName === 'Android') {
   capabilities.appPackage = 'xyz.bront.growler';
 }
