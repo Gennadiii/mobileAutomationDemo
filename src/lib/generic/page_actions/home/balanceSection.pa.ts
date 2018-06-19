@@ -1,12 +1,12 @@
 import {BasePagePa} from "../basePage.pa";
 import {helper} from "../../../../helpers/helper";
-import {BalancePo} from "../../page_objects/home/balance.po";
+import {BalanceSectionPo} from "../../page_objects/home/balanceSection.po";
 
 
-const log = helper.logger.get('BalancePa');
+const log = helper.logger.get('HomeBSPa');
 
 
-interface BalancePaInterface extends BasePagePa {
+interface BalanceSectionPaInterface extends BasePagePa {
   // actions
   openHidden: () => Promise<void>;
   // get
@@ -17,9 +17,9 @@ interface BalancePaInterface extends BasePagePa {
 }
 
 
-class BalancePa extends BasePagePa implements BalancePaInterface {
+class BalanceSectionPa extends BasePagePa implements BalanceSectionPaInterface {
 
-  constructor(public page: BalancePo) {
+  constructor(public page: BalanceSectionPo) {
     super();
   }
 
@@ -49,4 +49,4 @@ class BalancePa extends BasePagePa implements BalancePaInterface {
 }
 
 
-export {BalancePa};
+export {BalanceSectionPa};

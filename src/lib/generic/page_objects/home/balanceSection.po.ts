@@ -4,14 +4,14 @@ import {Button} from "../../components/button";
 import {BalanceList} from "../../components/home_balance/balanceList";
 
 
-interface BalancePoInterface extends BasePagePo {
+interface BalanceSectionPoInterface extends BasePagePo {
   moreButton: Button;
   mainList: BalanceList;
   hiddenList: BalanceList;
 }
 
 
-class BalancePo extends BasePagePo implements BalancePoInterface {
+class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
 
   name = 'Home - Balance';
 
@@ -51,4 +51,4 @@ class BalancePo extends BasePagePo implements BalancePoInterface {
 }
 
 
-export {BalancePo};
+export {BalanceSectionPo};

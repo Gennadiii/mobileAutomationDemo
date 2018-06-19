@@ -1,10 +1,10 @@
-import {BalanceService} from "./balance.service";
 import {LatestTransactionsService} from "./latestTransactions.service";
 import {BasePagePa} from "../../page_actions/basePage.pa";
+import {BalanceSectionService} from "./balanceSection.service";
 
 
 interface HomeServiceInterface {
-  balance: BalanceService;
+  balanceSection: BalanceSectionService;
   latestTransactions: LatestTransactionsService;
 }
 
@@ -13,9 +13,9 @@ class HomeService implements HomeServiceInterface {
 
   page = new BasePagePa();
 
-  constructor(public balance: BalanceService,
+  constructor(public balanceSection: BalanceSectionService,
               public latestTransactions: LatestTransactionsService) {
-    this.page.setPages([this.balance.page, this.latestTransactions.page]);
+    this.page.setPages([this.balanceSection.page, this.latestTransactions.page]);
   }
 
 

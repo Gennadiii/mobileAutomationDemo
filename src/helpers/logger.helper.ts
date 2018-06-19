@@ -12,7 +12,7 @@ const factory = LFService.createNamedLoggerFactory('LoggerFactory', options);
 const logger = {
 
   get(name) {
-    return factory.getLogger(name.padEnd(15));
+    return factory.getLogger(name.padEnd(21));
   }
 
 };

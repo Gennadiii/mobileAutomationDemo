@@ -1,19 +1,19 @@
 import {helper} from "../../../../helpers/helper";
-import {BalancePa} from "../../page_actions/home/balance.pa";
+import {BalanceSectionPa} from "../../page_actions/home/balanceSection.pa";
 
 
-const log = helper.logger.get(`BalanceService`);
+const log = helper.logger.get(`HomeBSService`);
 
 
-interface BalanceServiceInterface {
+interface BalanceSectionServiceInterface {
   // get
   count: () => Promise<number>;
 }
 
 
-class BalanceService implements BalanceServiceInterface {
+class BalanceSectionService implements BalanceSectionServiceInterface {
 
-  constructor(public page: BalancePa) {
+  constructor(public page: BalanceSectionPa) {
   }
 
   // get
@@ -28,4 +28,4 @@ class BalanceService implements BalanceServiceInterface {
 }
 
 
-export {BalanceService};
+export {BalanceSectionService};

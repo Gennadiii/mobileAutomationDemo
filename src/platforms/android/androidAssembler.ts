@@ -25,7 +25,7 @@ const {
 } = (helper.lib.all as any);
 
 
-const homeBalanceService = helper.assembler.serviceFactory({
+const homeBalanceSectionService = helper.assembler.serviceFactory({
   elementFinder,
   service: BalanceService,
   parts: [{po: BalancePo, pa: BalancePa}]
@@ -45,7 +45,7 @@ const androidServices: assemblerInterface = {
     parts: [{po: LoginPo, pa: LoginPa}]
   }),
 
-  home: new HomeService(homeBalanceService, homeLatestTransactionsService),
+  home: new HomeService(homeBalanceSectionService, homeLatestTransactionsService),
 
 };
 
