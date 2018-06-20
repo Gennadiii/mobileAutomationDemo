@@ -13,8 +13,6 @@ interface BalanceSectionPoInterface extends BasePagePo {
 
 class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
 
-  name = 'Home - Balance';
-
   moreButton = new Button(this.ef.text('More', {partial: true}));
 
   mainList = new BalanceList(
@@ -45,7 +43,7 @@ class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
   }
 
   get staticElements() {
-    return [this.mainList];
+    throw new Error('Balance section is not obligatory for Home page');
   }
 
 }

@@ -22,7 +22,14 @@ function getUsers(): { [name: number]: userInterface } {
       login: 'onebalance',
       password: '123456qq',
       balanceCount: 1,
-    }
+    },
+    1972816: {
+      login: 'card_balance',
+      password: '123456qq',
+      balanceCount: 2,
+      cardsCount: 1,
+      transactions: true,
+    },
   };
 }
 
@@ -40,5 +47,6 @@ interface userInterface {
   blockedCard?: boolean;
   disabledBalance?: boolean;
   optInCards?: boolean;
+  transactions?: boolean;
 }
 

@@ -29,8 +29,8 @@ interface DriverInterface {
 class Driver implements DriverInterface {
 
   appium = null;
+  implicitWait;
   private capabilities;
-  private implicitWait;
   private appiumPort;
   private appiumInitialized = false;
 
