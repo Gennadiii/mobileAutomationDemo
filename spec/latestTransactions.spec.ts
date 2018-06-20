@@ -3,14 +3,16 @@ import {assemblerInterface} from "../src/assembler";
 
 describe('Latest transactions', () => {
   const service: assemblerInterface = (jasmine.getEnv() as any).service;
+  const cardBalanceUser = service.user.name('card_balance').allocate();
 
-  beforeAll(async () => await service.login.eyal());
+  beforeAll(async () => await service.login.as(cardBalanceUser));
+  afterAll(() => cardBalanceUser.free());
 
   it('check latest transaction amount', async () => {
     const latestTransaction = await service.home.latestTransactions.getLatest();
-    const expectedLatestTransaction = {amount: -29.95};
+    const expectedLatestTransaction = {amount: -3.15};
     expect(latestTransaction.amount)
-      .toEqual(-29.95, `Expected latest transaction: ${expectedLatestTransaction.amount}`);
+      .toEqual(expectedLatestTransaction.amount);
   });
 
 });

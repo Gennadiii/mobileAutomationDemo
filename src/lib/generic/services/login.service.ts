@@ -1,9 +1,14 @@
 import {LoginPa} from "../page_actions/login.pa";
-import {driver} from "../../../../index";
+import {AppService} from "./app.service";
+import {userInterface} from "./user.service";
+import {helper} from "../../../helpers/helper";
+
+
+const log = helper.logger.get('LoginService');
 
 
 interface LoginServiceInterface {
-  eyal: () => Promise<any>;
+  as: (user: userInterface) => Promise<void>;
 }
 
 
@@ -11,15 +16,21 @@ class LoginService implements LoginServiceInterface {
 
   private firstLogin = true;
 
-  constructor(public page: LoginPa) {
+  constructor(private app: AppService, public page: LoginPa) {
   }
 
-  async eyal() {
-    this.firstLogin || await driver.appRelaunch();
-    this.firstLogin = false;
-    await this.page.enterLogin('eyalmoldovan@hotmail.com ');
-    await this.page.enterPassword('1234qwer!');
+  async as(user: userInterface) {
+    const {login, password} = user;
+    log.info(`Logging in as "${login}"`);
+    await this.relaunchOnFirstLogin();
+    await this.page.enterLogin(login);
+    await this.page.enterPassword(password);
     await this.page.signIn();
+  }
+
+  private async relaunchOnFirstLogin() {
+    this.firstLogin || await this.app.relaunch();
+    this.firstLogin = false;
   }
 
 }

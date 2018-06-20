@@ -6,10 +6,12 @@ const log = logger.get('UserService');
 
 
 interface UserServiceInterface {
-  allocate: () => returnedUserInterface;
+  allocate: () => userInterface;
   balancesMoreThan: (num: number) => UserServiceInterface;
   balanceCount: (num: number) => UserServiceInterface;
   balanceDisabled: () => UserServiceInterface;
+  any: () => UserServiceInterface;
+  name: (name: string) => UserServiceInterface;
 }
 
 
@@ -57,6 +59,17 @@ class UserService implements UserServiceInterface {
     return this;
   }
 
+  name(name) {
+    log.info(`Looking for user with username: ${name}`);
+    this.filter(([id, user]) => user.login === name);
+    return this;
+  }
+
+  any() {
+    this.filter(() => true);
+    return this;
+  }
+
   private filter(predicate) {
     this.filteredUsers = this.firstFilter
       ? (Object as any).entries(this.freeUsers).filter(predicate)
@@ -78,11 +91,12 @@ class UserService implements UserServiceInterface {
 }
 
 
-export {UserService};
+export {UserService, userInterface};
 
 
-interface returnedUserInterface {
+interface userInterface {
   id: number;
   login: string;
   password: string;
+  free: () => void;
 }
