@@ -18,7 +18,7 @@ class LoginPo extends BasePagePo implements LoginPoInterface {
 
   passwordField = new InputField(this.ef.all.className('android.widget.EditText', {index: 1}));
 
-  signInButton = new Button(this.ef.text(`SIGN IN`));
+  signInButton = new Button(this.ef.autoId(`SignIn`));
 
 
   constructor(private ef: ElementFinderInterface) {
@@ -31,6 +31,4 @@ class LoginPo extends BasePagePo implements LoginPoInterface {
 
 }
 
-
 export {LoginPo};
-

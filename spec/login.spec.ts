@@ -3,7 +3,7 @@ import {assemblerInterface} from "../src/assembler";
 
 describe('Login', () => {
   const service: assemblerInterface = (jasmine.getEnv() as any).service;
-  const anyUser = service.user.any().allocate();
+  const anyUser = service.common.user.any().allocate();
 
   afterAll(() => anyUser.free());
 

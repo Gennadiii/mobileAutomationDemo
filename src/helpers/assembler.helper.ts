@@ -1,4 +1,8 @@
 import {ElementFinderInterface} from "./element_finder/elementFinder.helper";
+import {logger} from "./logger.helper";
+
+
+const log = logger.get('assembler');
 
 
 const assembler = {
@@ -7,8 +11,15 @@ const assembler = {
     const {service, elementFinder, parts, completeServices} = params;
 
     const actions = parts && parts.map(part => {
-      const {po, pa} = part;
-      return new pa(new po(elementFinder));
+      try {
+        const {po, pa} = part;
+        return new pa(new po(elementFinder));
+      } catch (err) {
+        log.error(`Could not assemble service:
+        Service: ${service}
+        parts: ${JSON.stringify(parts, null, 4)}`);
+        throw err;
+      }
     });
 
     const services = completeServices && (Object as any).values(completeServices);

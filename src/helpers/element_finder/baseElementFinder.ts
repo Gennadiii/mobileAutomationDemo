@@ -4,6 +4,7 @@ interface BaseElementFinderInterface {
   xpath: (xpath: string) => () => Promise<any>;
   className: (className: string) => () => Promise<any>;
   text: (text: string, options?: findElementByTextInterface) => () => Promise<any>;
+  autoId: (id: string) => Promise<any>;
 }
 
 
@@ -34,6 +35,11 @@ class BaseElementFinder implements BaseElementFinderInterface {
       : `//*[@text = '${text}']`;
     return this.searchFunction('xpath', locator, options);
   }
+
+  autoId(id) {
+    return this.accessibilityId(id);
+  }
+
 }
 
 

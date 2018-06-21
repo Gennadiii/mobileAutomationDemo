@@ -8,21 +8,25 @@ const {
   generic: {
     page_objects: {
       LoginPo,
-      BalancePo,
+      BalanceSectionPo,
       LatestTransactionsPo,
+      NavigationPo,
     },
     page_actions: {
       LoginPa,
-      BalancePa,
+      BalanceSectionPa,
       LatestTransactionsPa,
+      NavigationPa,
     },
     services: {
       LoginService,
-      BalanceService,
+      BalanceSectionService,
       LatestTransactionsService,
       HomeService,
       AppService,
       UserService,
+      CommonService,
+      NavigationService,
     }
   }
 } = (helper.lib.all as any);
@@ -30,9 +34,18 @@ const {
 
 const androidServices: assemblerInterface = {
 
-  app: new AppService(driver),
-
-  user: new UserService(),
+  common: helper.assembler.serviceFactory({
+    service: CommonService,
+    completeServices: {
+      userService: new UserService(),
+      appService: new AppService(driver),
+      navigationService: helper.assembler.serviceFactory({
+        elementFinder,
+        service: NavigationService,
+        parts: [{po: NavigationPo, pa: NavigationPa}]
+      })
+    }
+  }),
 
   login: helper.assembler.serviceFactory({
     elementFinder,
@@ -48,8 +61,8 @@ const androidServices: assemblerInterface = {
     completeServices: {
       homeBalanceSectionService: helper.assembler.serviceFactory({
         elementFinder,
-        service: BalanceService,
-        parts: [{po: BalancePo, pa: BalancePa}]
+        service: BalanceSectionService,
+        parts: [{po: BalanceSectionPo, pa: BalanceSectionPa}]
       }),
       homeLatestTransactionsService: helper.assembler.serviceFactory({
         elementFinder,

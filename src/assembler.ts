@@ -1,13 +1,11 @@
 import {androidServices} from "./platforms/android/androidAssembler";
 import {LoginService} from "./lib/generic/services/login.service";
 import {HomeService} from "./lib/generic/services/home/home.service";
-import {AppService} from "./lib/generic/services/app.service";
-import {UserService} from "./lib/generic/services/user.service";
+import {CommonService} from "./lib/generic/services/common.service";
 
 
 interface assemblerInterface {
-  app: AppService;
-  user: UserService;
+  common: CommonService;
   login: LoginService;
   home: HomeService;
 }
