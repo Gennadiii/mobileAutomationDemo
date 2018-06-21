@@ -12,6 +12,8 @@ const {
       BalanceSectionPo,
       LatestTransactionsPo,
       NavigationPo,
+      TransactionsPo,
+      SettingsPo,
     },
     page_actions: {
       FirstLoginPa,
@@ -19,6 +21,8 @@ const {
       BalanceSectionPa,
       LatestTransactionsPa,
       NavigationPa,
+      TransactionsPa,
+      SettingsPa,
     },
     services: {
       LoginService,
@@ -31,6 +35,8 @@ const {
       UserService,
       CommonService,
       NavigationService,
+      TransactionsService,
+      SettingsService,
     }
   }
 } = (helper.lib.all as any);
@@ -85,6 +91,18 @@ const androidServices: assemblerInterface = {
       })
     },
   }),
+
+  transactions: helper.assembler.serviceFactory({
+    elementFinder,
+    service: TransactionsService,
+    parts: [{po: TransactionsPo, pa: TransactionsPa}]
+  }),
+
+  settings: helper.assembler.serviceFactory({
+    elementFinder,
+    service: SettingsService,
+    parts: [{po: SettingsPo, pa: SettingsPa}]
+  })
 
 };
 
