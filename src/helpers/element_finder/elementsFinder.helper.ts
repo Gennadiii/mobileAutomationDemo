@@ -4,6 +4,7 @@ import {BaseElementFinder} from "./baseElementFinder";
 interface ElementsFinderInterface {
   id: (id: string, options?: findElementsByInterface) => () => Promise<any>;
   accessibilityId: (accessibilityId: string, options?: findElementsByInterface) => () => Promise<any>;
+  autoId: (id: string, options?: findElementsByInterface) => () => Promise<any>;
   xpath: (xpath: string, options?: findElementsByInterface) => () => Promise<any>;
   className: (className: string, options?: findElementsByInterface) => () => Promise<any>;
   text: (text: string, options?: findElementsByTextInterface) => () => Promise<any>;

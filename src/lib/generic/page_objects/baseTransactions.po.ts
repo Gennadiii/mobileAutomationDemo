@@ -4,6 +4,7 @@ import {ElementFinderInterface} from "../../../helpers/element_finder/elementFin
 
 
 interface BaseTransactionsPoInterface extends BasePagePo {
+  items: () => any;
   dates: Label;
   titles: Label;
   amounts: Label;
@@ -14,6 +15,7 @@ interface BaseTransactionsPoInterface extends BasePagePo {
 
 class BaseTransactionsPo extends BasePagePo implements BaseTransactionsPoInterface {
 
+  items = this.ef.all.autoId('Activity');
   dates = new Label(this.ef.all.autoId('ActivityDateTitle'));
   titles = new Label(this.ef.all.autoId('ActivityTitle'));
   amounts = new Label(this.ef.all.autoId('ActivityAmount'));

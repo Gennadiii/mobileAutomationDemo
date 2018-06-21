@@ -1,6 +1,7 @@
 import {Label} from "../../components/label";
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {BaseTransactionsPo} from "../baseTransactions.po";
+import {Component} from "../../components/component";
 
 
 interface LatestTransactionsPoInterface extends BaseTransactionsPo {
@@ -24,8 +25,16 @@ class LatestTransactionsPo extends BaseTransactionsPo implements LatestTransacti
     super(ef);
   }
 
+  getItemByIndex(index) {
+    return new Component(this.ef.getEfFromElements(this.ef, this.items, index));
+  }
+
   get staticElements() {
     return [this.label];
+  }
+
+  get content() {
+    return [this.label, this.getItemByIndex(0)];
   }
 
 }

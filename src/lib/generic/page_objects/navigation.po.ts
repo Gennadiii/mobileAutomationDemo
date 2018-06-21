@@ -23,6 +23,16 @@ class NavigationPo extends BasePagePo implements NavigationPoInterface {
     super();
   }
 
+
+  get content() {
+    return [
+      this.homeLink,
+      this.transactionsLink,
+      this.actionsLink,
+      this.settingsLink,
+    ];
+  }
+
 }
 
 

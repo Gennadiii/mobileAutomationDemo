@@ -12,6 +12,7 @@ interface BasePagePaInterface {
   // checks
   isOpen: () => Promise<boolean>;
   verifyIsOpen: () => Promise<void>;
+  contentIsDisplayed: () => Promise<boolean>;
 }
 
 
@@ -33,6 +34,20 @@ class BasePagePa implements BasePagePaInterface {
     this.pages.forEach(page => {
       log.info(`Checking if "${page.name}" page is opened`);
       isDisplayedArr.push(...page.staticElements
+        .map(element => element.waitUntilDisplayed(timeout)));
+    });
+    return helper.promise.allTrue({arr: isDisplayedArr});
+  }
+
+  async contentIsDisplayed(params = {timeout: 15 * 1000}) {
+    const {timeout} = params;
+    if (!this.pages) {
+      this.pages = [this.page];
+    }
+    const isDisplayedArr = [];
+    this.pages.forEach(page => {
+      log.info(`Checking if "${page.name}" page content is displayed`);
+      isDisplayedArr.push(...page.content
         .map(element => element.waitUntilDisplayed(timeout)));
     });
     return helper.promise.allTrue({arr: isDisplayedArr});

@@ -1,6 +1,7 @@
 import {BasePagePo} from "../basePage.po";
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Button} from "../../components/button";
+import {Component} from "../../components/component";
 
 
 interface BalanceSectionPoInterface extends BasePagePo {
@@ -14,9 +15,11 @@ interface BalanceSectionPoInterface extends BasePagePo {
 
 class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
 
-  items = this.ef.autoId('Balance');
-  currencies = this.ef.autoId('Currency');
-  amounts = this.ef.autoId('Amount');
+  name = 'Home - Balance section';
+
+  items = this.ef.all.autoId('Balance');
+  currencies = this.ef.all.autoId('Currency');
+  amounts = this.ef.all.autoId('Amount');
   moreButton = new Button(this.ef.autoId('ShowMore'));
   lessButton = new Button(this.ef.autoId('ShowLess'));
 
@@ -25,8 +28,16 @@ class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
     super();
   }
 
+  getItemByIndex(index) {
+    return new Component(this.ef.getEfFromElements(this.ef, this.items, index));
+  }
+
   get staticElements() {
-    throw new Error('Balance section is not obligatory for Home page');
+    return [];
+  }
+
+  get content() {
+    return [this.getItemByIndex(0)];
   }
 
 }

@@ -41,6 +41,20 @@ class FirstLoginPo extends BaseLoginPo implements FirstLoginPoInterface {
     return [this.signupLink];
   }
 
+  get content() {
+    return [
+      this.languageButton,
+      this.userIcon,
+      this.userTitle,
+      this.userSubTitle,
+      this.loginField,
+      this.passwordField,
+      this.forgotPasswordLink,
+      this.signInButton,
+      this.signupLink,
+    ];
+  }
+
 }
 
 
