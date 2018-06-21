@@ -9,12 +9,15 @@ const log = logger.get('ElementFinder');
 
 interface ElementFinderInterface extends BaseElementFinder {
   all: ElementsFinder;
+  accessibilityLabelName: string;
 }
 
 
 class ElementFinder extends BaseElementFinder implements ElementFinderInterface {
 
-  constructor(protected searchFunction: any) {
+  accessibilityLabelName = this.accessibilityLabelName;
+
+  constructor(protected searchFunction: any, accessibilityLabelName) {
     super(searchFunction);
   }
 
@@ -25,10 +28,11 @@ class ElementFinder extends BaseElementFinder implements ElementFinderInterface 
 }
 
 
-const ef = new ElementFinder(findElementBy);
+const androidEf = new ElementFinder(findElementBy, 'content-desc');
+const iosEf = new ElementFinder(findElementBy, 'name');
 
 
-export {ef, ElementFinderInterface};
+export {androidEf, iosEf, ElementFinderInterface};
 
 
 function findElementBy(using: string, value: string) {

@@ -13,6 +13,8 @@ interface FirstLoginPoInterface extends BasePagePo {
   loginField: InputField;
   passwordField: InputField;
   signupLink: Link;
+  loginValidationError: Label;
+  passwordValidationError: Label;
 }
 
 
@@ -25,6 +27,10 @@ class FirstLoginPo extends BaseLoginPo implements FirstLoginPoInterface {
   loginField = new InputField(this.ef.all.className('android.widget.EditText', {index: 0}));
   passwordField = new InputField(this.ef.all.className('android.widget.EditText', {index: 1}));
   signupLink = new Link(this.ef.autoId('Signup'));
+  loginValidationError = new Label(this.ef.xpath(
+    `(//android.widget.EditText)[1]/../following-sibling::*[@${this.ef.accessibilityLabelName}='ValidationError'][1]`));
+  passwordValidationError = new Label(this.ef.xpath(
+    `(//android.widget.EditText)[1]/../following-sibling::*[@${this.ef.accessibilityLabelName}='ValidationError'][1]`));
 
 
   constructor(protected ef: ElementFinderInterface) {

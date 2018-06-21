@@ -1,6 +1,6 @@
 import {assemblerInterface} from "../../assembler";
 import {helper} from "../../helpers/helper";
-import {ef as elementFinder} from "../../helpers/element_finder/elementFinder.helper";
+import {androidEf as elementFinder} from "../../helpers/element_finder/elementFinder.helper";
 import {driver} from "../../../index";
 
 
