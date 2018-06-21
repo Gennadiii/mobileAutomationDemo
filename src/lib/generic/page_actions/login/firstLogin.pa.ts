@@ -1,21 +1,21 @@
-import {LoginPo} from "../page_objects/login.po";
-import {helper} from "../../../helpers/helper";
-import {BasePagePa} from "./basePage.pa";
+import {helper} from "../../../../helpers/helper";
+import {BasePagePa} from "../basePage.pa";
+import {FirstLoginPo} from "../../page_objects/login/firstLogin.po";
 
 
-const log = helper.logger.get('LoginPa');
+const log = helper.logger.get('FirstLoginPa');
 
 
-interface LoginPaInterface extends BasePagePa {
+interface FirstLoginPaInterface extends BasePagePa {
   enterLogin: (login: string) => Promise<void>;
   enterPassword: (password: string) => Promise<void>;
   signIn: () => Promise<void>;
 }
 
 
-class LoginPa extends BasePagePa implements LoginPaInterface {
+class FirstLoginPa extends BasePagePa implements FirstLoginPaInterface {
 
-  constructor(public page: LoginPo) {
+  constructor(public page: FirstLoginPo) {
     super();
   }
 
@@ -37,4 +37,4 @@ class LoginPa extends BasePagePa implements LoginPaInterface {
 }
 
 
-export {LoginPa};
+export {FirstLoginPa};

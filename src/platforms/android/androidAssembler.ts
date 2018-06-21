@@ -7,13 +7,13 @@ import {driver} from "../../../index";
 const {
   generic: {
     page_objects: {
-      LoginPo,
+      FirstLoginPo,
       BalanceSectionPo,
       LatestTransactionsPo,
       NavigationPo,
     },
     page_actions: {
-      LoginPa,
+      FirstLoginPa,
       BalanceSectionPa,
       LatestTransactionsPa,
       NavigationPa,
@@ -50,7 +50,7 @@ const androidServices: assemblerInterface = {
   login: helper.assembler.serviceFactory({
     elementFinder,
     service: LoginService,
-    parts: [{po: LoginPo, pa: LoginPa}],
+    parts: [{po: FirstLoginPo, pa: FirstLoginPa}],
     completeServices: {
       appService: new AppService(driver),
     }
