@@ -23,6 +23,7 @@ class LoginService implements LoginServiceInterface {
     const {login, password} = user;
     log.info(`Logging in as "${login}"`);
     await this.relaunchAfterFirstLogin();
+    await this.page.verifyIsOpen();
     await this.page.enterLogin(login);
     await this.page.enterPassword(password);
     await this.page.signIn();

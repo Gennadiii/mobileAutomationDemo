@@ -19,11 +19,8 @@ class BaseLoginPo extends BasePagePo implements BaseLoginPoInterface {
   name = 'FirstLogin';
 
   userIcon = new Icon(this.ef.autoId('UserIcon'));
-
   userTitle = new Label(this.ef.autoId('UserTitle'));
-
   forgotPasswordLink = new Link(this.ef.autoId('ForgotPassword'));
-
   signInButton = new Button(this.ef.autoId(`SignIn`));
 
 

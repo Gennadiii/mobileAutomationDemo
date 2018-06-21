@@ -8,10 +8,9 @@ const log = helper.logger.get('HomeBSPa');
 
 interface BalanceSectionPaInterface extends BasePagePa {
   // actions
-  openHidden: () => Promise<void>;
+  expand: () => Promise<void>;
   // get
-  countMain: () => Promise<number>;
-  countHidden: () => Promise<number>;
+  // count: () => Promise<number>;
   // check
   areSomeBalancesHidden: () => Promise<boolean>;
 }
@@ -24,20 +23,14 @@ class BalanceSectionPa extends BasePagePa implements BalanceSectionPaInterface {
   }
 
   // actions
-  async openHidden() {
-    log.info(`Opening all balances`);
+  async expand() {
+    log.info(`Expanding balances`);
     await this.page.moreButton.click();
   }
 
   // get
-  countMain() {
+  count() {
     log.info(`Counting main balances`);
-    return this.page.mainList.getCount({withScroll: false});
-  }
-
-  countHidden() {
-    log.info(`Counting hidden balances`);
-    return this.page.hiddenList.getCount();
   }
 
   // check

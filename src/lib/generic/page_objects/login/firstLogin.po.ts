@@ -21,13 +21,9 @@ class FirstLoginPo extends BaseLoginPo implements FirstLoginPoInterface {
   name = 'FirstLogin';
 
   languageButton = new Button(this.ef.autoId('ChangeLanguage'));
-
   userSubTitle = new Label(this.ef.autoId('UserSubtitle'));
-
   loginField = new InputField(this.ef.all.className('android.widget.EditText', {index: 0}));
-
   passwordField = new InputField(this.ef.all.className('android.widget.EditText', {index: 1}));
-
   signupLink = new Link(this.ef.autoId('Signup'));
 
 

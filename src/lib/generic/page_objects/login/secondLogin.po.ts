@@ -16,7 +16,6 @@ class SecondLoginPo extends BaseLoginPo implements SecondLoginPoInterface {
   name = 'SecondLogin';
 
   optionsButton = new Button(this.ef.autoId('More options'));
-
   passwordField = new InputField(this.ef.className('android.widget.EditText'));
 
 

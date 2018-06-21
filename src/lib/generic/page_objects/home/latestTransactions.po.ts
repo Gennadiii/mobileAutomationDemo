@@ -1,19 +1,19 @@
 import {Label} from "../../components/label";
-import {BasePagePo} from "../basePage.po";
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
+import {BaseTransactionsPo} from "../baseTransactions.po";
 
 
-interface LatestTransactionsPoInterface extends BasePagePo {
+interface LatestTransactionsPoInterface extends BaseTransactionsPo {
   label: Label;
   latestAmount: Label;
 }
 
 
-class LatestTransactionsPo extends BasePagePo implements LatestTransactionsPoInterface {
+class LatestTransactionsPo extends BaseTransactionsPo implements LatestTransactionsPoInterface {
 
   name = 'Home - Latest transactions';
 
-  label = new Label(this.ef.text('Latest transactions'));
+  label = new Label(this.ef.autoId('LatestActivityLabel'));
 
   latestAmount = new Label(this.ef.xpath('//android.widget' +
     '.ScrollView/android.view.ViewGroup/android.view.ViewGroup[3]//android.widget' +
@@ -21,7 +21,7 @@ class LatestTransactionsPo extends BasePagePo implements LatestTransactionsPoInt
 
 
   constructor(protected ef: ElementFinderInterface) {
-    super();
+    super(ef);
   }
 
   get staticElements() {
