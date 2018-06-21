@@ -4,6 +4,7 @@ import {BasePagePo} from "../basePage.po";
 import {Icon} from "../../components/icon";
 import {Label} from "../../components/label";
 import {Link} from "../../components/link";
+import {InputField} from "../../components/inputField";
 
 
 interface BaseLoginPoInterface extends BasePagePo {
@@ -11,6 +12,8 @@ interface BaseLoginPoInterface extends BasePagePo {
   userTitle: Label;
   forgotPasswordLink: Link;
   signInButton: Button;
+  passwordField: InputField;
+  passwordValidationError: Label;
 }
 
 
@@ -22,6 +25,8 @@ class BaseLoginPo extends BasePagePo implements BaseLoginPoInterface {
   userTitle = new Label(this.ef.autoId('UserTitle'));
   forgotPasswordLink = new Link(this.ef.autoId('ForgotPassword'));
   signInButton = new Button(this.ef.autoId(`SignIn`));
+  passwordField = new InputField(this.ef.className('android.widget.EditText'));
+  passwordValidationError = new Label(this.ef.accessibilityId('ValidationError'));
 
 
   constructor(protected ef: ElementFinderInterface) {

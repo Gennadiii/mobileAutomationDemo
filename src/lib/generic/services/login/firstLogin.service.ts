@@ -1,18 +1,18 @@
-import {FirstLoginPa} from "../page_actions/login/firstLogin.pa";
-import {AppService} from "./app.service";
-import {userInterface} from "./user.service";
-import {helper} from "../../../helpers/helper";
+import {FirstLoginPa} from "../../page_actions/login/firstLogin.pa";
+import {AppService} from "../app.service";
+import {userInterface} from "../user.service";
+import {helper} from "../../../../helpers/helper";
 
 
-const log = helper.logger.get('LoginService');
+const log = helper.logger.get('FirstLoginService');
 
 
-interface LoginServiceInterface {
+interface FirstLoginServiceInterface {
   as: (user: userInterface) => Promise<void>;
 }
 
 
-class LoginService implements LoginServiceInterface {
+class FirstLoginService implements FirstLoginServiceInterface {
 
   private firstLogin = true;
 
@@ -26,7 +26,7 @@ class LoginService implements LoginServiceInterface {
     await this.page.verifyIsOpen();
     await this.page.enterLogin(login);
     await this.page.enterPassword(password);
-    await this.page.signIn();
+    await this.page.clickSignInButton();
   }
 
   private async relaunchAfterFirstLogin() {
@@ -37,4 +37,4 @@ class LoginService implements LoginServiceInterface {
 }
 
 
-export {LoginService};
+export {FirstLoginService};

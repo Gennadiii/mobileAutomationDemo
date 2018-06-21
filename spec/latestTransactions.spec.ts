@@ -7,7 +7,7 @@ describe('Latest transactions', () => {
 
   beforeAll(async () => {
     cardBalanceUser = service.common.user.name('card_balance').allocate();
-    await service.login.as(cardBalanceUser);
+    await service.login.first.as(cardBalanceUser);
   });
   afterAll(() => cardBalanceUser.free());
 

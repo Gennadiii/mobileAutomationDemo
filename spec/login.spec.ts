@@ -9,7 +9,7 @@ describe('Login', () => {
   afterAll(() => anyUser.free());
 
   it('login success', async () => {
-    await service.login.as(anyUser);
+    await service.login.first.as(anyUser);
     expect(await service.home.page.isOpen())
       .toBeTruthy(`Landing page didn't get opened`);
   });

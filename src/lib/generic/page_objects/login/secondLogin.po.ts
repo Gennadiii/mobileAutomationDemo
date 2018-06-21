@@ -8,8 +8,6 @@ import {Label} from "../../components/label";
 
 interface SecondLoginPoInterface extends BasePagePo {
   optionsButton: Button;
-  passwordField: InputField;
-  passwordValidationError: Label;
 }
 
 
@@ -18,8 +16,6 @@ class SecondLoginPo extends BaseLoginPo implements SecondLoginPoInterface {
   name = 'SecondLogin';
 
   optionsButton = new Button(this.ef.autoId('More options'));
-  passwordField = new InputField(this.ef.className('android.widget.EditText'));
-  passwordValidationError = new Label(this.ef.accessibilityId('ValidationError'));
 
 
   constructor(protected ef: ElementFinderInterface) {

@@ -8,18 +8,22 @@ const {
   generic: {
     page_objects: {
       FirstLoginPo,
+      SecondLoginPo,
       BalanceSectionPo,
       LatestTransactionsPo,
       NavigationPo,
     },
     page_actions: {
       FirstLoginPa,
+      SecondLoginPa,
       BalanceSectionPa,
       LatestTransactionsPa,
       NavigationPa,
     },
     services: {
       LoginService,
+      FirstLoginService,
+      SecondLoginService,
       BalanceSectionService,
       LatestTransactionsService,
       HomeService,
@@ -48,11 +52,21 @@ const androidServices: assemblerInterface = {
   }),
 
   login: helper.assembler.serviceFactory({
-    elementFinder,
     service: LoginService,
-    parts: [{po: FirstLoginPo, pa: FirstLoginPa}],
     completeServices: {
-      appService: new AppService(driver),
+      firstLoginService: helper.assembler.serviceFactory({
+        elementFinder,
+        service: FirstLoginService,
+        parts: [{po: FirstLoginPo, pa: FirstLoginPa}],
+        completeServices: {
+          appService: new AppService(driver),
+        }
+      }),
+      secondLoginService: helper.assembler.serviceFactory({
+        elementFinder,
+        service: SecondLoginService,
+        parts: [{po: SecondLoginPo, pa: SecondLoginPa}]
+      })
     }
   }),
 
