@@ -23,7 +23,7 @@ class SecondLoginPo extends BaseLoginPo implements SecondLoginPoInterface {
   }
 
   get staticElements() {
-    return [this.signInButton];
+    return [this.optionsButton];
   }
 
 }
