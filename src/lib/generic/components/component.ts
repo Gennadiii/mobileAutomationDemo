@@ -33,7 +33,15 @@ class Component implements ComponentInterface {
   // check
 
   async isDisplayed() {
-    return this.element.isDisplayed();
+    try {
+      return await this.element.isDisplayed();
+    } catch (err) {
+      if (err.message.includes('NoSuchElement')) {
+        return false;
+      } else {
+        throw err;
+      }
+    }
   }
 
   // wait
@@ -41,11 +49,7 @@ class Component implements ComponentInterface {
   waitUntilDisplayed(timeout) {
     log.info(`Waiting until element is displayed using "${this.ef.using}" with value: ${this.ef.value}`);
     return helper.waiters.appiumWait(async () => {
-      try {
-        return await this.element.isDisplayed();
-      } catch (err) {
-        return false;
-      }
+      return await this.isDisplayed();
     }, timeout);
   }
 
