@@ -20,6 +20,7 @@ class BasePagePa implements BasePagePaInterface {
 
   protected page: any = basePagePo; // Type any is to avoid inheritance issues
   protected pages: any = false;
+  private currentPage;
 
   setPages(pageActions) {
     this.pages = pageActions.map(pageAction => pageAction.page);
@@ -32,9 +33,10 @@ class BasePagePa implements BasePagePaInterface {
     }
     const isDisplayedArr = [];
     this.pages.forEach(page => {
+      this.currentPage = page;
       log.info(`Checking if "${page.name}" page is opened`);
       isDisplayedArr.push(...page.staticElements
-        .map(element => element.waitUntilDisplayed(timeout).catch(() => false)));
+        .map(element => element.waitUntilDisplayed(timeout)));
     });
     return helper.promise.allTrue({arr: isDisplayedArr});
   }
@@ -48,14 +50,14 @@ class BasePagePa implements BasePagePaInterface {
     this.pages.forEach(page => {
       log.info(`Checking if "${page.name}" page content is displayed`);
       isDisplayedArr.push(...page.content
-        .map(element => element.waitUntilDisplayed(timeout).catch(() => false)));
+        .map(element => element.waitUntilDisplayed(timeout)));
     });
     return helper.promise.allTrue({arr: isDisplayedArr});
   }
 
   async verifyIsOpen() {
     if (!await this.isOpen()) {
-      throw new Error(`Page didn't get opened`);
+      throw new Error(`"${this.currentPage}" page didn't get opened`);
     }
   }
 

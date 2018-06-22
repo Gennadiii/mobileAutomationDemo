@@ -7,7 +7,10 @@ const log = helper.logger.get('FirstLoginPa');
 
 
 interface FirstLoginPaInterface extends BaseLoginPa {
+  // actions
   enterLogin: (login: string) => Promise<void>;
+  // checks
+  loginValidationIsDisplayed: () => Promise<boolean>;
 }
 
 
@@ -17,9 +20,18 @@ class FirstLoginPa extends BaseLoginPa implements FirstLoginPaInterface {
     super(page);
   }
 
+  // actions
+
   async enterLogin(login) {
     log.info(`Entering login: ${login}`);
     await this.page.loginField.sendKeys(login);
+  }
+
+  // checks
+
+  async loginValidationIsDisplayed() {
+    log.info(`Checking if login validation error is present`);
+    return await this.page.loginValidationError.isDisplayed();
   }
 
 }

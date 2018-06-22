@@ -44,13 +44,23 @@ const {
 } = (helper.lib.all as any);
 
 
+const firstLoginService = helper.assembler.serviceFactory({
+  elementFinder,
+  service: FirstLoginService,
+  parts: [{po: FirstLoginPo, pa: FirstLoginPa}],
+  completeServices: {
+    appService: new AppService(driver),
+  }
+});
+
+
 const androidServices: assemblerInterface = {
 
   common: helper.assembler.serviceFactory({
     service: CommonService,
     completeServices: {
       userService: new UserService(),
-      appService: new AppService(driver),
+      appService: new AppService(driver, firstLoginService),
       navigationService: helper.assembler.serviceFactory({
         elementFinder,
         service: NavigationService,
@@ -62,14 +72,7 @@ const androidServices: assemblerInterface = {
   login: helper.assembler.serviceFactory({
     service: LoginService,
     completeServices: {
-      firstLoginService: helper.assembler.serviceFactory({
-        elementFinder,
-        service: FirstLoginService,
-        parts: [{po: FirstLoginPo, pa: FirstLoginPa}],
-        completeServices: {
-          appService: new AppService(driver),
-        }
-      }),
+      firstLoginService,
       secondLoginService: helper.assembler.serviceFactory({
         elementFinder,
         service: SecondLoginService,
