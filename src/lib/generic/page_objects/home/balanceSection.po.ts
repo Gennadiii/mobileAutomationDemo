@@ -1,13 +1,15 @@
 import {BasePagePo} from "../basePage.po";
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Button} from "../../components/button";
-import {Component} from "../../components/component";
+import {ComponentsList} from "../../components/componentsList";
+import {Section} from "../../components/section";
+import {Label} from "../../components/label";
 
 
 interface BalanceSectionPoInterface extends BasePagePo {
-  items: () => any;
-  currencies: () => any;
-  amounts: () => any;
+  items: ComponentsList;
+  currencies: ComponentsList;
+  amounts: ComponentsList;
   moreButton: Button;
   lessButton: Button;
 }
@@ -17,9 +19,9 @@ class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
 
   name = 'Home - Balance section';
 
-  items = this.ef.all.autoId('Balance');
-  currencies = this.ef.all.autoId('Currency');
-  amounts = this.ef.all.autoId('Amount');
+  items = new ComponentsList(this.ef, Section, this.ef.all.autoId('Balance'));
+  currencies = new ComponentsList(this.ef, Label, this.ef.all.autoId('Currency'));
+  amounts = new ComponentsList(this.ef, Label, this.ef.all.autoId('Amount'));
   moreButton = new Button(this.ef.autoId('ShowMore'));
   lessButton = new Button(this.ef.autoId('ShowLess'));
 
@@ -28,16 +30,12 @@ class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
     super();
   }
 
-  getItemByIndex(index) {
-    return new Component(this.ef.getEfFromElements(this.ef, this.items, index));
-  }
-
   get staticElements() {
     return [];
   }
 
   get content() {
-    return [this.getItemByIndex(0)];
+    return [];
   }
 
 }

@@ -2,13 +2,13 @@ import {ElementFinderInterface} from "../../../helpers/element_finder/elementFin
 import {Button} from "../components/button";
 import {Label} from "../components/label";
 import {BaseTransactionsPo} from "./baseTransactions.po";
+import {ComponentsList} from "../components/componentsList";
 
 
 interface TransactionsPoInterface extends BaseTransactionsPo {
   title: Label;
   filtersButton: Button;
-  items: () => any;
-  runningBalances: () => any;
+  runningBalances: ComponentsList;
 }
 
 
@@ -16,8 +16,7 @@ class TransactionsPo extends BaseTransactionsPo implements TransactionsPoInterfa
 
   title = new Label(this.ef.autoId('PageTitle'));
   filtersButton = new Button(this.ef.autoId('Filters'));
-  items = this.ef.all.autoId('Activity');
-  runningBalances = this.ef.all.autoId('ActivityRunningBalance');
+  runningBalances = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityRunningBalance'));
 
 
   constructor(protected ef: ElementFinderInterface) {

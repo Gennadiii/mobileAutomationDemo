@@ -5,7 +5,7 @@ interface BaseElementFinderInterface {
   className: (className: string) => () => Promise<any>;
   text: (text: string, options?: findElementByTextInterface) => () => Promise<any>;
   autoId: (id: string) => Promise<any>;
-  getEfFromElements: (ef: BaseElementFinderInterface, elements: Array<Promise<any>>, index: number) => Promise<any>;
+  element: (using: string, value: string) => Promise<any>;
 }
 
 
@@ -13,20 +13,20 @@ class BaseElementFinder implements BaseElementFinderInterface {
   constructor(protected searchFunction: any) {
   }
 
-  id(id) {
-    return this.searchFunction('id', id, arguments[1]);
+  id(id, options?) {
+    return this.searchFunction('id', id, options);
   }
 
   accessibilityId(accessibilityId, options?) {
-    return this.searchFunction('accessibility id', accessibilityId, arguments[1]);
+    return this.searchFunction('accessibility id', accessibilityId, options);
   }
 
   xpath(xpath, options?) {
-    return this.searchFunction('xpath', xpath, arguments[1]);
+    return this.searchFunction('xpath', xpath, options);
   }
 
   className(className, options?) {
-    return this.searchFunction('class name', className, arguments[1]);
+    return this.searchFunction('class name', className, options);
   }
 
   text(text, options = {partial: false}) {
@@ -41,8 +41,8 @@ class BaseElementFinder implements BaseElementFinderInterface {
     return this.accessibilityId(id, options);
   }
 
-  getEfFromElements(ef, elements, index) {
-    return ef.all[elements.using](elements.value, {index});
+  element(using, value, options?) {
+    return this.searchFunction(using, value, options);
   }
 
 }

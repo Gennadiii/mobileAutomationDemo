@@ -25,16 +25,12 @@ class LatestTransactionsPo extends BaseTransactionsPo implements LatestTransacti
     super(ef);
   }
 
-  getItemByIndex(index) {
-    return new Component(this.ef.getEfFromElements(this.ef, this.items, index));
-  }
-
   get staticElements() {
     return [this.label];
   }
 
   get content() {
-    return [this.label, this.getItemByIndex(0)];
+    return [this.label, this.items.getElementByIndex(0)];
   }
 
 }

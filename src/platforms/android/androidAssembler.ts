@@ -14,6 +14,7 @@ const {
       NavigationPo,
       TransactionsPo,
       SettingsPo,
+      HomePo,
     },
     page_actions: {
       FirstLoginPa,
@@ -23,6 +24,7 @@ const {
       NavigationPa,
       TransactionsPa,
       SettingsPa,
+      HomePa,
     },
     services: {
       LoginService,
@@ -77,7 +79,9 @@ const androidServices: assemblerInterface = {
   }),
 
   home: helper.assembler.serviceFactory({
+    elementFinder,
     service: HomeService,
+    parts: [{po: HomePo, pa: HomePa}],
     completeServices: {
       homeBalanceSectionService: helper.assembler.serviceFactory({
         elementFinder,
