@@ -10,11 +10,17 @@ interface SettingsPoInterface {
 
 class SettingsPo extends BasePagePo implements SettingsPoInterface {
 
+  name = 'Settings';
+
   signOutButton = new Button(this.ef.autoId('SignOut'));
 
 
   constructor(private ef: ElementFinderInterface) {
     super();
+  }
+
+  get staticElements() {
+    return [this.signOutButton];
   }
 
 }

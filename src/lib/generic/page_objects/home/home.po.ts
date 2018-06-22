@@ -12,6 +12,8 @@ interface HomePoInterface extends BasePagePo {
 
 class HomePo extends BasePagePo implements HomePoInterface {
 
+  name = 'Home';
+
   userIcon = new Icon(this.ef.autoId('UserIcon'));
   userTitle = new Label(this.ef.autoId('UserTitle'));
 

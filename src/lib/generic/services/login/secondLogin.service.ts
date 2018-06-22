@@ -1,6 +1,7 @@
 import {userInterface} from "../user.service";
 import {helper} from "../../../../helpers/helper";
 import {SecondLoginPa} from "../../page_actions/login/secondLogin.pa";
+import {HomeService} from "../home/home.service";
 
 
 const log = helper.logger.get('SecondLoginService');
@@ -13,7 +14,8 @@ interface SecondLoginServiceInterface {
 
 class SecondLoginService implements SecondLoginServiceInterface {
 
-  constructor(public page: SecondLoginPa) {
+  constructor(private homeService: HomeService,
+              public page: SecondLoginPa) {
   }
 
   async as(user: userInterface) {
@@ -21,6 +23,7 @@ class SecondLoginService implements SecondLoginServiceInterface {
     const {password} = user;
     await this.page.enterPassword(password);
     await this.page.clickSignInButton();
+    await this.homeService.page.verifyIsOpen();
   }
 
 }

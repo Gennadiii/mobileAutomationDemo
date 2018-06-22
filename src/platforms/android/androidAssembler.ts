@@ -44,13 +44,44 @@ const {
 } = (helper.lib.all as any);
 
 
+const homeService = helper.assembler.serviceFactory({
+  elementFinder,
+  service: HomeService,
+  parts: [{po: HomePo, pa: HomePa}],
+  completeServices: {
+    homeBalanceSectionService: helper.assembler.serviceFactory({
+      elementFinder,
+      service: BalanceSectionService,
+      parts: [{po: BalanceSectionPo, pa: BalanceSectionPa}]
+    }),
+    homeLatestTransactionsService: helper.assembler.serviceFactory({
+      elementFinder,
+      service: LatestTransactionsService,
+      parts: [{po: LatestTransactionsPo, pa: LatestTransactionsPa}]
+    })
+  },
+});
+
 const firstLoginService = helper.assembler.serviceFactory({
   elementFinder,
   service: FirstLoginService,
   parts: [{po: FirstLoginPo, pa: FirstLoginPa}],
   completeServices: {
     appService: new AppService(driver),
+    homeService,
   }
+});
+
+const transactionsService = helper.assembler.serviceFactory({
+  elementFinder,
+  service: TransactionsService,
+  parts: [{po: TransactionsPo, pa: TransactionsPa}]
+});
+
+const settingsService = helper.assembler.serviceFactory({
+  elementFinder,
+  service: SettingsService,
+  parts: [{po: SettingsPo, pa: SettingsPa}]
 });
 
 
@@ -64,7 +95,8 @@ const androidServices: assemblerInterface = {
       navigationService: helper.assembler.serviceFactory({
         elementFinder,
         service: NavigationService,
-        parts: [{po: NavigationPo, pa: NavigationPa}]
+        parts: [{po: NavigationPo, pa: NavigationPa}],
+        completeServices: {homeService, transactionsService, settingsService}
       })
     }
   }),
@@ -76,40 +108,17 @@ const androidServices: assemblerInterface = {
       secondLoginService: helper.assembler.serviceFactory({
         elementFinder,
         service: SecondLoginService,
-        parts: [{po: SecondLoginPo, pa: SecondLoginPa}]
+        parts: [{po: SecondLoginPo, pa: SecondLoginPa}],
+        completeServices: {homeService}
       })
     }
   }),
 
-  home: helper.assembler.serviceFactory({
-    elementFinder,
-    service: HomeService,
-    parts: [{po: HomePo, pa: HomePa}],
-    completeServices: {
-      homeBalanceSectionService: helper.assembler.serviceFactory({
-        elementFinder,
-        service: BalanceSectionService,
-        parts: [{po: BalanceSectionPo, pa: BalanceSectionPa}]
-      }),
-      homeLatestTransactionsService: helper.assembler.serviceFactory({
-        elementFinder,
-        service: LatestTransactionsService,
-        parts: [{po: LatestTransactionsPo, pa: LatestTransactionsPa}]
-      })
-    },
-  }),
+  home: homeService,
 
-  transactions: helper.assembler.serviceFactory({
-    elementFinder,
-    service: TransactionsService,
-    parts: [{po: TransactionsPo, pa: TransactionsPa}]
-  }),
+  transactions: transactionsService,
 
-  settings: helper.assembler.serviceFactory({
-    elementFinder,
-    service: SettingsService,
-    parts: [{po: SettingsPo, pa: SettingsPa}]
-  })
+  settings: settingsService,
 
 };
 
