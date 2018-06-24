@@ -7,8 +7,6 @@ const log = helper.logger.get('HomeLTPa');
 
 
 interface LatestTransactionsPaInterface extends BasePagePa {
-  // get
-  getLatestAmount: () => Promise<string>;
 }
 
 
@@ -16,12 +14,6 @@ class LatestTransactionsPa extends BasePagePa implements LatestTransactionsPaInt
 
   constructor(public page: LatestTransactionsPo) {
     super();
-  }
-
-  // get
-  getLatestAmount() {
-    log.info(`Getting latest transaction amount`);
-    return this.page.latestAmount.getText();
   }
 
 }
