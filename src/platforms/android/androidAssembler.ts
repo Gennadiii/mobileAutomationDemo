@@ -15,6 +15,7 @@ const {
       TransactionsPo,
       SettingsPo,
       HomePo,
+      FingerprintPo,
     },
     page_actions: {
       FirstLoginPa,
@@ -25,6 +26,7 @@ const {
       TransactionsPa,
       SettingsPa,
       HomePa,
+      FingerprintPa,
     },
     services: {
       LoginService,
@@ -39,6 +41,7 @@ const {
       NavigationService,
       TransactionsService,
       SettingsService,
+      FingerprintService,
     }
   }
 } = (helper.lib.all as any);
@@ -91,7 +94,7 @@ const androidServices: assemblerInterface = {
     service: CommonService,
     completeServices: {
       userService: new UserService(),
-      appService: new AppService(driver, firstLoginService),
+      appService: new AppService(driver),
       navigationService: helper.assembler.serviceFactory({
         elementFinder,
         service: NavigationService,
@@ -109,7 +112,14 @@ const androidServices: assemblerInterface = {
         elementFinder,
         service: SecondLoginService,
         parts: [{po: SecondLoginPo, pa: SecondLoginPa}],
-        completeServices: {homeService}
+        completeServices: {
+          fingerprintService: helper.assembler.serviceFactory({
+            elementFinder,
+            service: FingerprintService,
+            parts: [{po: FingerprintPo, pa: FingerprintPa}]
+          }),
+          homeService
+        }
       })
     }
   }),
