@@ -9,7 +9,10 @@ describe('First login', () => {
 
     beforeAll(() => anyUser = service.common.user.any().allocate());
     afterAll(() => anyUser.free());
-    beforeEach(async () => await service.common.app.relaunch());
+    beforeEach(async () => {
+      await service.common.app.relaunch();
+      await service.login.first.page.verifyIsOpen();
+    });
 
     it('validation errors appear for login and password fields when tapping sign in button with empty fields',
       async () => {

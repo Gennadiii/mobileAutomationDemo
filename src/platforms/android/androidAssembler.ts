@@ -118,7 +118,6 @@ const androidServices: assemblerInterface = {
             service: FingerprintService,
             parts: [{po: FingerprintPo, pa: FingerprintPa}]
           }),
-          homeService
         }
       })
     }

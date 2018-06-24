@@ -19,7 +19,7 @@ interface BaseLoginPoInterface extends BasePagePo {
 
 class BaseLoginPo extends BasePagePo implements BaseLoginPoInterface {
 
-  name = 'FirstLogin';
+  name = 'BaseLogin';
 
   userIcon = new Icon(this.ef.autoId('UserIcon'));
   userTitle = new Label(this.ef.autoId('UserTitle'));
