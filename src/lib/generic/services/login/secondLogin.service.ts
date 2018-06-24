@@ -2,6 +2,7 @@ import {userInterface} from "../user.service";
 import {helper} from "../../../../helpers/helper";
 import {SecondLoginPa} from "../../page_actions/login/secondLogin.pa";
 import {FingerprintService} from "./fingerprint.service";
+import {LanguageService} from "../language.service";
 
 
 const log = helper.logger.get('SecondLoginService');
@@ -16,6 +17,7 @@ class SecondLoginService implements SecondLoginServiceInterface {
 
 
   constructor(public fingerprint: FingerprintService,
+              public language: LanguageService,
               public page: SecondLoginPa) {
   }
 
@@ -25,7 +27,6 @@ class SecondLoginService implements SecondLoginServiceInterface {
     const {password} = user;
     await this.page.enterPassword(password);
     await this.page.clickSignInButton();
-    await helper.dateTime.sleep(3000); // todo remove when locator for nor now button is added
 
     if (skipFingerprint) {
       await this.fingerprint.page.verifyIsOpen();

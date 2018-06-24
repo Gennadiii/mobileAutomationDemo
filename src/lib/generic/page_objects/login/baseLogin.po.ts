@@ -26,7 +26,7 @@ class BaseLoginPo extends BasePagePo implements BaseLoginPoInterface {
   forgotPasswordLink = new Link(this.ef.autoId('ForgotPassword'));
   signInButton = new Button(this.ef.autoId(`SignIn`));
   passwordField = new InputField(this.ef.className('android.widget.EditText'));
-  passwordValidationError = new Label(this.ef.accessibilityId('ValidationError'));
+  passwordValidationError = new Label(this.ef.autoId('PasswordValidationError'));
 
 
   constructor(protected ef: ElementFinderInterface) {

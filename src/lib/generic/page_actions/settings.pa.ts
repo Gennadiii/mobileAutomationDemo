@@ -19,7 +19,7 @@ class SettingsPa extends BasePagePa implements SettingsPaInterface {
 
 
   async clickSignOutButton() {
-    log.info(`Signing out`);
+    log.info(`Clicking sign out button`);
     await this.page.signOutButton.click();
   }
 

@@ -162,6 +162,7 @@ interface capabilitiesInterface {
   app: string;
   automationName: string;
   appPackage?: string;
+  appActivity?: string;
 }
 
 

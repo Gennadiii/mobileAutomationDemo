@@ -2,11 +2,13 @@ import {BasePagePo} from "../basePage.po";
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Icon} from "../../components/icon";
 import {Label} from "../../components/label";
+import {Link} from "../../components/link";
 
 
 interface HomePoInterface extends BasePagePo {
   userIcon: Icon;
   userTitle: Label;
+  allTransactionsLink: Link;
 }
 
 
@@ -16,6 +18,7 @@ class HomePo extends BasePagePo implements HomePoInterface {
 
   userIcon = new Icon(this.ef.autoId('UserIcon'));
   userTitle = new Label(this.ef.autoId('UserTitle'));
+  allTransactionsLink = new Link(this.ef.autoId('AllActivities'));
 
 
   constructor(protected ef: ElementFinderInterface) {
@@ -23,7 +26,8 @@ class HomePo extends BasePagePo implements HomePoInterface {
   }
 
   get staticElements() {
-    return [this.userIcon];
+    return [];
+    // return [this.userIcon];
   }
 
   get content() {

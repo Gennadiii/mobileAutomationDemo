@@ -16,6 +16,7 @@ const {
       SettingsPo,
       HomePo,
       FingerprintPo,
+      LanguagePo,
     },
     page_actions: {
       FirstLoginPa,
@@ -27,6 +28,7 @@ const {
       SettingsPa,
       HomePa,
       FingerprintPa,
+      LanguagePa,
     },
     services: {
       LoginService,
@@ -42,6 +44,7 @@ const {
       TransactionsService,
       SettingsService,
       FingerprintService,
+      LanguageService,
     }
   }
 } = (helper.lib.all as any);
@@ -81,10 +84,31 @@ const transactionsService = helper.assembler.serviceFactory({
   parts: [{po: TransactionsPo, pa: TransactionsPa}]
 });
 
+const languageService = helper.assembler.serviceFactory({
+  elementFinder,
+  service: LanguageService,
+  parts: [{po: LanguagePo, pa: LanguagePa}]
+});
+
+const secondLoginService = helper.assembler.serviceFactory({
+  elementFinder,
+  service: SecondLoginService,
+  parts: [{po: SecondLoginPo, pa: SecondLoginPa}],
+  completeServices: {
+    fingerprintService: helper.assembler.serviceFactory({
+      elementFinder,
+      service: FingerprintService,
+      parts: [{po: FingerprintPo, pa: FingerprintPa}]
+    }),
+    languageService,
+  }
+});
+
 const settingsService = helper.assembler.serviceFactory({
   elementFinder,
   service: SettingsService,
-  parts: [{po: SettingsPo, pa: SettingsPa}]
+  parts: [{po: SettingsPo, pa: SettingsPa}],
+  completeServices: {secondLoginService}
 });
 
 
@@ -108,18 +132,7 @@ const androidServices: assemblerInterface = {
     service: LoginService,
     completeServices: {
       firstLoginService,
-      secondLoginService: helper.assembler.serviceFactory({
-        elementFinder,
-        service: SecondLoginService,
-        parts: [{po: SecondLoginPo, pa: SecondLoginPa}],
-        completeServices: {
-          fingerprintService: helper.assembler.serviceFactory({
-            elementFinder,
-            service: FingerprintService,
-            parts: [{po: FingerprintPo, pa: FingerprintPa}]
-          }),
-        }
-      })
+      secondLoginService,
     }
   }),
 
@@ -128,6 +141,8 @@ const androidServices: assemblerInterface = {
   transactions: transactionsService,
 
   settings: settingsService,
+
+  language: languageService,
 
 };
 

@@ -41,6 +41,7 @@ const capabilities: capabilitiesInterface = {
 
 if (platformName === 'Android') {
   capabilities.appPackage = 'com.payoneer.android';
+  capabilities.appActivity = 'com.payoneer.MainActivity';
 }
 
 log.info(`Test run is about to start with next configuration:

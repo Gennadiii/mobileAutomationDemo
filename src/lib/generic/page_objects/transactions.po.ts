@@ -9,12 +9,14 @@ interface TransactionsPoInterface extends BaseTransactionsPo {
   title: Label;
   filtersButton: Button;
   runningBalances: ComponentsList;
+  allTransactionsLabel: Label;
 }
 
 
 class TransactionsPo extends BaseTransactionsPo implements TransactionsPoInterface {
 
   title = new Label(this.ef.autoId('PageTitle'));
+  allTransactionsLabel = new Label(this.ef.autoId('AllTransactionsTitle'));
   filtersButton = new Button(this.ef.autoId('Filters'));
   runningBalances = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityRunningBalance'));
 

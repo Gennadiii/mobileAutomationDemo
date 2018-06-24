@@ -5,6 +5,7 @@ import {BasePagePo} from "../basePage.po";
 
 interface FingerprintPoInterface extends BasePagePo {
   notNowButton: Button;
+  setupButton: Button;
 }
 
 
@@ -12,7 +13,8 @@ class FingerprintPo extends BasePagePo implements FingerprintPoInterface {
 
   name = 'Fingerprint';
 
-  notNowButton = new Button(this.ef.all.xpath('//android.widget.TextView', {index: 3}));
+  setupButton = new Button(this.ef.autoId('QuickOptionsTouchId'));
+  notNowButton = new Button(this.ef.autoId('NotNow'));
 
 
   constructor(protected ef: ElementFinderInterface) {

@@ -4,7 +4,7 @@ import {BaseTransactionsPo} from "../baseTransactions.po";
 
 
 interface LatestTransactionsPoInterface extends BaseTransactionsPo {
-  label: Label;
+  title: Label;
 }
 
 
@@ -12,7 +12,7 @@ class LatestTransactionsPo extends BaseTransactionsPo implements LatestTransacti
 
   name = 'Home - Latest transactions';
 
-  label = new Label(this.ef.autoId('LatestActivityLabel'));
+  title = new Label(this.ef.autoId('LatestActivityLabel'));
 
 
   constructor(protected ef: ElementFinderInterface) {
@@ -20,11 +20,11 @@ class LatestTransactionsPo extends BaseTransactionsPo implements LatestTransacti
   }
 
   get staticElements() {
-    return [this.label];
+    return [this.title];
   }
 
   get content() {
-    return [this.label, this.items.getElementByIndex(0)];
+    return [this.title, this.items.getElementByIndex(0)];
   }
 
 }
