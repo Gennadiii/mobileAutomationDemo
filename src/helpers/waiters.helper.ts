@@ -18,11 +18,11 @@ const waitersHelper = {
   },
 
   async appiumWait(callback, timeout, interval = 100): Promise<any> {
+    driver.setImplicitTimeout(200);
     try {
-      await driver.setImplicitTimeout(0);
       return await this.wait(...arguments);
     } finally {
-      await driver.setImplicitTimeout(driver.implicitWait);
+      driver.setImplicitTimeout(driver.defaultImplicitWait);
     }
   },
 

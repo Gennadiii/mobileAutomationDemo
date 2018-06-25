@@ -77,12 +77,6 @@ const firstLoginService = helper.assembler.serviceFactory({
   }
 });
 
-const transactionsService = helper.assembler.serviceFactory({
-  elementFinder,
-  service: TransactionsService,
-  parts: [{po: TransactionsPo, pa: TransactionsPa}]
-});
-
 const secondLoginService = helper.assembler.serviceFactory({
   elementFinder,
   service: SecondLoginService,
@@ -91,19 +85,13 @@ const secondLoginService = helper.assembler.serviceFactory({
     {po: LanguagePo, pa: LanguagePa}
   ],
   completeServices: {
+    homeService,
     fingerprintService: helper.assembler.serviceFactory({
       elementFinder,
       service: FingerprintService,
       parts: [{po: FingerprintPo, pa: FingerprintPa}]
     }),
   }
-});
-
-const settingsService = helper.assembler.serviceFactory({
-  elementFinder,
-  service: SettingsService,
-  parts: [{po: SettingsPo, pa: SettingsPa}],
-  completeServices: {secondLoginService}
 });
 
 
@@ -118,7 +106,6 @@ const androidServices: assemblerInterface = {
         elementFinder,
         service: NavigationService,
         parts: [{po: NavigationPo, pa: NavigationPa}],
-        completeServices: {homeService, transactionsService, settingsService}
       })
     }
   }),
@@ -133,9 +120,17 @@ const androidServices: assemblerInterface = {
 
   home: homeService,
 
-  transactions: transactionsService,
+  transactions: helper.assembler.serviceFactory({
+    elementFinder,
+    service: TransactionsService,
+    parts: [{po: TransactionsPo, pa: TransactionsPa}]
+  }),
 
-  settings: settingsService,
+  settings: helper.assembler.serviceFactory({
+    elementFinder,
+    service: SettingsService,
+    parts: [{po: SettingsPo, pa: SettingsPa}]
+  }),
 
 };
 

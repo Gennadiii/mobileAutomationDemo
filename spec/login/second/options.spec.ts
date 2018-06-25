@@ -11,10 +11,10 @@ describe('Second login', () => {
     afterAll(() => anyUser.free());
 
     beforeEach(async () => {
-        await service.login.first.as(anyUser);
-        await service.common.navigateTo.settings();
-        await service.settings.signOut();
-        await service.login.second.page.clickOptionsButton();
+      await service.login.first.as(anyUser);
+      await service.common.navigateTo.settings();
+      await service.settings.signOut();
+      await service.login.second.page.clickOptionsButton();
     });
 
     it('gets language page', async () => {

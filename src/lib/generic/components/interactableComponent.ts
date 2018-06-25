@@ -23,14 +23,14 @@ class InteractableComponent extends Component implements InteractableComponentIn
 
   async getText() {
     log.info(`Getting text`);
-    return this.element.text();
+    return (await this.element).text();
   }
 
 
   // actions
 
   async click() {
-    await this.element.click();
+    await (await this.element).click();
   }
 
 }

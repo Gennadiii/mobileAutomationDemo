@@ -12,6 +12,8 @@ interface LanguagePoInterface {
 
 class LanguagePo extends BasePagePo implements LanguagePoInterface {
 
+  name = 'Language';
+
   languages = new ComponentsList(this.ef, Button, this.ef.all.autoId('Language'));
 
 

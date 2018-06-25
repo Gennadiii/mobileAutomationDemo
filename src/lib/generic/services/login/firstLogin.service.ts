@@ -36,7 +36,6 @@ class FirstLoginService implements FirstLoginServiceInterface {
     this.firstLogin || await this.app.relaunch();
     this.firstLogin = false;
     await this.page.verifyIsOpen();
-
   }
 
 }

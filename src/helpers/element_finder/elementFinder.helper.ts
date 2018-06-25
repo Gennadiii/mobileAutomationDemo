@@ -48,7 +48,6 @@ function findElementsBy(using: string, value: string, options?: findElementsByIn
   const {index} = resultingOptions;
 
   const elementsFinder: any = () => {
-    log.info(`Looking for elements using "${using}" with value: ${value}`);
     const elements = driver.elements(using, value);
     return index !== null ? elements.at(index) : elements;
   };
