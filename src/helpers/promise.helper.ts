@@ -14,11 +14,15 @@ const promiseHelper: promiseHelperInterface = {
   async allTrue(params: allTrueInterface) {
     const {arr} = params;
     const resolvedPromisesArr = await Promise.all(arr);
-    return resolvedPromisesArr.every((promise, index) => {
+    let finalResult = true;
+    resolvedPromisesArr.forEach((promise, index) => {
       const result = promise === true;
       result || log.error(`Promise by index "${index}" resolved as false`);
-      return result;
+      if (result === false) {
+        finalResult = false;
+      }
     });
+    return finalResult;
   }
 
 };

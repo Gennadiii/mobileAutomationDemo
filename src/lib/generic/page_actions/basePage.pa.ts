@@ -36,7 +36,7 @@ class BasePagePa implements BasePagePaInterface {
       this.currentPage = page;
       log.info(`Checking if "${page.name}" page is opened`);
       isDisplayedArr.push(...page.staticElements
-        .map(element => element.waitUntilDisplayed(timeout)));
+        .map(element => element.waitUntilDisplayed(timeout).catch(() => false)));
     });
     return helper.promise.allTrue({arr: isDisplayedArr});
   }
@@ -50,14 +50,14 @@ class BasePagePa implements BasePagePaInterface {
     this.pages.forEach(page => {
       log.info(`Checking if "${page.name}" page content is displayed`);
       isDisplayedArr.push(...page.content
-        .map(element => element.waitUntilDisplayed(timeout)));
+        .map(element => element.waitUntilDisplayed(timeout).catch(() => false)));
     });
     return helper.promise.allTrue({arr: isDisplayedArr});
   }
 
   async verifyIsOpen() {
     if (!await this.isOpen()) {
-      throw new Error(`"${this.currentPage}" page didn't get opened`);
+      throw new Error(`"${this.currentPage.name}" page didn't get opened`);
     }
   }
 

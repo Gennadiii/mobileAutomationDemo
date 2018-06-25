@@ -4,7 +4,6 @@ import {HomeService} from "./lib/generic/services/home/home.service";
 import {CommonService} from "./lib/generic/services/common.service";
 import {TransactionsService} from "./lib/generic/services/transactions.service";
 import {SettingsService} from "./lib/generic/services/settings.service";
-import {LanguageService} from "./lib/generic/services/language.service";
 
 
 interface assemblerInterface {
@@ -13,7 +12,6 @@ interface assemblerInterface {
   home: HomeService;
   transactions: TransactionsService;
   settings: SettingsService;
-  language: LanguageService;
 }
 
 

@@ -19,7 +19,7 @@ describe('Second login', () => {
 
     it('gets language page', async () => {
       await service.login.second.page.clickChangeLanguageButton();
-      expect(await service.login.second.language.page.isOpen())
+      expect(await service.login.second.languagePage.isOpen())
         .toBe(true, 'Language page did not get opened');
     });
 

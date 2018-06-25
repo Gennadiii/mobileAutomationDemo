@@ -2,6 +2,7 @@ import {ElementFinderInterface} from "../../../helpers/element_finder/elementFin
 import {BasePagePo} from "./basePage.po";
 import {ComponentsList} from "../components/componentsList";
 import {Button} from "../components/button";
+import {Component} from "../components/component";
 
 
 interface LanguagePoInterface {
@@ -20,7 +21,8 @@ class LanguagePo extends BasePagePo implements LanguagePoInterface {
 
 
   get staticElements() {
-    return [this.languages.getElementByIndex(1)];
+    return [new Component(this.ef.text('English'))];
+    // return [this.languages.getElementByIndex(1)]; // todo
   }
 
 }

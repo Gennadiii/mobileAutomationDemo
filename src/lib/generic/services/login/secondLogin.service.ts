@@ -2,7 +2,7 @@ import {userInterface} from "../user.service";
 import {helper} from "../../../../helpers/helper";
 import {SecondLoginPa} from "../../page_actions/login/secondLogin.pa";
 import {FingerprintService} from "./fingerprint.service";
-import {LanguageService} from "../language.service";
+import {LanguagePa} from "../../page_actions/language.pa";
 
 
 const log = helper.logger.get('SecondLoginService');
@@ -17,8 +17,8 @@ class SecondLoginService implements SecondLoginServiceInterface {
 
 
   constructor(public fingerprint: FingerprintService,
-              public language: LanguageService,
-              public page: SecondLoginPa) {
+              public page: SecondLoginPa,
+              public languagePage: LanguagePa) {
   }
 
   async as(user: userInterface, params = {skipFingerprint: true}) {

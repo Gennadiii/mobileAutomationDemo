@@ -14,7 +14,8 @@ class FingerprintPo extends BasePagePo implements FingerprintPoInterface {
   name = 'Fingerprint';
 
   setupButton = new Button(this.ef.autoId('QuickOptionsTouchId'));
-  notNowButton = new Button(this.ef.autoId('NotNow'));
+  notNowButton = new Button(this.ef.text('Not now'));
+  // notNowButton = new Button(this.ef.autoId('NotNow')); // todo
 
 
   constructor(protected ef: ElementFinderInterface) {

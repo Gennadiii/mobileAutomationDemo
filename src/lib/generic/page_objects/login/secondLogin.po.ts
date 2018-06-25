@@ -30,10 +30,10 @@ class SecondLoginPo extends BaseLoginPo implements SecondLoginPoInterface {
   get content() {
     return [
       this.optionsButton,
-      // this.userIcon, // todo
-      // this.userTitle,
+      this.userIcon,
+      this.userTitle,
       this.passwordField,
-      // this.forgotPasswordLink,
+      this.forgotPasswordLink,
       this.signInButton,
     ];
   }

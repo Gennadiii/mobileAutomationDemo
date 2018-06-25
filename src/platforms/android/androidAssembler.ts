@@ -44,7 +44,6 @@ const {
       TransactionsService,
       SettingsService,
       FingerprintService,
-      LanguageService,
     }
   }
 } = (helper.lib.all as any);
@@ -84,23 +83,19 @@ const transactionsService = helper.assembler.serviceFactory({
   parts: [{po: TransactionsPo, pa: TransactionsPa}]
 });
 
-const languageService = helper.assembler.serviceFactory({
-  elementFinder,
-  service: LanguageService,
-  parts: [{po: LanguagePo, pa: LanguagePa}]
-});
-
 const secondLoginService = helper.assembler.serviceFactory({
   elementFinder,
   service: SecondLoginService,
-  parts: [{po: SecondLoginPo, pa: SecondLoginPa}],
+  parts: [
+    {po: SecondLoginPo, pa: SecondLoginPa},
+    {po: LanguagePo, pa: LanguagePa}
+  ],
   completeServices: {
     fingerprintService: helper.assembler.serviceFactory({
       elementFinder,
       service: FingerprintService,
       parts: [{po: FingerprintPo, pa: FingerprintPa}]
     }),
-    languageService,
   }
 });
 
@@ -141,8 +136,6 @@ const androidServices: assemblerInterface = {
   transactions: transactionsService,
 
   settings: settingsService,
-
-  language: languageService,
 
 };
 
