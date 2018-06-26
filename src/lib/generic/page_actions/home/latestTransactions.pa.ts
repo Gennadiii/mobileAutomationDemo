@@ -8,7 +8,11 @@ const log = helper.logger.get('HomeLTPa');
 
 interface LatestTransactionsPaInterface extends BasePagePa {
   // check
+  latestDateIsDisplayed: () => Promise<boolean>;
+  latestDescriptionIsDisplayed: () => Promise<boolean>;
+  latestCurrencyIsDisplayed: () => Promise<boolean>;
   latestAmountIsDisplayed: () => Promise<boolean>;
+  latestStatusIsDisplayed: () => Promise<boolean>;
 }
 
 
@@ -19,9 +23,29 @@ class LatestTransactionsPa extends BasePagePa implements LatestTransactionsPaInt
   }
 
   // check
+  latestDateIsDisplayed() {
+    log.info(`Checking if latest date is displayed`);
+    return this.page.dates.getElementByIndex(0).isDisplayed();
+  }
+
+  latestDescriptionIsDisplayed() {
+    log.info(`Checking if latest description is displayed`);
+    return this.page.descriptions.getElementByIndex(0).isDisplayed();
+  }
+
+  latestCurrencyIsDisplayed() {
+    log.info(`Checking if latest currency is displayed`);
+    return this.page.currencies.getElementByIndex(0).isDisplayed();
+  }
+
   latestAmountIsDisplayed() {
     log.info(`Checking if latest amount is displayed`);
-    return this.page.latestAmount.isDisplayed();
+    return this.page.amounts.getElementByIndex(0).isDisplayed();
+  }
+
+  latestStatusIsDisplayed() {
+    log.info(`Checking if latest status is displayed`);
+    return this.page.statuses.getElementByIndex(0).isDisplayed();
   }
 
 }

@@ -8,7 +8,7 @@ import {Section} from "../components/section";
 interface BaseTransactionsPoInterface extends BasePagePo {
   items: ComponentsList;
   dates: ComponentsList;
-  titles: ComponentsList;
+  descriptions: ComponentsList;
   amounts: ComponentsList;
   currencies: ComponentsList;
   statuses: ComponentsList;
@@ -21,7 +21,7 @@ class BaseTransactionsPo extends BasePagePo implements BaseTransactionsPoInterfa
 
   items = new ComponentsList(this.ef, Section, this.ef.all.autoId('Activity'));
   dates = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityDateTitle'));
-  titles = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityTitle'));
+  descriptions = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityTitle'));
   amounts = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityAmount'));
   currencies = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityCurrency'));
   statuses = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityStatus'));
