@@ -12,6 +12,7 @@ interface BalanceSectionPoInterface extends BasePagePo {
   amounts: ComponentsList;
   moreButton: Button;
   lessButton: Button;
+  disabledIcons: ComponentsList;
 }
 
 
@@ -20,10 +21,11 @@ class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
   name = 'Home - Balance section';
 
   items = new ComponentsList(this.ef, Section, this.ef.all.autoId('Balance'));
-  currencies = new ComponentsList(this.ef, Label, this.ef.all.autoId('Currency'));
-  amounts = new ComponentsList(this.ef, Label, this.ef.all.autoId('Amount'));
+  currencies = new ComponentsList(this.ef, Label, this.ef.all.autoId('BalanceCurrency'));
+  amounts = new ComponentsList(this.ef, Label, this.ef.all.autoId('BalanceAmount'));
   moreButton = new Button(this.ef.autoId('ShowMore'));
   lessButton = new Button(this.ef.autoId('ShowLess'));
+  disabledIcons = new ComponentsList(this.ef, Label, this.ef.all.autoId('BalanceDisabledIcon'));
 
 
   constructor(protected ef: ElementFinderInterface) {

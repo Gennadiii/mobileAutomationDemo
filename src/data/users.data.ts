@@ -58,5 +58,6 @@ interface userInterface {
   disabledBalance?: boolean;
   optInCards?: boolean;
   transactions?: boolean;
+  transactionsCount?: number;
 }
 

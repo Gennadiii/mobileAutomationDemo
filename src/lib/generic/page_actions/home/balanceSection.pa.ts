@@ -52,6 +52,16 @@ class BalanceSectionPa extends BasePagePa implements BalanceSectionPaInterface {
     return this.page.moreButton.isDisplayed();
   }
 
+  isCurrencyDisplayed() {
+    log.info(`Check if currency is displayed`);
+    return this.page.currencies.getElementByIndex(0).isDisplayed();
+  }
+
+  isAmountDisplayed() {
+    log.info(`Check if amount is displayed`);
+    return this.page.amounts.getElementByIndex(0).isDisplayed();
+  }
+
 }
 
 
