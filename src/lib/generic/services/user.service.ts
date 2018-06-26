@@ -11,6 +11,7 @@ interface UserServiceInterface {
   balancesLessThan: (num: number) => UserServiceInterface;
   balanceCount: (num: number) => UserServiceInterface;
   balanceDisabled: () => UserServiceInterface;
+  balanceBlocked: () => UserServiceInterface;
   withTransactions: () => UserServiceInterface;
   transactionsMoreThan: (num: number) => UserServiceInterface;
   any: () => UserServiceInterface;
@@ -65,6 +66,12 @@ class UserService implements UserServiceInterface {
   balanceDisabled() {
     log.info(`Filtering users with disabled balances`);
     this.filter(([id, user]) => user.disabledBalance);
+    return this;
+  }
+
+  balanceBlocked() {
+    log.info(`Filtering users with blocked balances`);
+    this.filter(([id, user]) => user.blockedBalance);
     return this;
   }
 
