@@ -10,9 +10,11 @@ interface BalanceSectionPaInterface extends BasePagePa {
   // actions
   expand: () => Promise<void>;
   // get
-  // count: () => Promise<number>;
+  countMain: () => Promise<number>;
+  countAll: () => Promise<number>;
   // check
   areSomeBalancesHidden: () => Promise<boolean>;
+  isMoreButtonDisplayed: () => Promise<boolean>;
 }
 
 
@@ -29,14 +31,25 @@ class BalanceSectionPa extends BasePagePa implements BalanceSectionPaInterface {
   }
 
   // get
-  count() {
+  async countMain() {
     log.info(`Counting main balances`);
+    return await this.page.items.length({withScroll: false});
+  }
+
+  async countAll() {
+    log.info(`Counting all balances`);
+    return await this.page.items.length({withScroll: true});
   }
 
   // check
-  async areSomeBalancesHidden() {
+  areSomeBalancesHidden() {
     log.info(`Checking if some balances are hidden`);
-    return await this.page.moreButton.isDisplayed();
+    return this.page.moreButton.isDisplayed();
+  }
+
+  isMoreButtonDisplayed() {
+    log.info(`Checking if More button is displayed`);
+    return this.page.moreButton.isDisplayed();
   }
 
 }

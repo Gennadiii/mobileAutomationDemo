@@ -15,6 +15,8 @@ interface TransactionsPoInterface extends BaseTransactionsPo {
 
 class TransactionsPo extends BaseTransactionsPo implements TransactionsPoInterface {
 
+  name = 'Transactions';
+
   title = new Label(this.ef.autoId('PageTitle'));
   allTransactionsLabel = new Label(this.ef.autoId('AllTransactionsTitle'));
   filtersButton = new Button(this.ef.autoId('Filters'));
@@ -23,6 +25,11 @@ class TransactionsPo extends BaseTransactionsPo implements TransactionsPoInterfa
 
   constructor(protected ef: ElementFinderInterface) {
     super(ef);
+  }
+
+
+  get staticElements() {
+    return [this.title];
   }
 
 }

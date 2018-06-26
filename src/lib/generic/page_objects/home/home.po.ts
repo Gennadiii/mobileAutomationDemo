@@ -26,8 +26,7 @@ class HomePo extends BasePagePo implements HomePoInterface {
   }
 
   get staticElements() {
-    return [];
-    // return [this.userIcon];
+    return [this.userIcon];
   }
 
   get content() {

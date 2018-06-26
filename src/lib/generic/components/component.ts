@@ -81,6 +81,6 @@ function throwUnexpectedError(efFunc, err) {
 
 function throwNoSuchElementError(efFunc) {
   const errorMessage = `Element is not found using: "${efFunc.using}" with value: ${efFunc.value}`;
-  driver.implicitWait > 1000 && log.error(errorMessage);
+  driver.implicitWait > 1000 && log.warn(errorMessage);
   throw new Error(`NoSuchElement: ${errorMessage}`);
 }

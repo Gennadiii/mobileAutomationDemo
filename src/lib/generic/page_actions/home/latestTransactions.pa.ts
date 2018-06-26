@@ -7,6 +7,8 @@ const log = helper.logger.get('HomeLTPa');
 
 
 interface LatestTransactionsPaInterface extends BasePagePa {
+  // check
+  latestAmountIsDisplayed: () => Promise<boolean>;
 }
 
 
@@ -14,6 +16,12 @@ class LatestTransactionsPa extends BasePagePa implements LatestTransactionsPaInt
 
   constructor(public page: LatestTransactionsPo) {
     super();
+  }
+
+  // check
+  latestAmountIsDisplayed() {
+    log.info(`Checking if latest amount is displayed`);
+    return this.page.latestAmount.isDisplayed();
   }
 
 }

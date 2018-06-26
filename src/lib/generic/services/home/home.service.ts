@@ -13,7 +13,6 @@ class HomeService implements HomeServiceInterface {
               public latestTransactions: LatestTransactionsService,
               public page: HomePa) {
     this.page.setPages([
-      this.balanceSection.page,
       this.latestTransactions.page,
       this.page
     ]);

@@ -13,6 +13,8 @@ interface NavigationPoInterface {
 
 class NavigationPo extends BasePagePo implements NavigationPoInterface {
 
+  name = 'Navigation';
+
   homeLink = new Link(this.ef.autoId('TabBar.Home.Text'));
   transactionsLink = new Link(this.ef.autoId('TabBar.Transactions.Text'));
   actionsLink = new Link(this.ef.autoId('TabBar.Actions.Text'));
@@ -23,6 +25,15 @@ class NavigationPo extends BasePagePo implements NavigationPoInterface {
     super();
   }
 
+
+  get staticElements() {
+    return [
+      this.homeLink,
+      this.transactionsLink,
+      this.actionsLink,
+      this.settingsLink,
+    ];
+  }
 
   get content() {
     return [

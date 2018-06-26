@@ -1,8 +1,11 @@
+const defaultPassword = '123456qq';
+
+
 function getUsers(): { [name: number]: userInterface } {
   return {
     1972817: {
       login: 'dis_bal',
-      password: '123456qq',
+      password: defaultPassword,
       balanceCount: 2,
       disabledBalance: true,
     },
@@ -14,22 +17,29 @@ function getUsers(): { [name: number]: userInterface } {
     },
     1614686: {
       login: 'samecurrency',
-      password: '123456qq',
+      password: defaultPassword,
       optInCards: true,
       balanceCount: 1,
     },
     1972815: {
       login: 'onebalance',
-      password: '123456qq',
+      password: defaultPassword,
       balanceCount: 1,
     },
     1972816: {
       login: 'card_balance',
-      password: '123456qq',
+      password: defaultPassword,
       balanceCount: 2,
       cardsCount: 1,
       transactions: true,
     },
+    1972846: {
+      login: 'optin1',
+      password: defaultPassword,
+      balanceCount: 4,
+      optInCards: true,
+      transactions: true,
+    }
   };
 }
 

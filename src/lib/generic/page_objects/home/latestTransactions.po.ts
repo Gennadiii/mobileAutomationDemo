@@ -5,6 +5,7 @@ import {BaseTransactionsPo} from "../baseTransactions.po";
 
 interface LatestTransactionsPoInterface extends BaseTransactionsPo {
   title: Label;
+  latestAmount: Label;
 }
 
 
@@ -13,6 +14,7 @@ class LatestTransactionsPo extends BaseTransactionsPo implements LatestTransacti
   name = 'Home - Latest transactions';
 
   title = new Label(this.ef.autoId('LatestActivityLabel'));
+  latestAmount: Label = this.amounts.getElementByIndex(0);
 
 
   constructor(protected ef: ElementFinderInterface) {

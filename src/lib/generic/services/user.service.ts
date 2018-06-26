@@ -8,6 +8,7 @@ const log = logger.get('UserService');
 interface UserServiceInterface {
   allocate: () => userInterface;
   balancesMoreThan: (num: number) => UserServiceInterface;
+  balancesLessThan: (num: number) => UserServiceInterface;
   balanceCount: (num: number) => UserServiceInterface;
   balanceDisabled: () => UserServiceInterface;
   any: () => UserServiceInterface;
@@ -44,6 +45,12 @@ class UserService implements UserServiceInterface {
   balancesMoreThan(num) {
     log.info(`Filtering users with more than "${num}" balances`);
     this.filter(([id, user]) => user.balanceCount > num);
+    return this;
+  }
+
+  balancesLessThan(num) {
+    log.info(`Filtering users with less than "${num}" balances`);
+    this.filter(([id, user]) => user.balanceCount < num);
     return this;
   }
 

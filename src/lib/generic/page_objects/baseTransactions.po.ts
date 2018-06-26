@@ -17,6 +17,8 @@ interface BaseTransactionsPoInterface extends BasePagePo {
 
 class BaseTransactionsPo extends BasePagePo implements BaseTransactionsPoInterface {
 
+  name = 'Base transactions (SHOULD NOT APPEAR IN LOGS!)';
+
   items = new ComponentsList(this.ef, Section, this.ef.all.autoId('Activity'));
   dates = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityDateTitle'));
   titles = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityTitle'));

@@ -10,7 +10,8 @@ const testChoiseNumberPath = `${__dirname}/testChoiseNumber.indexHelper`;
 async function selectTests(): Promise<string[]> {
   try {
 
-    const testsPaths = fsHelper.getFiles(specsPath);
+    const specDirContent = fsHelper.getFiles(specsPath);
+    const testsPaths = specDirContent.filter(specs);
     const promptOptions = getPromptObj(testsPaths);
     return await multiselectPrompt({
       question: 'Select tests to run',
@@ -49,7 +50,7 @@ function multiselectPrompt(params): Promise<string[]> {
         getSelectedItemsValues(items).length === 0 && markAllItemsSelected(items);
         const selected = getSelectedItemsValues(items);
         console.info(`${resultMessage}: `);
-        logChoises(selected);
+        logChoices(selected);
         writeInput(items);
         resolve(selected);
       });
@@ -60,7 +61,7 @@ function markAllItemsSelected(items) {
   items.forEach(item => item.selected = true);
 }
 
-function logChoises(items) {
+function logChoices(items) {
   console.info();
   items.forEach(item => console.info(item));
   console.info();
@@ -97,4 +98,8 @@ function preselectLastInput(items) {
   if (lastInput) {
     items[lastInput].selected = true;
   }
+}
+
+function specs(file) {
+  return file.includes('.spec');
 }

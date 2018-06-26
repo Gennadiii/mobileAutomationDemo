@@ -30,14 +30,6 @@ class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
     super();
   }
 
-  get staticElements() {
-    return [];
-  }
-
-  get content() {
-    return [];
-  }
-
 }
 
 
