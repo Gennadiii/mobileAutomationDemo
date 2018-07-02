@@ -17,6 +17,7 @@ const {
       HomePo,
       FingerprintPo,
       LanguagePo,
+      CommonPo,
     },
     page_actions: {
       FirstLoginPa,
@@ -29,6 +30,7 @@ const {
       HomePa,
       FingerprintPa,
       LanguagePa,
+      CommonPa,
     },
     services: {
       LoginService,
@@ -98,7 +100,9 @@ const secondLoginService = helper.assembler.serviceFactory({
 const androidServices: assemblerInterface = {
 
   common: helper.assembler.serviceFactory({
+    elementFinder,
     service: CommonService,
+    parts: [{po: CommonPo, pa: CommonPa}],
     completeServices: {
       userService: new UserService(),
       appService: new AppService(driver),

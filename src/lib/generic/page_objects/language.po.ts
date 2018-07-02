@@ -23,8 +23,7 @@ class LanguagePo extends BasePagePo implements LanguagePoInterface {
 
 
   get staticElements() {
-    return [new Component(this.ef.text('English'))];
-    // return [this.languages.getElementByIndex(1)]; // todo
+    return [this.languages.getElementByIndex(1)];
   }
 
 }

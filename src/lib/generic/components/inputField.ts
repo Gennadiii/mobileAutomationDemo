@@ -3,6 +3,7 @@ import {InteractableComponent} from "./InteractableComponent";
 
 interface InputFieldInterface extends InteractableComponent {
   sendKeys: (text: string) => Promise<void>;
+  clear: () => Promise<void>;
 }
 
 
@@ -14,6 +15,10 @@ class InputField extends InteractableComponent implements InputFieldInterface {
 
   async sendKeys(text) {
     await (await this.element).type(text);
+  }
+
+  async clear() {
+    await (await this.element).clear();
   }
 
 }

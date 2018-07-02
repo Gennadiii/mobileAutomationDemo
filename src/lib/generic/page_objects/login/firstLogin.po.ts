@@ -26,8 +26,7 @@ class FirstLoginPo extends BaseLoginPo implements FirstLoginPoInterface {
   loginField = new InputField(this.ef.all.className('android.widget.EditText', {index: 0}));
   passwordField = new InputField(this.ef.all.className('android.widget.EditText', {index: 1}));
   signupLink = new Link(this.ef.autoId('Signup'));
-  // loginValidationError = new Label(this.ef.autoId('UsernameValidationError')); //todo
-  loginValidationError = new Label(this.ef.autoId('ValidationError'));
+  loginValidationError = new Label(this.ef.autoId('UsernameValidationError'));
 
 
   constructor(protected ef: ElementFinderInterface) {
