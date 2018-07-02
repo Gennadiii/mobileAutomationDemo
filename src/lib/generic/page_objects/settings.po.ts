@@ -12,7 +12,8 @@ class SettingsPo extends BasePagePo implements SettingsPoInterface {
 
   name = 'Settings';
 
-  signOutButton = new Button(this.ef.autoId('SignOut'));
+  signOutButton = new Button(this.ef.text('Sign out')); // todo replace after locator added
+  // signOutButton = new Button(this.ef.autoId('SignOut'));
 
 
   constructor(private ef: ElementFinderInterface) {

@@ -73,7 +73,7 @@ function multiselectPrompt(params): Promise<string[]> {
     const rememberedInput = readRememberedInput(testChoiceNumberPath);
     const cursor = selectedFeatureChangedFromLastRun || rememberedInput.length === 0
       ? options.length / 2
-      : rememberedInput[rememberedInput.length / 2];
+      : rememberedInput[Math.floor(rememberedInput.length / 2)];
     multiPrompt(`${question}:`, options, {cursor})
       .on('submit', items => {
         if (getSelectedItemsValues(items).length === 0) {
