@@ -16,7 +16,7 @@ async function selectTests(): Promise<string[]> {
     const features = getFeatures();
     const featurePromptOptions = getPromptObj(features);
     const selectedFeature = await selectPrompt({
-      question: 'Select feature:',
+      question: 'Select area:',
       options: featurePromptOptions
     });
     if (features.indexOf(selectedFeature) === +readRememberedInput(featureChoiceNumberPath)[0]) {
@@ -58,7 +58,7 @@ function selectPrompt(params): Promise<string> {
   const {question, options} = params;
   return new Promise(resolve => {
     const rememberedInput = +readRememberedInput(featureChoiceNumberPath)[0];
-    const cursor = rememberedInput >= 0 ? rememberedInput : options.length / 2;
+    const cursor = rememberedInput >= 0 ? rememberedInput : Math.floor(options.length / 2);
     console.info('Press esc to choose everything');
     prompt(question, options, {cursor})
       .on('submit', resolve)
@@ -72,7 +72,7 @@ function multiselectPrompt(params): Promise<string[]> {
   return new Promise(resolve => {
     const rememberedInput = readRememberedInput(testChoiceNumberPath);
     const cursor = selectedFeatureChangedFromLastRun || rememberedInput.length === 0
-      ? options.length / 2
+      ? Math.floor(options.length / 2)
       : rememberedInput[Math.floor(rememberedInput.length / 2)];
     multiPrompt(`${question}:`, options, {cursor})
       .on('submit', items => {
