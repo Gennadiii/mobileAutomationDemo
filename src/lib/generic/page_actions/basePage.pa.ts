@@ -26,7 +26,7 @@ class BasePagePa implements BasePagePaInterface {
     this.pages = pageActions.map(pageAction => pageAction.page);
   }
 
-  async isOpen(params = {timeout: 15 * 1000}) {
+  async isOpen(params = {timeout: 20 * 1000}) {
     const {timeout} = params;
     if (!this.pages) {
       this.pages = [this.page];
@@ -41,7 +41,7 @@ class BasePagePa implements BasePagePaInterface {
     return helper.promise.allTrue({arr: isDisplayedArr});
   }
 
-  async contentIsDisplayed(params = {timeout: 15 * 1000}) {
+  async contentIsDisplayed(params = {timeout: 20 * 1000}) {
     const {timeout} = params;
     if (!this.pages) {
       this.pages = [this.page];

@@ -9,7 +9,7 @@ const log = helper.logger.get('index');
 
 
 const {
-  platform, deviceName, app, implicitWait = 5 * 1000, appiumPort = 4723, specs
+  platform, deviceName, app, implicitWait = 7 * 1000, appiumPort = 4723, specs
 } = process.env;
 let platformName = null;
 let automationName = null;
