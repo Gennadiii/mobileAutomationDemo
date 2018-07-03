@@ -7,15 +7,15 @@ describe('Home', () => {
 
       const service: assemblerInterface = (jasmine.getEnv() as any).service;
       let disabledBalanceUser = null;
-      let blockedBalanceUser = null;
+      let blockedCardUser = null;
 
       beforeAll(async () => {
         disabledBalanceUser = service.common.user.balanceDisabled().allocate();
-        blockedBalanceUser = service.common.user.balanceBlocked().allocate();
+        blockedCardUser = service.common.user.cardBlocked().allocate();
       });
       afterAll(() => {
         disabledBalanceUser.free();
-        blockedBalanceUser.free();
+        blockedCardUser.free();
       });
 
       it('disabled balance icon is displayed for user with disabled balance', async () => {
@@ -25,7 +25,7 @@ describe('Home', () => {
       });
 
       it('disabled balance icon is displayed for user with blocked balance', async () => {
-        await service.login.first.as(blockedBalanceUser);
+        await service.login.first.as(blockedCardUser);
         expect(await service.home.balanceSection.page.isDisabledBalanceIconDisplayed())
           .toBe(true, 'Icon is not displayed');
       });

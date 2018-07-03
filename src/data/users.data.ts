@@ -13,7 +13,6 @@ function getUsers(): { [name: number]: userInterface } {
       login: 'card_block',
       password: '123456q',
       blockedCard: true,
-      blockedBalance: true,
       balanceCount: 2,
     },
     1614686: {
@@ -65,7 +64,6 @@ interface userInterface {
   cardIssued?: boolean;
   blockedCard?: boolean;
   disabledBalance?: boolean;
-  blockedBalance?: boolean;
   optInCards?: boolean;
   transactions?: boolean;
   transactionsCount?: number;
