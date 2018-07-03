@@ -40,6 +40,14 @@ function getUsers(): { [name: number]: userInterface } {
       balanceCount: 4,
       optInCards: true,
       transactions: true,
+      transactionsCount: 11,
+    },
+    1972806: {
+      login: 'sev_balances',
+      password: defaultPassword,
+      balanceCount: 3,
+      optInCards: true,
+      sameCurrencies: true,
     },
   };
 }

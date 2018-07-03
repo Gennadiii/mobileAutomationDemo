@@ -7,13 +7,20 @@ const log = logger.get('UserService');
 
 interface UserServiceInterface {
   allocate: () => userInterface;
+  // balances
   balancesMoreThan: (num: number) => UserServiceInterface;
   balancesLessThan: (num: number) => UserServiceInterface;
   balanceCount: (num: number) => UserServiceInterface;
   balanceDisabled: () => UserServiceInterface;
   balanceBlocked: () => UserServiceInterface;
-  withTransactions: () => UserServiceInterface;
+  // transactions
   transactionsMoreThan: (num: number) => UserServiceInterface;
+  withTransactions: () => UserServiceInterface;
+  // currencies
+  sameCurrencies: () => UserServiceInterface;
+  // cards
+  withCards: () => UserServiceInterface;
+  // other
   any: () => UserServiceInterface;
   name: (name: string) => UserServiceInterface;
 }
@@ -45,6 +52,7 @@ class UserService implements UserServiceInterface {
     return {id, login, password, free: () => this.free(id)};
   }
 
+  // balances
   balancesMoreThan(num) {
     log.info(`Filtering users with more than "${num}" balances`);
     this.filter(([id, user]) => user.balanceCount > num);
@@ -75,6 +83,7 @@ class UserService implements UserServiceInterface {
     return this;
   }
 
+  // transactions
   withTransactions() {
     log.info(`Filtering users with transactions`);
     this.filter(([id, user]) => user.transactions);
@@ -87,6 +96,21 @@ class UserService implements UserServiceInterface {
     return this;
   }
 
+  // currencies
+  sameCurrencies() {
+    log.info(`Filtering users with same currencies`);
+    this.filter(([id, user]) => user.sameCurrencies);
+    return this;
+  }
+
+  // cards
+  withCards() {
+    log.info(`Filtering users with cards`);
+    this.filter(([id, user]) => user.withCards);
+    return this;
+  }
+
+  // other
   name(name) {
     log.info(`Looking for user with username: ${name}`);
     this.filter(([id, user]) => user.login === name);

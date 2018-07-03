@@ -11,6 +11,7 @@ interface ComponentInterface {
   getLocation: () => Promise<pointCoordinatesInterface>;
   // check
   isDisplayed: () => Promise<boolean>;
+  scrollUntilDisplayed: (params: scrollUntilDisplayedInterface) => Promise<boolean>;
   // wait
   waitUntilDisplayed: (timeout: number) => Promise<boolean>;
 }
@@ -42,13 +43,11 @@ class Component implements ComponentInterface {
   }
 
   // get
-
   async getLocation() {
     return (await this.element).getLocation();
   }
 
   // check
-
   async isDisplayed() {
     try {
       return (await this.element).isDisplayed();
@@ -61,8 +60,31 @@ class Component implements ComponentInterface {
     }
   }
 
-  // wait
+  async scrollUntilDisplayed(params = {maxScrolls: 3}) {
+    let {maxScrolls} = params;
+    log.info(`Looking for element with max scrolls: ${maxScrolls}`);
+    try {
+      driver.setImplicitTimeout(500);
+      while (maxScrolls--) {
+        const isDisplayed = await this.isDisplayed();
+        if (isDisplayed) {
+          return isDisplayed;
+        }
+        const currentState = await driver.takeScreenshot();
+        await helper.dateTime.sleep(200);
+        await driver.scrollDown();
+        if (currentState === await driver.takeScreenshot()) {
+          log.info(`Reached the bottom`);
+          break;
+        }
+      }
+      return await this.isDisplayed();
+    } finally {
+      driver.setImplicitTimeout(driver.defaultImplicitWait);
+    }
+  }
 
+  // wait
   waitUntilDisplayed(timeout) {
     log.info(`Waiting until element is displayed using "${this.ef.using}" with value: ${this.ef.value}`);
     return helper.waiters.appiumWait(() => this.isDisplayed(), timeout);
@@ -84,3 +106,9 @@ function throwNoSuchElementError(efFunc) {
   driver.implicitWait > 1000 && log.warn(errorMessage);
   throw new Error(`NoSuchElement: ${errorMessage}`);
 }
+
+
+interface scrollUntilDisplayedInterface {
+  maxScrolls: number;
+}
+

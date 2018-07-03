@@ -23,6 +23,7 @@ interface DriverInterface {
   element: (using: string, value: string) => Promise<any>;
   elements: (using: string, value: string) => Promise<any>;
   getScreenSize: () => Promise<screenSizeInterface>;
+  takeScreenshot: () => Promise<string>;
   // wait
   waitUntilInitialized: (appiumInitPromise: any, initializationWaitTimeout: number) => Promise<void>;
 }
@@ -118,6 +119,11 @@ class Driver implements DriverInterface {
 
   getScreenSize() {
     return this.appium.getWindowSize();
+  }
+
+  takeScreenshot() {
+    log.info(`Taking screenshot`);
+    return this.appium.takeScreenshot();
   }
 
   // wait
