@@ -24,6 +24,9 @@ class SingleBalancePo extends BasePagePo implements SingleBalancePoInterface {
   cardAmount = new Label(this.ef.autoId('CardAmount'));
   cardCurrency = new Label(this.ef.autoId('CardCurrency'));
 
+  balanceElements = [this.balanceTitle, this.balanceAmount];
+  cardElements = [this.cardTitle, this.cardNumber, this.cardAmount, this.cardCurrency];
+
 
   constructor(protected ef: ElementFinderInterface) {
     super();

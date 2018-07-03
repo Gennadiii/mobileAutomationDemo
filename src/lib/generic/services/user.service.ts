@@ -20,6 +20,7 @@ interface UserServiceInterface {
   sameCurrencies: () => UserServiceInterface;
   // cards
   withCards: () => UserServiceInterface;
+  withoutCards: () => UserServiceInterface;
   // other
   any: () => UserServiceInterface;
   name: (name: string) => UserServiceInterface;
@@ -107,6 +108,12 @@ class UserService implements UserServiceInterface {
   withCards() {
     log.info(`Filtering users with cards`);
     this.filter(([id, user]) => user.optInCards);
+    return this;
+  }
+
+  withoutCards() {
+    log.info(`Filtering users without cards`);
+    this.filter(([id, user]) => !user.optInCards);
     return this;
   }
 
