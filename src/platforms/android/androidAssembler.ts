@@ -18,6 +18,7 @@ const {
       FingerprintPo,
       LanguagePo,
       CommonPo,
+      SingleBalancePo,
     },
     page_actions: {
       FirstLoginPa,
@@ -31,6 +32,7 @@ const {
       FingerprintPa,
       LanguagePa,
       CommonPa,
+      SingleBalancePa,
     },
     services: {
       LoginService,
@@ -46,6 +48,7 @@ const {
       TransactionsService,
       SettingsService,
       FingerprintService,
+      SingleBalanceService,
     }
   }
 } = (helper.lib.all as any);
@@ -65,7 +68,12 @@ const homeService = helper.assembler.serviceFactory({
       elementFinder,
       service: LatestTransactionsService,
       parts: [{po: LatestTransactionsPo, pa: LatestTransactionsPa}]
-    })
+    }),
+    singleBalanceService: helper.assembler.serviceFactory({
+      elementFinder,
+      service: SingleBalanceService,
+      parts: [{po: SingleBalancePo, pa: SingleBalancePa}]
+    }),
   },
 });
 
