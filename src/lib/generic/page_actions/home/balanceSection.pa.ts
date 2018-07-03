@@ -15,6 +15,9 @@ interface BalanceSectionPaInterface extends BasePagePa {
   // check
   areSomeBalancesHidden: () => Promise<boolean>;
   isMoreButtonDisplayed: () => Promise<boolean>;
+  isCurrencyDisplayed: () => Promise<boolean>;
+  isAmountDisplayed: () => Promise<boolean>;
+  isCardNumberDisplayed: () => Promise<boolean>;
   isDisabledBalanceIconDisplayed: () => Promise<boolean>;
 }
 
@@ -54,13 +57,18 @@ class BalanceSectionPa extends BasePagePa implements BalanceSectionPaInterface {
   }
 
   isCurrencyDisplayed() {
-    log.info(`Check if currency is displayed`);
+    log.info(`Checking if currency is displayed`);
     return this.page.currencies.getElementByIndex(0).isDisplayed();
   }
 
   isAmountDisplayed() {
-    log.info(`Check if amount is displayed`);
+    log.info(`Checking if amount is displayed`);
     return this.page.amounts.getElementByIndex(0).isDisplayed();
+  }
+
+  isCardNumberDisplayed() {
+    log.info(`Checking if card number is displayed`);
+    return this.page.cards.getElementByIndex(0).isDisplayed();
   }
 
   isDisabledBalanceIconDisplayed() {

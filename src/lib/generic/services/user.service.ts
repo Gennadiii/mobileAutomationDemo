@@ -106,7 +106,7 @@ class UserService implements UserServiceInterface {
   // cards
   withCards() {
     log.info(`Filtering users with cards`);
-    this.filter(([id, user]) => user.withCards);
+    this.filter(([id, user]) => user.optInCards);
     return this;
   }
 

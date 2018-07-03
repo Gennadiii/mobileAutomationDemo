@@ -11,13 +11,13 @@ describe('Home', () => {
       let userWithoutExpandableBalances = null;
 
       beforeAll(async () => {
-        userWithExpandableBalances = service.common.user
-          .balancesMoreThan(data.home.balance.maxCollapsedCount).allocate();
         userWithoutExpandableBalances = service.common.user
-          .balancesLessThan(data.home.balance.maxCollapsedCount).allocate();
-        // todo replace with user having 3 balances
-        // userWithoutExpandableBalances = service.common.user
-        // .balanceCount(data.home.balance.maxCollapsedCount).allocate();
+          .balanceCount(data.home.balance.maxCollapsedCount)
+          .withCards()
+          .allocate();
+        userWithExpandableBalances = service.common.user
+          .balancesMoreThan(data.home.balance.maxCollapsedCount)
+          .allocate();
       });
       afterAll(() => {
         userWithExpandableBalances.free();
@@ -25,21 +25,22 @@ describe('Home', () => {
       });
 
       it('page content is displayed for user with expandable balances', async () => {
-        await service.login.first.as(userWithExpandableBalances);
+        await service.login.first.as(userWithoutExpandableBalances);
         expect(await service.home.balanceSection.page.isCurrencyDisplayed())
           .toBe(true, 'Currencies are not displayed');
         expect(await service.home.balanceSection.page.isAmountDisplayed())
           .toBe(true, 'Amounts are not displayed');
-        // todo add card check (need user)
+        expect(await service.home.balanceSection.page.isCardNumberDisplayed())
+          .toBe(true, 'Cards are not displayed');
         expect(await service.home.balanceSection.page.isMoreButtonDisplayed())
-          .toBe(true, 'More button is not displayed');
+          .toBe(false, 'More button is displayed');
 
       });
 
       it('more button is absent for user with not expandable balances', async () => {
-        await service.login.first.as(userWithoutExpandableBalances);
+        await service.login.first.as(userWithExpandableBalances);
         expect(await service.home.balanceSection.page.isMoreButtonDisplayed())
-          .toBe(false, 'More button is displayed');
+          .toBe(true, 'More button is not displayed');
       });
 
     });
