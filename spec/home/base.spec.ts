@@ -23,7 +23,7 @@ describe('Home', () => {
         .toBe(true, 'Navigation section is not displayed');
       expect(await service.home.balanceSection.page.countMain())
         .toBeGreaterThan(0, `Balances are not found`);
-      expect(await service.home.latestTransactions.page.latestAmountIsDisplayed())
+      expect(await service.home.latestTransactions.page.latestIsDisplayed())
         .toBe(true, 'Transactions are not found');
     });
 

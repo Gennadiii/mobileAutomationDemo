@@ -15,7 +15,9 @@ interface UserServiceInterface {
   balanceBlocked: () => UserServiceInterface;
   // transactions
   transactionsMoreThan: (num: number) => UserServiceInterface;
+  transactionsLessThan: (num: number) => UserServiceInterface;
   withTransactions: () => UserServiceInterface;
+  withoutTransactions: () => UserServiceInterface;
   // currencies
   sameCurrencies: () => UserServiceInterface;
   // cards
@@ -91,9 +93,21 @@ class UserService implements UserServiceInterface {
     return this;
   }
 
+  withoutTransactions() {
+    log.info(`Filtering users without transactions`);
+    this.filter(([id, user]) => !user.transactions);
+    return this;
+  }
+
   transactionsMoreThan(num) {
     log.info(`Filtering users with more than "${num}" transactions`);
     this.filter(([id, user]) => user.transactionsCount > num);
+    return this;
+  }
+
+  transactionsLessThan(num) {
+    log.info(`Filtering users with less than "${num}" transactions`);
+    this.filter(([id, user]) => user.transactionsCount < num);
     return this;
   }
 

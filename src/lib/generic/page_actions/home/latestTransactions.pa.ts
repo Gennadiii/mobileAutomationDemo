@@ -10,11 +10,8 @@ interface LatestTransactionsPaInterface extends BasePagePa {
   // actions
   clickAllTransactionsLink: () => Promise<void>;
   // check
-  latestDateIsDisplayed: () => Promise<boolean>;
-  latestDescriptionIsDisplayed: () => Promise<boolean>;
-  latestCurrencyIsDisplayed: () => Promise<boolean>;
-  latestAmountIsDisplayed: () => Promise<boolean>;
-  latestStatusIsDisplayed: () => Promise<boolean>;
+  emptyTransactionsContentIsDisplayed: () => Promise<boolean>;
+  latestIsDisplayed: () => Promise<boolean>;
   findAllTransactionsLink: () => Promise<boolean>;
   // get
   countTransactions: () => Promise<number>;
@@ -35,29 +32,16 @@ class LatestTransactionsPa extends BasePagePa implements LatestTransactionsPaInt
   }
 
   // check
-  latestDateIsDisplayed() {
-    log.info(`Checking if latest date is displayed`);
-    return this.page.dates.getElementByIndex(0).isDisplayed();
+  emptyTransactionsContentIsDisplayed() {
+    log.info(`Checking if empty transactions content is displayed`);
+    const isDisplayedArr = this.page.emptyTransactionsContent
+      .map(element => element.isDisplayed());
+    return helper.promise.allTrue({arr: isDisplayedArr});
   }
 
-  latestDescriptionIsDisplayed() {
-    log.info(`Checking if latest description is displayed`);
-    return this.page.descriptions.getElementByIndex(0).isDisplayed();
-  }
-
-  latestCurrencyIsDisplayed() {
-    log.info(`Checking if latest currency is displayed`);
-    return this.page.currencies.getElementByIndex(0).isDisplayed();
-  }
-
-  latestAmountIsDisplayed() {
-    log.info(`Checking if latest amount is displayed`);
-    return this.page.amounts.getElementByIndex(0).isDisplayed();
-  }
-
-  latestStatusIsDisplayed() {
-    log.info(`Checking if latest status is displayed`);
-    return this.page.statuses.getElementByIndex(0).isDisplayed();
+  latestIsDisplayed() {
+    log.info(`Checking if latest transaction is displayed`);
+    return this.page.items.getElementByIndex(0).isDisplayed();
   }
 
   findAllTransactionsLink() {

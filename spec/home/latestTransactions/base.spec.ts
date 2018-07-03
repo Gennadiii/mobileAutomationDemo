@@ -16,16 +16,8 @@ describe('Home', () => {
 
 
       it('latest transaction content is displayed', async () => {
-        expect(await service.home.latestTransactions.page.latestDateIsDisplayed())
-          .toBe(true, 'Latest date is not displayed');
-        expect(await service.home.latestTransactions.page.latestDescriptionIsDisplayed())
-          .toBe(true, 'Latest description is not displayed');
-        expect(await service.home.latestTransactions.page.latestCurrencyIsDisplayed())
-          .toBe(true, 'Latest currency is not displayed');
-        expect(await service.home.latestTransactions.page.latestAmountIsDisplayed())
-          .toBe(true, 'Latest amount is not displayed');
-        expect(await service.home.latestTransactions.page.latestStatusIsDisplayed())
-          .toBe(true, 'Latest status is not displayed');
+        expect(await service.home.latestTransactions.page.contentIsDisplayed())
+          .toBe(true, 'Some content is missing');
       });
 
     });
