@@ -2,8 +2,8 @@ import {logger} from "./logger.helper";
 
 
 interface promiseHelperInterface {
-  allTrue: (params: allInterface) => Promise<boolean>;
-  allFalse: (params: allInterface) => Promise<boolean>;
+  allTrue: (arr: any[]) => Promise<boolean>;
+  allFalse: (arr: any[]) => Promise<boolean>;
 }
 
 
@@ -12,12 +12,12 @@ const log = logger.get('promiseHelper');
 
 const promiseHelper: promiseHelperInterface = {
 
-  allTrue(params: allInterface) {
-    return allBoolean(params, true);
+  allTrue(arr) {
+    return allBoolean(arr, true);
   },
 
-  allFalse(params: allInterface) {
-    return allBoolean(params, false);
+  allFalse(arr) {
+    return allBoolean(arr, false);
   }
 
 };
@@ -26,8 +26,7 @@ const promiseHelper: promiseHelperInterface = {
 export {promiseHelper};
 
 
-async function allBoolean(params: allInterface, expectation: boolean) {
-  const {arr} = params;
+async function allBoolean(arr, expectation: boolean) {
   const resolvedPromisesArr = await Promise.all(arr);
   let finalResult = true;
   resolvedPromisesArr.forEach((promise, index) => {
@@ -38,9 +37,4 @@ async function allBoolean(params: allInterface, expectation: boolean) {
     }
   });
   return finalResult;
-}
-
-
-interface allInterface {
-  arr: Array<Promise<boolean>>;
 }

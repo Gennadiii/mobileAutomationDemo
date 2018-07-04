@@ -26,39 +26,49 @@ class BasePagePa implements BasePagePaInterface {
     this.pages = pageActions.map(pageAction => pageAction.page);
   }
 
-  async isOpen(params = {timeout: 20 * 1000}) {
+  isOpen(params = {timeout: 20 * 1000}) {
     const {timeout} = params;
-    if (!this.pages) {
-      this.pages = [this.page];
-    }
-    const isDisplayedArr = [];
-    this.pages.forEach(page => {
-      this.currentPage = page;
-      log.info(`Checking if "${page.name}" page is opened`);
-      isDisplayedArr.push(...page.staticElements
-        .map(element => element.waitUntilDisplayed(timeout).catch(() => false)));
-    });
-    return helper.promise.allTrue({arr: isDisplayedArr});
+    return this.checkElementsDisplayed(
+      this.getStaticElements,
+      timeout,
+      'page is opened');
   }
 
-  async contentIsDisplayed(params = {timeout: 20 * 1000}) {
+  contentIsDisplayed(params = {timeout: 20 * 1000}) {
     const {timeout} = params;
-    if (!this.pages) {
-      this.pages = [this.page];
-    }
-    const isDisplayedArr = [];
-    this.pages.forEach(page => {
-      log.info(`Checking if "${page.name}" page content is displayed`);
-      isDisplayedArr.push(...page.content
-        .map(element => element.waitUntilDisplayed(timeout).catch(() => false)));
-    });
-    return helper.promise.allTrue({arr: isDisplayedArr});
+    return this.checkElementsDisplayed(
+      this.getContent,
+      timeout,
+      'page content is displayed');
   }
 
   async verifyIsOpen() {
     if (!await this.isOpen()) {
       throw new Error(`"${this.currentPage.name}" page didn't get opened`);
     }
+  }
+
+  private checkElementsDisplayed(getElements, timeout, logMessage) {
+    const isDisplayedArr = [];
+    if (!this.pages) {
+      this.pages = [this.page];
+    }
+    this.pages.forEach(page => {
+      this.currentPage = page;
+      log.info(`Checking if "${page.name}" ${logMessage}`);
+      isDisplayedArr.push(...getElements()
+        .map(element => element.waitUntilDisplayed(timeout)
+          .catch(() => false)));
+    });
+    return helper.promise.allTrue(isDisplayedArr);
+  }
+
+  private getStaticElements = () => {
+    return this.currentPage.staticElements;
+  }
+
+  private getContent = () => {
+    return this.currentPage.content;
   }
 
 }
