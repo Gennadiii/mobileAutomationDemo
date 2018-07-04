@@ -23,14 +23,14 @@ class SingleBalancePa extends BasePagePa implements SingleBalancePaInterface {
     log.info(`Checking if balance content is displayed`);
     const isDisplayedArr = this.page.balanceElements
       .map(element => element.isDisplayed());
-    return helper.promise.allTrue({arr: isDisplayedArr});
+    return helper.promise.allTrue(isDisplayedArr);
   }
 
   cardContentIsNotDisplayed() {
     log.info(`Checking if card content is not displayed`);
     const isNotDisplayedArr = this.page.cardElements
       .map(element => element.isDisplayed());
-    return helper.promise.allFalse({arr: isNotDisplayedArr});
+    return helper.promise.allFalse(isNotDisplayedArr);
   }
 
 }

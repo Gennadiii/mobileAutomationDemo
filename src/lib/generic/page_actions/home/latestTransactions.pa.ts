@@ -36,7 +36,7 @@ class LatestTransactionsPa extends BasePagePa implements LatestTransactionsPaInt
     log.info(`Checking if empty transactions content is displayed`);
     const isDisplayedArr = this.page.emptyTransactionsContent
       .map(element => element.isDisplayed());
-    return helper.promise.allTrue({arr: isDisplayedArr});
+    return helper.promise.allTrue(isDisplayedArr);
   }
 
   latestIsDisplayed() {

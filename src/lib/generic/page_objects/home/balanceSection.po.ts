@@ -4,6 +4,7 @@ import {Button} from "../../components/button";
 import {ComponentsList} from "../../components/componentsList";
 import {Section} from "../../components/section";
 import {Label} from "../../components/label";
+import {LongComponentsList} from "../../components/longComponentsList";
 
 
 interface BalanceSectionPoInterface extends BasePagePo {
@@ -21,7 +22,7 @@ class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
 
   name = 'Home - Balance section';
 
-  items = new ComponentsList(this.ef, Section, this.ef.all.autoId('Balance'));
+  items = new LongComponentsList(this.ef, Section, this.ef.all.autoId('BalanceItem', {partial: true}));
   currencies = new ComponentsList(this.ef, Label, this.ef.all.autoId('BalanceCurrency'));
   amounts = new ComponentsList(this.ef, Label, this.ef.all.autoId('BalanceAmount'));
   cards = new ComponentsList(this.ef, Label, this.ef.all.autoId('BalanceCardLastDigits'));

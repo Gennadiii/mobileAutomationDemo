@@ -6,12 +6,19 @@ const log = helper.logger.get(`HomeLTService`);
 
 
 interface LatestTransactionsServiceInterface {
+  count: () => Promise<number>;
 }
 
 
 class LatestTransactionsService implements LatestTransactionsServiceInterface {
 
   constructor(public page: LatestTransactionsPa) {
+  }
+
+
+  // get
+  count() {
+    return this.page.countTransactions();
   }
 
 

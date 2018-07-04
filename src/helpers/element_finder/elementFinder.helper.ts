@@ -15,21 +15,20 @@ interface ElementFinderInterface extends BaseElementFinder {
 
 class ElementFinder extends BaseElementFinder implements ElementFinderInterface {
 
-  accessibilityLabelName = this.accessibilityLabelName;
-
-  constructor(protected searchFunction: any, accessibilityLabelName) {
-    super(searchFunction);
+  constructor(protected searchFunction: any,
+              public accessibilityLabelName) {
+    super(searchFunction, accessibilityLabelName);
   }
 
   get all(): ElementsFinder {
-    return new ElementsFinder(findElementsBy);
+    return new ElementsFinder(findElementsBy, this.accessibilityLabelName);
   }
 
 }
 
 
-const androidEf = new ElementFinder(findElementBy, 'content-desc');
-const iosEf = new ElementFinder(findElementBy, 'name');
+const androidEf = new ElementFinder(  findElementBy,  'content-desc');
+const iosEf = new ElementFinder(  findElementBy,  'name');
 
 
 export {androidEf, iosEf, ElementFinderInterface};

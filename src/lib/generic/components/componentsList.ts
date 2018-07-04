@@ -1,4 +1,3 @@
-import {driver} from "../../../../index";
 import {helper} from "../../../helpers/helper";
 
 
@@ -8,13 +7,13 @@ const log = helper.logger.get('ComponentsList');
 interface ComponentsListInterface {
   // get
   getElementByIndex: (index: number) => any;
-  length: (params?: sizeInterface) => Promise<number>;
+  length: () => Promise<number>;
 }
 
 
 class ComponentsList implements ComponentsListInterface {
 
-  constructor(private ef, private DesiredComponent, private elementsFinder) {
+  constructor(protected ef, protected DesiredComponent, protected elementsFinder) {
   }
 
 
@@ -25,32 +24,12 @@ class ComponentsList implements ComponentsListInterface {
       {index}));
   }
 
-  async length(params: sizeInterface = {withScroll: true}) {
+  async length() {
     log.info(`Getting count`);
-    const {withScroll} = params;
-    if (!withScroll) {
-      return (await this.elementsFinder()).length;
-    }
-    const elementValues = new Set();
-
-    while (true) {
-      const elements = await this.elementsFinder();
-      const currentElementsNumber = elementValues.size;
-      elements.forEach(element => elementValues.add(element.value));
-      if (currentElementsNumber === elementValues.size) {
-        return elementValues.size;
-      }
-      await driver.scrollDown();
-    }
+    return (await this.elementsFinder()).length;
   }
 
 }
 
 
 export {ComponentsList};
-
-
-interface sizeInterface {
-  withScroll: boolean;
-}
-
