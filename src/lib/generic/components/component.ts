@@ -9,6 +9,7 @@ const log = helper.logger.get('Component');
 interface ComponentInterface {
   // get
   getLocation: () => Promise<pointCoordinatesInterface>;
+  getAttribute: (attribute: string) => Promise<string>;
   // check
   isDisplayed: () => Promise<boolean>;
   scrollUntilDisplayed: (params: scrollUntilDisplayedInterface) => Promise<boolean>;
@@ -45,6 +46,10 @@ class Component implements ComponentInterface {
   // get
   async getLocation() {
     return (await this.element).getLocation();
+  }
+
+  async getAttribute(attribute) {
+    return (await this.element).getAttribute(attribute);
   }
 
   // check

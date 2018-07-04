@@ -20,12 +20,12 @@ switch (platform.toLowerCase()) {
   case 'ios':
     platformName = 'iOS';
     automationName = 'XCUITest';
-    initializationWaitTimeout = 60 * 1000;
+    initializationWaitTimeout = 2 * 60 * 1000;
     break;
   case 'android':
     platformName = 'Android';
     automationName = 'UiAutomator2';
-    initializationWaitTimeout = 2 * 60 * 1000;
+    initializationWaitTimeout = 60 * 1000;
     break;
   default:
     throw new Error(`Wrong platform name: ${platform}`);
@@ -62,7 +62,7 @@ void async function main() {
     helper.lib.build();
     await helper.lib.waitReady();
 
-    const getServices = (await import("./src/assembler")).getServices;
+    const getServices = (await import("./src/assembler/assembler")).getServices;
     jasmine.env.service = getServices({platform});
 
     const tests = specs || (await selectTests())

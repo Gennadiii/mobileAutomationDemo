@@ -1,4 +1,4 @@
-import {assemblerInterface} from "../../../../src/assembler";
+import {assemblerInterface} from "../../../../src/assembler/assembler";
 
 
 describe('Home', () => {

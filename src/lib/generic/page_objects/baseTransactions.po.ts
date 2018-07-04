@@ -3,6 +3,7 @@ import {BasePagePo} from "./basePage.po";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
 import {ComponentsList} from "../components/componentsList";
 import {Section} from "../components/section";
+import {LongComponentsList} from "../components/longComponentsList";
 
 
 interface BaseTransactionsPoInterface extends BasePagePo {
@@ -19,7 +20,7 @@ class BaseTransactionsPo extends BasePagePo implements BaseTransactionsPoInterfa
 
   name = 'Base transactions (SHOULD NOT APPEAR IN LOGS!)';
 
-  items = new ComponentsList(this.ef, Section, this.ef.all.autoId('Activity'));
+  items = new LongComponentsList(this.ef, Section, this.ef.all.autoId('ActivityItem', {partial: true}));
   dates = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityDateTitle'));
   descriptions = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityTitle'));
   amounts = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityAmount'));

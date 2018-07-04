@@ -48,7 +48,6 @@ async function selectTests(): Promise<string[]> {
 
 
 export {selectTests};
-selectTests()
 
 
 function getPromptObj(arr) {

@@ -3,14 +3,21 @@ interface BaseElementFinderInterface {
   accessibilityId: (accessibilityId: string) => () => Promise<any>;
   xpath: (xpath: string) => () => Promise<any>;
   className: (className: string) => () => Promise<any>;
-  text: (text: string, options?: findElementByTextInterface) => () => Promise<any>;
+  text: (text: string, options?: partialInterface) => () => Promise<any>;
   autoId: (id: string) => Promise<any>;
   element: (using: string, value: string) => Promise<any>;
 }
 
 
 class BaseElementFinder implements BaseElementFinderInterface {
-  constructor(protected searchFunction: any) {
+
+  public autoIdAttribute;
+
+  protected searchFunction;
+
+
+  constructor(public accessibilityLabelName) {
+    this.autoIdAttribute = 'contentDescription';
   }
 
   id(id, options?) {
@@ -37,8 +44,11 @@ class BaseElementFinder implements BaseElementFinderInterface {
     return this.searchFunction('xpath', locator, options);
   }
 
-  autoId(id, options?) {
-    return this.accessibilityId(id, options);
+  autoId(id, options = {partial: false}) {
+    const {partial} = options;
+    return partial
+      ? this.searchFunction('xpath', `//*[contains(@${this.accessibilityLabelName}, '${id}')]`, options)
+      : this.accessibilityId(id, options);
   }
 
   element(using, value, options?) {
@@ -51,6 +61,6 @@ class BaseElementFinder implements BaseElementFinderInterface {
 export {BaseElementFinder};
 
 
-interface findElementByTextInterface {
+interface partialInterface {
   partial?: boolean;
 }
