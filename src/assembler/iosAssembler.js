@@ -7,5 +7,3 @@ var genericServices_1 = require("./genericServices");
 var elementFinder = new elementFinder_helper_1.ElementFinder('name');
 var iosServices = genericServices_1.assembleServices(elementFinder, helper_1.helper.lib.all, index_1.driver);
 exports.iosServices = iosServices;
-var iosServices = genericServices_1.assembleServices(elementFinder, helper_1.helper.lib.all, index_1.driver);
-exports.iosServices = iosServices;
