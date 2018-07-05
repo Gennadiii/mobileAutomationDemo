@@ -62,7 +62,7 @@ void async function main() {
     helper.lib.build();
     await helper.lib.waitReady();
 
-    const getServices = (await import("./src/assembler")).getServices;
+    const getServices = (await import("./src/assembler/assembler")).getServices;
     jasmine.env.service = getServices({platform});
 
     const tests = specs || (await selectTests())
