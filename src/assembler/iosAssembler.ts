@@ -5,10 +5,12 @@ import {driver} from "../../index";
 import {assembleServices} from "./genericServices";
 
 
-const elementFinder = new ElementFinder('name');
+function assembleIos(): assemblerInterface {
 
+  const elementFinder = new ElementFinder('name');
 
-const iosServices: assemblerInterface = assembleServices(elementFinder, helper.lib.all, driver);
+  return assembleServices(elementFinder, helper.lib.all, driver);
 
+}
 
-export {iosServices};
+export {assembleIos};

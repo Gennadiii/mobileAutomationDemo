@@ -1,4 +1,4 @@
-import {androidServices} from "./androidAssembler";
+import {assembleAndroid} from "./androidAssembler";
 import {LoginService} from "../lib/generic/services/login/login.service";
 import {HomeService} from "../lib/generic/services/home/home.service";
 import {CommonService} from "../lib/generic/services/common.service";
@@ -15,15 +15,15 @@ interface assemblerInterface {
 }
 
 
-const platformServices = {
+const getPlatformServices = {
 
-  Android: androidServices
+  Android: assembleAndroid
 
 };
 
 function getServices(params: getServicesInterface): assemblerInterface {
   const {platform} = params;
-  return platformServices[platform];
+  return getPlatformServices[platform]();
 }
 
 

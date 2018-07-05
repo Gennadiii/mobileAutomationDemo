@@ -5,13 +5,16 @@ import {driver} from "../../index";
 import {assembleServices} from "./genericServices";
 
 
-const elementFinder = new ElementFinder('content-desc');
+function assembleAndroid(): assemblerInterface {
+
+  const elementFinder = new ElementFinder('content-desc');
+
+  return assembleServices(
+    elementFinder,
+    helper.lib.all.generic,
+    driver);
+
+}
 
 
-const androidServices: assemblerInterface = assembleServices(
-  elementFinder,
-  helper.lib.all.generic,
-  driver);
-
-
-export {androidServices};
+export {assembleAndroid};
