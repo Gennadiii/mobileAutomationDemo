@@ -4,28 +4,37 @@ interface BaseElementFinderInterface {
   xpath: (xpath: string) => () => Promise<any>;
   className: (className: string) => () => Promise<any>;
   name: (name: string) => () => Promise<any>;
-  text: (text: string, options?: findElementByTextInterface) => () => Promise<any>;
+  text: (text: string, options?: partialInterface) => () => Promise<any>;
+  autoId: (id: string) => Promise<any>;
+  element: (using: string, value: string) => Promise<any>;
 }
 
 
 class BaseElementFinder implements BaseElementFinderInterface {
-  constructor(protected searchFunction: any) {
+
+  public autoIdAttribute;
+
+  protected searchFunction;
+
+
+  constructor(public accessibilityLabelName) {
+    this.autoIdAttribute = 'contentDescription';
   }
 
-  id(id) {
-    return this.searchFunction('id', id, arguments[1]);
+  id(id, options?) {
+    return this.searchFunction('id', id, options);
   }
 
-  accessibilityId(accessibilityId) {
-    return this.searchFunction('accessibility id', accessibilityId, arguments[1]);
+  accessibilityId(accessibilityId, options?) {
+    return this.searchFunction('accessibility id', accessibilityId, options);
   }
 
   xpath(xpath, options?) {
-    return this.searchFunction('xpath', xpath, arguments[1]);
+    return this.searchFunction('xpath', xpath, options);
   }
 
   className(className, options?) {
-    return this.searchFunction('class name', className, arguments[1]);
+    return this.searchFunction('class name', className, options);
   }
 
   name(name, options?) {
@@ -39,12 +48,24 @@ class BaseElementFinder implements BaseElementFinderInterface {
       : `//*[@text = '${text}']`;
     return this.searchFunction('xpath', locator, options);
   }
+
+  autoId(id, options = {partial: false}) {
+    const {partial} = options;
+    return partial
+      ? this.searchFunction('xpath', `//*[contains(@${this.accessibilityLabelName}, '${id}')]`, options)
+      : this.accessibilityId(id, options);
+  }
+
+  element(using, value, options?) {
+    return this.searchFunction(using, value, options);
+  }
+
 }
 
 
 export {BaseElementFinder};
 
 
-interface findElementByTextInterface {
+interface partialInterface {
   partial?: boolean;
 }

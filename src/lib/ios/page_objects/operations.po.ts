@@ -3,17 +3,17 @@ import {BasePagePo} from "../../generic/page_objects/basePage.po";
 import {IosOperationsPicker} from "../components/iosOperationsPicker";
 
 
-interface IosOperationsPoInterface extends BasePagePo {
+interface OperationsPoInterface extends BasePagePo {
   operationsPicker: IosOperationsPicker;
 }
 
 
-class IosOperationsPo extends BasePagePo implements IosOperationsPoInterface {
+class OperationsPo extends BasePagePo implements OperationsPoInterface {
 
   name = 'Calc - Operations';
 
   // override
-  operationsPicker = new IosOperationsPicker(this.ef.accessibilityId('operationsPicker'), this.ef);
+  operationsPicker = new IosOperationsPicker(this.ef.autoId('operationsPicker'), this.ef);
 
 
   constructor(protected ef: ElementFinderInterface) {
@@ -23,4 +23,4 @@ class IosOperationsPo extends BasePagePo implements IosOperationsPoInterface {
 }
 
 
-export {IosOperationsPo};
+export {OperationsPo};

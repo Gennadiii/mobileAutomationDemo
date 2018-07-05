@@ -47,7 +47,7 @@ class OperationsPicker extends InteractableComponent implements OperationsPicker
 
   private async open() {
     log.info(`Opening picker`);
-    await this.element.click();
+    await (await this.element).click();
   }
 
 }

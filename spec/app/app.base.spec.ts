@@ -1,5 +1,5 @@
-import {assemblerInterface} from "../src/assembler";
-import {driver} from "../index";
+import {assemblerInterface} from "../../src/assembler/assembler";
+import {driver} from "../../index";
 
 
 describe('Smoke', () => {

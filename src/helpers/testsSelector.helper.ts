@@ -1,25 +1,48 @@
 import {fsHelper} from "./fs.helper";
-const prompt = require('multiselect-prompt');
+const multiPrompt = require('multiselect-prompt');
+const prompt = require('select-prompt');
 const fs = require('fs');
 
 
 const specsPath = `${__dirname}/../../spec/`;
-const testChoiseNumberPath = `${__dirname}/testChoiseNumber.indexHelper`;
+const testChoiceNumberPath = `${__dirname}/testChoiceNumber.indexHelper`;
+const featureChoiceNumberPath = `${__dirname}/featureChoiceNumber.indexHelper`;
+const testsCollections = {
+  smoke: 'smoke',
+  otherThanSmoke: 'other than smoke',
+};
+let selectedFeatureChangedFromLastRun = true;
+let testsPaths = null;
 
 
 async function selectTests(): Promise<string[]> {
   try {
 
-    const testsPaths = fsHelper.getFiles(specsPath);
-    const promptOptions = getPromptObj(testsPaths);
-    return await multiselectPrompt({
-      question: 'Select tests to run',
-      resultMessage: 'Running tests',
-      options: promptOptions
-    });
+    const features = [testsCollections.otherThanSmoke, testsCollections.smoke]
+      .concat(getFeatures());
+    const featurePromptOptions = getPromptObj(features);
+    const selectedFeature = await promptFeature(featurePromptOptions);
+
+    if (selectedFeatureDidNotChangeFromLastInput(features, selectedFeature)) {
+      selectedFeatureChangedFromLastRun = false;
+    }
+    writeFeatureInput(features, selectedFeature);
+
+
+    if (selectedFeature === testsCollections.smoke) {
+      testsPaths = fsHelper.getFiles(specsPath).filter(base);
+    } else if (selectedFeature === testsCollections.otherThanSmoke) {
+      testsPaths = fsHelper.getFiles(specsPath).filter(otherThanBase);
+    } else {
+      testsPaths = fsHelper.getFiles(`${specsPath}/${selectedFeature}`);
+    }
+    const promptOptions = getPromptObj(testsPaths).filter(specs);
+    selectedFeatureChangedFromLastRun || preselectLastInput(promptOptions);
+    return await promptTests(promptOptions);
 
   } catch (err) {
     console.error(`Can't start tests: ${err}`);
+    throw err;
   }
 }
 
@@ -28,30 +51,46 @@ export {selectTests};
 
 
 function getPromptObj(arr) {
-  const result = arr.map(el => {
-    const element = el.replace(/.*spec[\\/]/, '');
+  return arr.map(el => {
+    const element = cutPathToSpecFolder(el);
     return {
       title: element,
-      value: element
+      value: element,
+      selected: false,
     };
   });
-  preselectLastInput(result);
-  return result;
 }
 
-function multiselectPrompt(params): Promise<string[]> {
-  const {question, resultMessage, options} = params;
+function promptFeature(options): Promise<string> {
+  return new Promise(resolve => {
+    const rememberedInput = +readRememberedInput(featureChoiceNumberPath)[0];
+    const cursor = rememberedInput >= 0
+      ? rememberedInput
+      : getMiddle(options);
+    console.info('Press esc to choose everything');
+    prompt('Select area:', options, {cursor})
+      .on('submit', resolve)
+      .on('abort', () => resolve(''));
+  });
+}
+
+function promptTests(options): Promise<string[]> {
   console.info(`Choose nothing to go with everything`);
   return new Promise(resolve => {
-    const cursor = readRememberedInput() || options.length / 2;
-    prompt(`${question}:`, options, {cursor})
+    const rememberedInput = readRememberedInput(testChoiceNumberPath);
+    const cursor = selectedFeatureChangedFromLastRun || rememberedInput.length === 0
+      ? getMiddle(options)
+      : rememberedInput[getMiddle(rememberedInput)];
+
+    multiPrompt('Select tests to run: ', options, {cursor})
       .on('submit', items => {
-        getSelectedItemsValues(items).length === 0 && markAllItemsSelected(items);
-        const selected = getSelectedItemsValues(items);
-        console.info(`${resultMessage}: `);
-        logChoises(selected);
-        writeInput(items);
-        resolve(selected);
+        writeTestsInput(items);
+        const chosenItems = getSelectedItemsValues(items);
+        chosenItems.length === 0 && markAllItemsSelected(items);
+        const chosenAndPreselected = getSelectedItemsValues(items);
+        console.info(`Running tests: `);
+        logChoices(chosenAndPreselected);
+        resolve(chosenAndPreselected);
       });
   });
 }
@@ -60,7 +99,7 @@ function markAllItemsSelected(items) {
   items.forEach(item => item.selected = true);
 }
 
-function logChoises(items) {
+function logChoices(items) {
   console.info();
   items.forEach(item => console.info(item));
   console.info();
@@ -71,21 +110,25 @@ function getSelectedItemsValues(items) {
     .map(item => item.value);
 }
 
-function writeInput(items) {
-  items.find((item, index) => {
-    if (item.selected) {
-      fs.writeFileSync(testChoiseNumberPath, index);
-      return true;
-    }
+function writeTestsInput(items) {
+  const indexes = [];
+  items.forEach((item, index) => {
+    item.selected && indexes.push(index);
   });
+  fs.writeFileSync(testChoiceNumberPath, indexes);
 }
 
-function readRememberedInput() {
+function writeFeatureInput(features, selectedFeature) {
+  fs.writeFileSync(featureChoiceNumberPath, features.indexOf(selectedFeature));
+}
+
+function readRememberedInput(path) {
   try {
-    return fs.readFileSync(testChoiseNumberPath);
+    const rememberedInput = fs.readFileSync(path).toString();
+    return rememberedInput ? rememberedInput.split(',') : [];
   } catch (err) {
     if (err.message.includes('ENOENT')) {
-      return null;
+      return [];
     } else {
       throw err;
     }
@@ -93,8 +136,35 @@ function readRememberedInput() {
 }
 
 function preselectLastInput(items) {
-  const lastInput = readRememberedInput();
-  if (lastInput) {
-    items[lastInput].selected = true;
-  }
+  const lastInputs = readRememberedInput(testChoiceNumberPath);
+  lastInputs.forEach(lastInput => items[lastInput].selected = true);
+}
+
+function getFeatures() {
+  return fs.readdirSync(specsPath)
+    .filter(str => !str.includes('.'));
+}
+
+function selectedFeatureDidNotChangeFromLastInput(features, selectedFeature) {
+  return features.indexOf(selectedFeature) === +readRememberedInput(featureChoiceNumberPath)[0];
+}
+
+function specs(file) {
+  return file.title.includes('.spec');
+}
+
+function base(file) {
+  return file.includes('base');
+}
+
+function otherThanBase(file) {
+  return !file.includes('base');
+}
+
+function cutPathToSpecFolder(file) {
+  return file.replace(/.*spec[\\/]/, '');
+}
+
+function getMiddle(options) {
+  return Math.floor(options.length / 2);
 }

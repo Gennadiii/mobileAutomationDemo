@@ -1,19 +1,19 @@
-import {CalcPo} from "../../generic/page_objects/calc.po";
+import {CalcPo as GenericCalcPo} from "../../generic/page_objects/calc.po";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
 import {OperationsPicker} from "../../generic/components/operationsPicker";
 
 
-interface AndroidCalcPoInterface extends CalcPo {
+interface CalcPoInterface extends GenericCalcPo {
   operationsPicker: OperationsPicker;
 }
 
 
-class AndroidCalcPo extends CalcPo implements AndroidCalcPoInterface {
+class CalcPo extends GenericCalcPo implements CalcPoInterface {
 
   name = 'AndroidCalc';
 
   // override
-  operationsPicker = new OperationsPicker(this.ef.accessibilityId('operationsPicker'), this.ef);
+  operationsPicker = new OperationsPicker(this.ef.autoId('operationsPicker'), this.ef);
 
   constructor(protected ef: ElementFinderInterface) {
     super(ef);
@@ -22,4 +22,4 @@ class AndroidCalcPo extends CalcPo implements AndroidCalcPoInterface {
 }
 
 
-export {AndroidCalcPo};
+export {CalcPo};

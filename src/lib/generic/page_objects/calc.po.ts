@@ -19,15 +19,15 @@ class CalcPo extends BasePagePo implements CalcPoInterface {
 
   name = 'Calc';
 
-  firstNumField = new InputField(this.ef.accessibilityId('firstNumber'));
+  firstNumField = new InputField(this.ef.autoId('firstNumber'));
 
-  secondNumField = new InputField(this.ef.accessibilityId('secondNumber'));
+  secondNumField = new InputField(this.ef.autoId('secondNumber'));
 
-  operationsPicker = new OperationsPicker(this.ef.accessibilityId('operationsPicker'), this.ef);
+  operationsPicker = new OperationsPicker(this.ef.autoId('operationsPicker'), this.ef);
 
-  countButton = new Button(this.ef.accessibilityId(`countButton`));
+  countButton = new Button(this.ef.autoId(`countButton`));
 
-  resultLabel = new Label(this.ef.accessibilityId('result'));
+  resultLabel = new Label(this.ef.autoId('result'));
 
 
   constructor(protected ef: ElementFinderInterface) {

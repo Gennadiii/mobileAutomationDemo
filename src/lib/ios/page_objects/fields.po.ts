@@ -1,21 +1,21 @@
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
 import {IosInputField} from "../components/iosInputField";
-import {FieldsPo} from "../../generic/page_objects/fields.po";
+import {FieldsPo as GenericFieldsPo} from "../../generic/page_objects/fields.po";
 
 
-interface IosFieldsPoInterface extends FieldsPo {
+interface FieldsPoInterface extends GenericFieldsPo {
   firstNumField: IosInputField;
   secondNumField: IosInputField;
 }
 
 
-class IosFieldsPo extends FieldsPo implements IosFieldsPoInterface {
+class FieldsPo extends GenericFieldsPo implements FieldsPoInterface {
 
   name = 'Calc - Fields';
 
-  firstNumField = new IosInputField(this.ef.accessibilityId('firstNumber'));
+  firstNumField = new IosInputField(this.ef.autoId('firstNumber'));
 
-  secondNumField = new IosInputField(this.ef.accessibilityId('secondNumber'));
+  secondNumField = new IosInputField(this.ef.autoId('secondNumber'));
 
 
   constructor(protected ef: ElementFinderInterface) {
@@ -29,4 +29,4 @@ class IosFieldsPo extends FieldsPo implements IosFieldsPoInterface {
 }
 
 
-export {IosFieldsPo};
+export {FieldsPo};

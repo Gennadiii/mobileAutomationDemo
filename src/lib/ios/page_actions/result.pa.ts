@@ -1,15 +1,15 @@
-import {ResultPa} from "../../generic/page_actions/result.pa";
-import {IosResultPo} from "../page_objects/iosResult.po";
+import {ResultPa as GenericResultPa} from "../../generic/page_actions/result.pa";
+import {ResultPo} from "../page_objects/result.po";
 import {helper} from "../../../helpers/helper";
 
 
-interface IosResultPaInterface extends ResultPa {
+interface ResultPaInterface extends GenericResultPa {
 }
 
 
-class IosResultPa extends ResultPa implements IosResultPaInterface {
+class ResultPa extends GenericResultPa implements ResultPaInterface {
 
-  constructor(public page: IosResultPo) {
+  constructor(public page: ResultPo) {
     super(page);
   }
 
@@ -28,4 +28,4 @@ class IosResultPa extends ResultPa implements IosResultPaInterface {
 }
 
 
-export {IosResultPa};
+export {ResultPa};

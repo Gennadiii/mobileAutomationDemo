@@ -3,17 +3,17 @@ import {BasePagePo} from "../../generic/page_objects/basePage.po";
 import {OperationsPicker} from "../../generic/components/operationsPicker";
 
 
-interface AndroidOperationsPoInterface extends BasePagePo {
+interface OperationsPoInterface extends BasePagePo {
   operationsPicker: OperationsPicker;
 }
 
 
-class AndroidOperationsPo extends BasePagePo implements AndroidOperationsPoInterface {
+class OperationsPo extends BasePagePo implements OperationsPoInterface {
 
   name = 'Calc - Operations';
 
   // override
-  operationsPicker = new OperationsPicker(this.ef.accessibilityId('operationsPicker'), this.ef);
+  operationsPicker = new OperationsPicker(this.ef.autoId('operationsPicker'), this.ef);
 
 
   constructor(protected ef: ElementFinderInterface) {
@@ -23,4 +23,4 @@ class AndroidOperationsPo extends BasePagePo implements AndroidOperationsPoInter
 }
 
 
-export {AndroidOperationsPo};
+export {OperationsPo};

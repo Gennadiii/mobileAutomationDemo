@@ -1,34 +1,31 @@
 import {driver} from "../../../index";
-import {logger} from "../logger.helper";
 import {BaseElementFinder} from "./baseElementFinder";
 import {ElementsFinder} from "./elementsFinder.helper";
 
 
-const log = logger.get('ElementFinder');
-
-
 interface ElementFinderInterface extends BaseElementFinder {
   all: ElementsFinder;
+  accessibilityLabelName: string;
 }
 
 
 class ElementFinder extends BaseElementFinder implements ElementFinderInterface {
 
-  constructor(protected searchFunction: any) {
-    super(searchFunction);
+  protected searchFunction = findElementBy;
+
+
+  constructor(public accessibilityLabelName) {
+    super(accessibilityLabelName);
   }
 
   get all(): ElementsFinder {
-    return new ElementsFinder(findElementsBy);
+    return new ElementsFinder(this.accessibilityLabelName);
   }
 
 }
 
 
-const ef = new ElementFinder(findElementBy);
-
-
-export {ef, ElementFinderInterface};
+export {ElementFinder, ElementFinderInterface};
 
 
 function findElementBy(using: string, value: string) {
@@ -37,25 +34,3 @@ function findElementBy(using: string, value: string) {
   elementFinder.value = value;
   return elementFinder;
 }
-
-function findElementsBy(using: string, value: string, options?: findElementsByInterface) {
-  const defaults = {index: null};
-  const resultingOptions = Object.assign(defaults, options);
-  const {index} = resultingOptions;
-
-  const elementsFinder: any = () => {
-    log.info(`Looking for elements using "${using}" with value: ${value}`);
-    const elements = driver.elements(using, value);
-    return index !== null ? elements.at(index) : elements;
-  };
-  elementsFinder.using = using;
-  elementsFinder.value = value;
-  return elementsFinder;
-
-}
-
-
-interface findElementsByInterface {
-  index?: number;
-}
-

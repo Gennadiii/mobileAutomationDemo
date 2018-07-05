@@ -8,6 +8,8 @@ const log = logger.get('Driver');
 
 interface DriverInterface {
   appium: () => Promise<any>;
+  implicitWait: number;
+  defaultImplicitWait: number;
   // actions
   init: () => Promise<DriverInterface>;
   appiumTerminate: () => Promise<any>;
@@ -16,11 +18,12 @@ interface DriverInterface {
   swipe: (params: swipeInterface) => Promise<void>;
   scrollDown: (screenPercentage?: number) => Promise<void>;
   // set
-  setImplicitTimeout: (time: number) => Promise<any>;
+  setImplicitTimeout: (time: number) => void;
   // get
   element: (using: string, value: string) => Promise<any>;
   elements: (using: string, value: string) => Promise<any>;
   getScreenSize: () => Promise<screenSizeInterface>;
+  takeScreenshot: () => Promise<string>;
   // wait
   waitUntilInitialized: (appiumInitPromise: any, initializationWaitTimeout: number) => Promise<void>;
 }
@@ -29,11 +32,11 @@ interface DriverInterface {
 class Driver implements DriverInterface {
 
   appium = null;
+  implicitWait;
+  defaultImplicitWait;
   private capabilities;
-  private implicitWait;
   private appiumPort;
   private appiumInitialized = false;
-  private firstLaunch = true;
 
   constructor(private params: driverParams) {
     const {
@@ -43,6 +46,7 @@ class Driver implements DriverInterface {
     } = this.params;
     this.capabilities = capabilities;
     this.implicitWait = +implicitWait; // Comes as user input from runtime (string)
+    this.defaultImplicitWait = +implicitWait;
     this.appiumPort = +appiumPort; // Comes as user input from runtime (string)
 
     wd.addPromiseChainMethod('swipe', swipe);
@@ -55,7 +59,7 @@ class Driver implements DriverInterface {
     const driver = wd.promiseChainRemote('localhost', this.appiumPort);
     await driver
       .init(this.capabilities)
-      .setImplicitWaitTimeout(this.implicitWait);
+      .setImplicitWaitTimeout(0);
     this.appium = driver;
     return this;
   }
@@ -71,10 +75,6 @@ class Driver implements DriverInterface {
   }
 
   async appRelaunch() {
-    if (this.firstLaunch) {
-      this.firstLaunch = false;
-      return;
-    }
     log.info(`Relaunching app`);
     await this.appClose();
     await this.appLaunch();
@@ -101,8 +101,10 @@ class Driver implements DriverInterface {
 
   // set
 
-  async setImplicitTimeout(time) {
-    await this.appium.setImplicitWaitTimeout(time);
+  // Implicit wait seems to be not working in Appium v.1.8.1
+  // Own implementation of implicit wait is in Component's element getter
+  setImplicitTimeout(time) {
+    this.implicitWait = time;
   }
 
   // get
@@ -117,6 +119,11 @@ class Driver implements DriverInterface {
 
   getScreenSize() {
     return this.appium.getWindowSize();
+  }
+
+  takeScreenshot() {
+    log.info(`Taking screenshot`);
+    return this.appium.takeScreenshot();
   }
 
   // wait
@@ -167,6 +174,7 @@ interface capabilitiesInterface {
   app: string;
   automationName: string;
   appPackage?: string;
+  appActivity?: string;
 }
 
 

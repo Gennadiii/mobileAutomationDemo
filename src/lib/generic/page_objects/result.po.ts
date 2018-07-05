@@ -14,9 +14,9 @@ class ResultPo extends BasePagePo implements ResultPoInterface {
 
   name = 'Calc - Result';
 
-  countButton = new Button(this.ef.accessibilityId(`countButton`));
+  countButton = new Button(this.ef.autoId(`countButton`));
 
-  resultLabel = new Label(this.ef.accessibilityId('result'));
+  resultLabel = new Label(this.ef.autoId('result'));
 
 
   constructor(protected ef: ElementFinderInterface) {

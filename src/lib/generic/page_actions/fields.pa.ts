@@ -1,6 +1,6 @@
 import {helper} from "../../../helpers/helper";
 import {BasePagePa} from "./basePage.pa";
-import {FieldsPo} from "../page_objects/Fields.po";
+import {FieldsPo} from "../page_objects/fields.po";
 
 
 const log = helper.logger.get('FieldsPa');

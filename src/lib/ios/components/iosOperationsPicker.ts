@@ -5,7 +5,7 @@ import {Component} from "../../generic/components/component";
 import {driver} from "../../../../index";
 
 
-const log = helper.logger.get('IosOperationsPicker');
+const log = helper.logger.get('OperationsPicker');
 
 
 interface IosOperationsPickerInterface extends OperationsPicker {

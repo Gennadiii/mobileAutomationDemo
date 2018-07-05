@@ -1,15 +1,15 @@
-import {IosCalcPo} from "../page_objects/iosCalc.po";
-import {CalcPa} from "../../generic/page_actions/calc.pa";
+import {CalcPo} from "../page_objects/calc.po";
+import {CalcPa as GenericCalcPa} from "../../generic/page_actions/calc.pa";
 import {helper} from "../../../helpers/helper";
 
 
-interface IosCalcPaInterface extends CalcPa {
+interface CalcPaInterface extends GenericCalcPa {
 }
 
 
-class IosCalcPa extends CalcPa implements IosCalcPaInterface {
+class CalcPa extends GenericCalcPa implements CalcPaInterface {
 
-  constructor(public page: IosCalcPo) {
+  constructor(public page: CalcPo) {
     super(page);
   }
 
@@ -29,4 +29,4 @@ class IosCalcPa extends CalcPa implements IosCalcPaInterface {
 }
 
 
-export {IosCalcPa};
+export {CalcPa};

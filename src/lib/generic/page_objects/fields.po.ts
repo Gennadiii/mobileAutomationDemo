@@ -13,9 +13,9 @@ class FieldsPo extends BasePagePo implements FieldsPoInterface {
 
   name = 'Calc - Fields';
 
-  firstNumField = new InputField(this.ef.accessibilityId('firstNumber'));
+  firstNumField = new InputField(this.ef.autoId('firstNumber'));
 
-  secondNumField = new InputField(this.ef.accessibilityId('secondNumber'));
+  secondNumField = new InputField(this.ef.autoId('secondNumber'));
 
 
     constructor(protected ef: ElementFinderInterface) {

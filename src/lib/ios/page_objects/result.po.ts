@@ -1,15 +1,15 @@
 import {Button} from "../../generic/components/button";
-import {ResultPo} from "../../generic/page_objects/result.po";
+import {ResultPo as GenericResultPo} from "../../generic/page_objects/result.po";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
 
 
-interface IosResultPoInterface extends ResultPo {
+interface ResultPoInterface extends GenericResultPo {
   acknowledgeAlertButton: Button;
   declineAlertButton: Button;
 }
 
 
-class IosResultPo extends ResultPo implements IosResultPoInterface {
+class ResultPo extends GenericResultPo implements ResultPoInterface {
 
   name = 'iOS Calc - Result';
 
@@ -24,4 +24,4 @@ class IosResultPo extends ResultPo implements IosResultPoInterface {
 }
 
 
-export {IosResultPo};
+export {ResultPo};
