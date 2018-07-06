@@ -9,7 +9,7 @@ interface FirstLoginPoInterface extends GenericFirstLoginPo {
 
 class FirstLoginPo extends GenericFirstLoginPo implements FirstLoginPoInterface {
 
-  name = 'FirstLogin';
+  name = 'IosFirstLogin';
 
   loginField = new InputField(this.ef.className('XCUIElementTypeTextField'));
   passwordField = new InputField(this.ef.className('XCUIElementTypeSecureTextField'));
