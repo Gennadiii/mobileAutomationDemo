@@ -20,7 +20,7 @@ switch (platform.toLowerCase()) {
   case 'ios':
     platformName = 'iOS';
     automationName = 'XCUITest';
-    initializationWaitTimeout = 2 * 60 * 1000;
+    initializationWaitTimeout = 4 * 60 * 1000;
     break;
   case 'android':
     platformName = 'Android';

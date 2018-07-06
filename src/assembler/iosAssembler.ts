@@ -9,7 +9,12 @@ function assembleIos(): assemblerInterface {
 
   const elementFinder = new ElementFinder('name');
 
-  return assembleServices(elementFinder, helper.lib.all, driver);
+  Object.assign(helper.lib.all.generic.page_objects, helper.lib.all.ios.page_objects);
+
+  return assembleServices(
+    elementFinder,
+    helper.lib.all.generic,
+    driver);
 
 }
 

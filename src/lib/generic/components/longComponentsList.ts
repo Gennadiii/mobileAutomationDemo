@@ -41,6 +41,7 @@ class LongComponentsList extends ComponentsList implements LongComponentsListInt
       }
       await driver.scrollDown();
     }
+    return elementsAttributes.size;
   }
 
 }
