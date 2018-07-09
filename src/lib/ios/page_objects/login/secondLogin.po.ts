@@ -12,6 +12,7 @@ class SecondLoginPo extends GenericSecondLoginPo implements SecondLoginPoInterfa
 
   name = 'IosSecondLogin';
 
+  optionsButton = new Button(this.ef.autoId('Toolbar'));
   passwordField = new InputField(this.ef.className('XCUIElementTypeSecureTextField'));
   changeLanguageButton = new Button(this.ef.all.className('XCUIElementTypeButton', {index: 0}));
   switchAccountButton = new Button(this.ef.all.className('XCUIElementTypeButton', {index: 1}));

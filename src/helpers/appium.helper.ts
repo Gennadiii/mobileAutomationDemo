@@ -76,7 +76,6 @@ class Driver implements DriverInterface {
 
   async appRelaunch() {
     log.info(`Relaunching app`);
-    await this.appClose();
     await this.appLaunch();
   }
 
@@ -96,7 +95,10 @@ class Driver implements DriverInterface {
     const screenSizeWithoutNavigationSection = (await this.getScreenSize()).height *
       screenPercentageWithoutNavigationSection *
       screenPercentage / 100;
-    await this.swipe({startPoint: {y: screenSizeWithoutNavigationSection}, endPoint: {y: 1}});
+    await this.swipe({
+      startPoint: {y: screenSizeWithoutNavigationSection},
+      endPoint: {y: 1}
+    });
   }
 
   // set
