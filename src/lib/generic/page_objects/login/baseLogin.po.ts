@@ -1,13 +1,13 @@
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Button} from "../../components/button";
-import {BasePagePo} from "../basePage.po";
+import {BasePo} from "../base.po";
 import {Icon} from "../../components/icon";
 import {Label} from "../../components/label";
 import {Link} from "../../components/link";
 import {InputField} from "../../components/inputField";
 
 
-interface BaseLoginPoInterface extends BasePagePo {
+interface BaseLoginPoInterface extends BasePo {
   userIcon: Icon;
   userTitle: Label;
   passwordField: InputField;
@@ -17,7 +17,7 @@ interface BaseLoginPoInterface extends BasePagePo {
 }
 
 
-class BaseLoginPo extends BasePagePo implements BaseLoginPoInterface {
+class BaseLoginPo extends BasePo implements BaseLoginPoInterface {
 
   name = 'BaseLogin';
 

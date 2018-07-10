@@ -1,15 +1,15 @@
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Button} from "../../components/button";
-import {BasePagePo} from "../basePage.po";
+import {BasePo} from "../base.po";
 
 
-interface FingerprintPoInterface extends BasePagePo {
+interface FingerprintPoInterface extends BasePo {
   notNowButton: Button;
   setupButton: Button;
 }
 
 
-class FingerprintPo extends BasePagePo implements FingerprintPoInterface {
+class FingerprintPo extends BasePo implements FingerprintPoInterface {
 
   name = 'Fingerprint';
 

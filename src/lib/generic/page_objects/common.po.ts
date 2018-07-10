@@ -1,5 +1,5 @@
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
-import {BasePagePo} from "./basePage.po";
+import {BasePo} from "./base.po";
 import {Label} from "../components/label";
 
 
@@ -8,7 +8,7 @@ interface CommonPoInterface {
 }
 
 
-class CommonPo extends BasePagePo implements CommonPoInterface {
+class CommonPo extends BasePo implements CommonPoInterface {
 
   name = 'Common';
 

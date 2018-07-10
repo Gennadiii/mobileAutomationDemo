@@ -1,4 +1,4 @@
-import {BasePagePo} from "../basePage.po";
+import {BasePo} from "../base.po";
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Button} from "../../components/button";
 import {ComponentsList} from "../../components/componentsList";
@@ -7,7 +7,7 @@ import {Label} from "../../components/label";
 import {LongComponentsList} from "../../components/longComponentsList";
 
 
-interface BalanceSectionPoInterface extends BasePagePo {
+interface BalanceSectionPoInterface extends BasePo {
   items: ComponentsList;
   currencies: ComponentsList;
   amounts: ComponentsList;
@@ -18,7 +18,7 @@ interface BalanceSectionPoInterface extends BasePagePo {
 }
 
 
-class BalanceSectionPo extends BasePagePo implements BalanceSectionPoInterface {
+class BalanceSectionPo extends BasePo implements BalanceSectionPoInterface {
 
   name = 'Home - Balance section';
 

@@ -1,12 +1,12 @@
 import {Label} from "../components/label";
-import {BasePagePo} from "./basePage.po";
+import {BasePo} from "./base.po";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
 import {ComponentsList} from "../components/componentsList";
 import {Section} from "../components/section";
 import {LongComponentsList} from "../components/longComponentsList";
 
 
-interface BaseTransactionsPoInterface extends BasePagePo {
+interface BaseTransactionsPoInterface extends BasePo {
   items: ComponentsList;
   dates: ComponentsList;
   descriptions: ComponentsList;
@@ -16,7 +16,7 @@ interface BaseTransactionsPoInterface extends BasePagePo {
 }
 
 
-class BaseTransactionsPo extends BasePagePo implements BaseTransactionsPoInterface {
+class BaseTransactionsPo extends BasePo implements BaseTransactionsPoInterface {
 
   name = 'Base transactions (SHOULD NOT APPEAR IN LOGS!)';
 

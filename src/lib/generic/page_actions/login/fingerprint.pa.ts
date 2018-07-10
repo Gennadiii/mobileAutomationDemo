@@ -1,17 +1,17 @@
 import {FingerprintPo} from "../../page_objects/login/Fingerprint.po";
-import {BasePagePa} from "../basePage.pa";
+import {BasePa} from "../base.pa";
 import {helper} from "../../../../helpers/helper";
 
 
 const log = helper.logger.get('FingerprintPa');
 
 
-interface FingerprintPaInterface extends BasePagePa {
+interface FingerprintPaInterface extends BasePa {
   clickNotNowButton: () => Promise<any>;
 }
 
 
-class FingerprintPa extends BasePagePa implements FingerprintPaInterface {
+class FingerprintPa extends BasePa implements FingerprintPaInterface {
 
   constructor(public page: FingerprintPo) {
     super();

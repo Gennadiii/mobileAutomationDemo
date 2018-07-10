@@ -1,17 +1,17 @@
 import {TransactionsPo} from "../page_objects/Transactions.po";
 import {helper} from "../../../helpers/helper";
-import {BasePagePa} from "./basePage.pa";
+import {BasePa} from "./base.pa";
 
 
 const log = helper.logger.get('TransactionsPa');
 
 
-interface TransactionsPaInterface extends BasePagePa {
+interface TransactionsPaInterface extends BasePa {
   clickFiltersButton: () => Promise<void>;
 }
 
 
-class TransactionsPa extends BasePagePa implements TransactionsPaInterface {
+class TransactionsPa extends BasePa implements TransactionsPaInterface {
 
   constructor(public page: TransactionsPo) {
     super();

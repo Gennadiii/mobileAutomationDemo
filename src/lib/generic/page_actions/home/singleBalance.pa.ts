@@ -1,4 +1,4 @@
-import {BasePagePa} from "../basePage.pa";
+import {BasePa} from "../base.pa";
 import {helper} from "../../../../helpers/helper";
 import {SingleBalancePo} from "../../page_objects/home/SingleBalance.po";
 
@@ -6,13 +6,13 @@ import {SingleBalancePo} from "../../page_objects/home/SingleBalance.po";
 const log = helper.logger.get('HomeSBPa');
 
 
-interface SingleBalancePaInterface extends BasePagePa {
+interface SingleBalancePaInterface extends BasePa {
   balanceContentIsDisplayed: () => Promise<boolean>;
   cardContentIsNotDisplayed: () => Promise<boolean>;
 }
 
 
-class SingleBalancePa extends BasePagePa implements SingleBalancePaInterface {
+class SingleBalancePa extends BasePa implements SingleBalancePaInterface {
 
   constructor(public page: SingleBalancePo) {
     super();

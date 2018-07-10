@@ -4,6 +4,7 @@ import {SecondLoginPa} from "../../page_actions/login/secondLogin.pa";
 import {FingerprintService} from "./fingerprint.service";
 import {LanguagePa} from "../../page_actions/language.pa";
 import {HomeService} from "../home/home.service";
+import {BaseService} from "../base.service";
 
 
 const log = helper.logger.get('SecondLoginService');
@@ -14,12 +15,13 @@ interface SecondLoginServiceInterface {
 }
 
 
-class SecondLoginService implements SecondLoginServiceInterface {
+class SecondLoginService extends BaseService implements SecondLoginServiceInterface {
 
   constructor(private homeService: HomeService,
               public fingerprint: FingerprintService,
               public page: SecondLoginPa,
               public languagePage: LanguagePa) {
+    super();
   }
 
 
@@ -31,10 +33,10 @@ class SecondLoginService implements SecondLoginServiceInterface {
     await this.page.clickSignInButton();
 
     if (skipFingerprint) {
-      await this.fingerprint.page.verifyIsOpen();
+      await this.fingerprint.verifyPageIsOpen();
       await this.fingerprint.skip();
     }
-    await this.homeService.page.verifyIsOpen();
+    await this.homeService.verifyPageIsOpen();
   }
 
 }

@@ -1,5 +1,6 @@
 import {helper} from "../../../../helpers/helper";
 import {FingerprintPa} from "../../page_actions/login/Fingerprint.pa";
+import {BaseService} from "../base.service";
 
 
 const log = helper.logger.get('FingerprintService');
@@ -10,9 +11,10 @@ interface FingerprintServiceInterface {
 }
 
 
-class FingerprintService implements FingerprintServiceInterface {
+class FingerprintService extends BaseService implements FingerprintServiceInterface {
 
   constructor(public page: FingerprintPa) {
+    super();
   }
 
 

@@ -1,12 +1,12 @@
 import {NavigationPo} from "../page_objects/Navigation.po";
 import {helper} from "../../../helpers/helper";
-import {BasePagePa} from "./basePage.pa";
+import {BasePa} from "./base.pa";
 
 
 const log = helper.logger.get('NavigationPa');
 
 
-interface NavigationPaInterface extends BasePagePa {
+interface NavigationPaInterface extends BasePa {
   clickHomeLink: () => Promise<void>;
   clickTransactionsLink: () => Promise<void>;
   clickActionsLink: () => Promise<void>;
@@ -14,7 +14,7 @@ interface NavigationPaInterface extends BasePagePa {
 }
 
 
-class NavigationPa extends BasePagePa implements NavigationPaInterface {
+class NavigationPa extends BasePa implements NavigationPaInterface {
 
   constructor(public page: NavigationPo) {
     super();

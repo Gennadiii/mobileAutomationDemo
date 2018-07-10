@@ -25,7 +25,7 @@ describe('Home', () => {
       it(`all transactions link redirects to transactions screen`, async () => {
         await service.home.latestTransactions.page.findAllTransactionsLink();
         await service.home.latestTransactions.page.clickAllTransactionsLink();
-        expect(await service.transactions.page.isOpen())
+        expect(await service.transactions.pageIsOpen())
           .toBe(true, `Page didn't get opened`);
       });
 

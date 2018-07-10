@@ -25,7 +25,7 @@ describe('Second login', () => {
 
     it('gets first login page', async () => {
       await service.login.second.page.clickSwitchAccountButton();
-      expect(await service.login.first.page.isOpen())
+      expect(await service.login.first.pageIsOpen())
         .toBe(true, 'Some page content is missing');
     });
 

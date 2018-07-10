@@ -17,9 +17,9 @@ describe('Home', () => {
     afterAll(() => userWithBalances.free());
 
     it('page content is displayed', async () => {
-      expect(await service.home.page.isOpen())
+      expect(await service.home.pageIsOpen())
         .toBe(true, 'Home page did not get opened');
-      expect(await service.common.navigateTo.page.isOpen())
+      expect(await service.common.navigateTo.pageIsOpen())
         .toBe(true, 'Navigation section is not displayed');
       expect(await service.home.balanceSection.page.countMain())
         .toBeGreaterThan(0, `Balances are not found`);

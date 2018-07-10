@@ -1,4 +1,5 @@
 import {TransactionsPa} from "../page_actions/Transactions.pa";
+import {BaseService} from "./base.service";
 
 
 interface TransactionsServiceInterface {
@@ -6,9 +7,10 @@ interface TransactionsServiceInterface {
 }
 
 
-class TransactionsService implements TransactionsServiceInterface {
+class TransactionsService extends BaseService implements TransactionsServiceInterface {
 
   constructor(public page: TransactionsPa) {
+    super();
   }
 
 

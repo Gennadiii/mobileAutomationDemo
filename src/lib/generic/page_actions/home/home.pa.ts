@@ -1,12 +1,12 @@
-import {BasePagePa} from "../basePage.pa";
+import {BasePa} from "../base.pa";
 import {HomePo} from "../../page_objects/home/home.po";
 
 
-interface HomePaInterface extends BasePagePa {
+interface HomePaInterface extends BasePa {
 }
 
 
-class HomePa extends BasePagePa implements HomePaInterface {
+class HomePa extends BasePa implements HomePaInterface {
 
   constructor(public page: HomePo) {
     super();

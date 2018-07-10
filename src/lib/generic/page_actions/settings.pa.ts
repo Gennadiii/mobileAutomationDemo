@@ -1,17 +1,17 @@
 import {SettingsPo} from "../page_objects/Settings.po";
 import {helper} from "../../../helpers/helper";
-import {BasePagePa} from "./basePage.pa";
+import {BasePa} from "./base.pa";
 
 
 const log = helper.logger.get('SettingsPa');
 
 
-interface SettingsPaInterface extends BasePagePa {
+interface SettingsPaInterface extends BasePa {
   clickSignOutButton: () => Promise<void>;
 }
 
 
-class SettingsPa extends BasePagePa implements SettingsPaInterface {
+class SettingsPa extends BasePa implements SettingsPaInterface {
 
   constructor(public page: SettingsPo) {
     super();

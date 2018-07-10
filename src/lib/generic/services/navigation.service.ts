@@ -1,4 +1,5 @@
 import {NavigationPa} from "../page_actions/Navigation.pa";
+import {BaseService} from "./base.service";
 
 
 interface NavigationServiceInterface {
@@ -9,9 +10,10 @@ interface NavigationServiceInterface {
 }
 
 
-class NavigationService implements NavigationServiceInterface {
+class NavigationService extends BaseService implements NavigationServiceInterface {
 
   constructor(public page: NavigationPa) {
+    super();
   }
 
 

@@ -1,5 +1,6 @@
 import {helper} from "../../../../helpers/helper";
 import {LatestTransactionsPa} from "../../page_actions/home/latestTransactions.pa";
+import {BaseService} from "../base.service";
 
 
 const log = helper.logger.get(`HomeLTService`);
@@ -10,9 +11,10 @@ interface LatestTransactionsServiceInterface {
 }
 
 
-class LatestTransactionsService implements LatestTransactionsServiceInterface {
+class LatestTransactionsService extends BaseService implements LatestTransactionsServiceInterface {
 
   constructor(public page: LatestTransactionsPa) {
+    super();
   }
 
 

@@ -1,18 +1,18 @@
-import {BasePagePo} from "../basePage.po";
+import {BasePo} from "../base.po";
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Icon} from "../../components/icon";
 import {Label} from "../../components/label";
 import {Link} from "../../components/link";
 
 
-interface HomePoInterface extends BasePagePo {
+interface HomePoInterface extends BasePo {
   userIcon: Icon;
   userTitle: Label;
   allTransactionsLink: Link;
 }
 
 
-class HomePo extends BasePagePo implements HomePoInterface {
+class HomePo extends BasePo implements HomePoInterface {
 
   name = 'Home';
 

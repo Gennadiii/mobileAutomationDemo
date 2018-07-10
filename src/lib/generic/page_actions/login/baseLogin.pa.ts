@@ -1,19 +1,19 @@
 import {helper} from "../../../../helpers/helper";
-import {BasePagePa} from "../basePage.pa";
+import {BasePa} from "../base.pa";
 import {BaseLoginPo} from "../../page_objects/login/baseLogin.po";
 
 
 const log = helper.logger.get('BaseLoginPa');
 
 
-interface BaseLoginPaInterface extends BasePagePa {
+interface BaseLoginPaInterface extends BasePa {
   enterPassword: (password: string) => Promise<void>;
   clickSignInButton: () => Promise<void>;
   passwordValidationIsDisplayed: () => Promise<boolean>;
 }
 
 
-class BaseLoginPa extends BasePagePa implements BaseLoginPaInterface {
+class BaseLoginPa extends BasePa implements BaseLoginPaInterface {
 
   constructor(public page: BaseLoginPo) {
     super();

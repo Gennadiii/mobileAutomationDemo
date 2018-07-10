@@ -1,5 +1,5 @@
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
-import {BasePagePo} from "./basePage.po";
+import {BasePo} from "./base.po";
 import {ComponentsList} from "../components/componentsList";
 import {Button} from "../components/button";
 import {Component} from "../components/component";
@@ -10,7 +10,7 @@ interface LanguagePoInterface {
 }
 
 
-class LanguagePo extends BasePagePo implements LanguagePoInterface {
+class LanguagePo extends BasePo implements LanguagePoInterface {
 
   name = 'Language';
 

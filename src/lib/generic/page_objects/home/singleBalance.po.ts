@@ -1,9 +1,9 @@
-import {BasePagePo} from "../basePage.po";
+import {BasePo} from "../base.po";
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Label} from "../../components/label";
 
 
-interface SingleBalancePoInterface extends BasePagePo {
+interface SingleBalancePoInterface extends BasePo {
   balanceTitle: Label;
   balanceAmount: Label;
   cardTitle: Label;
@@ -13,7 +13,7 @@ interface SingleBalancePoInterface extends BasePagePo {
 }
 
 
-class SingleBalancePo extends BasePagePo implements SingleBalancePoInterface {
+class SingleBalancePo extends BasePo implements SingleBalancePoInterface {
 
   name = 'Home - Single Balance';
 

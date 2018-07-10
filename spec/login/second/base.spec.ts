@@ -16,7 +16,7 @@ describe('Second login', () => {
     afterAll(() => anyUser.free());
 
     it('second login page opens when user logs out', async () => {
-      expect(await service.login.second.page.isOpen())
+      expect(await service.login.second.pageIsOpen())
         .toBe(true, 'Second login screen did not get opened');
     });
 
@@ -27,7 +27,7 @@ describe('Second login', () => {
 
     it('successful login', async () => {
       await service.login.second.as(anyUser);
-      expect(await service.home.page.isOpen())
+      expect(await service.home.pageIsOpen())
         .toBe(true, `Home page didn't get opened`);
     });
 

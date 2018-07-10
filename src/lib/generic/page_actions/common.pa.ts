@@ -1,18 +1,18 @@
 import {CommonPo} from "../page_objects/Common.po";
 import {helper} from "../../../helpers/helper";
-import {BasePagePa} from "./basePage.pa";
+import {BasePa} from "./base.pa";
 
 
 const log = helper.logger.get('CommonPa');
 
 
-interface CommonPaInterface extends BasePagePa {
+interface CommonPaInterface extends BasePa {
   // check
   isErrorMessageDisplayed: () => Promise<boolean>;
 }
 
 
-class CommonPa extends BasePagePa implements CommonPaInterface {
+class CommonPa extends BasePa implements CommonPaInterface {
 
   constructor(public page: CommonPo) {
     super();

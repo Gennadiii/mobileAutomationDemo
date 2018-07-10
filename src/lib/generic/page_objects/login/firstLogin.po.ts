@@ -1,13 +1,13 @@
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {InputField} from "../../components/inputField";
 import {Button} from "../../components/button";
-import {BasePagePo} from "../basePage.po";
+import {BasePo} from "../base.po";
 import {Label} from "../../components/label";
 import {Link} from "../../components/link";
 import {BaseLoginPo} from "./baseLogin.po";
 
 
-interface FirstLoginPoInterface extends BasePagePo {
+interface FirstLoginPoInterface extends BasePo {
   languageButton: Button;
   userSubTitle: Label;
   loginField: InputField;

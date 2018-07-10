@@ -1,5 +1,5 @@
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
-import {BasePagePo} from "./basePage.po";
+import {BasePo} from "./base.po";
 import {Button} from "../components/button";
 
 
@@ -8,7 +8,7 @@ interface SettingsPoInterface {
 }
 
 
-class SettingsPo extends BasePagePo implements SettingsPoInterface {
+class SettingsPo extends BasePo implements SettingsPoInterface {
 
   name = 'Settings';
 

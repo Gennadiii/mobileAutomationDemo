@@ -20,7 +20,7 @@ describe('First login', () => {
 
     it('successful login', async () => {
       await service.login.first.as(anyUser);
-      expect(await service.home.page.isOpen())
+      expect(await service.home.pageIsOpen())
         .toBe(true, `Home page didn't get opened`);
     });
 

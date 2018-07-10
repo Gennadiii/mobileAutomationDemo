@@ -3,6 +3,7 @@ import {AppService} from "../app.service";
 import {userInterface} from "../user.service";
 import {helper} from "../../../../helpers/helper";
 import {HomeService} from "../home/home.service";
+import {BaseService} from "../base.service";
 
 
 const log = helper.logger.get('FirstLoginService');
@@ -13,13 +14,14 @@ interface FirstLoginServiceInterface {
 }
 
 
-class FirstLoginService implements FirstLoginServiceInterface {
+class FirstLoginService extends BaseService implements FirstLoginServiceInterface {
 
   private firstLogin = true;
 
   constructor(private app: AppService,
               private homeService: HomeService,
               public page: FirstLoginPa) {
+    super();
   }
 
   async as(user: userInterface) {
@@ -29,7 +31,7 @@ class FirstLoginService implements FirstLoginServiceInterface {
     await this.page.enterLogin(login);
     await this.page.enterPassword(password);
     await this.page.clickSignInButton();
-    await this.homeService.page.verifyIsOpen();
+    await this.homeService.verifyPageIsOpen();
   }
 
   private async relaunchAfterFirstLogin() {

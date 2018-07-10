@@ -1,4 +1,4 @@
-import {BasePagePa} from "../basePage.pa";
+import {BasePa} from "../base.pa";
 import {helper} from "../../../../helpers/helper";
 import {LatestTransactionsPo} from "../../page_objects/home/latestTransactions.po";
 
@@ -6,7 +6,7 @@ import {LatestTransactionsPo} from "../../page_objects/home/latestTransactions.p
 const log = helper.logger.get('HomeLTPa');
 
 
-interface LatestTransactionsPaInterface extends BasePagePa {
+interface LatestTransactionsPaInterface extends BasePa {
   // actions
   clickAllTransactionsLink: () => Promise<void>;
   // check
@@ -18,7 +18,7 @@ interface LatestTransactionsPaInterface extends BasePagePa {
 }
 
 
-class LatestTransactionsPa extends BasePagePa implements LatestTransactionsPaInterface {
+class LatestTransactionsPa extends BasePa implements LatestTransactionsPaInterface {
 
   constructor(public page: LatestTransactionsPo) {
     super();

@@ -1,5 +1,6 @@
 import {SettingsPa} from "../page_actions/Settings.pa";
 import {helper} from "../../../helpers/helper";
+import {BaseService} from "./base.service";
 
 
 const log = helper.logger.get('SettingsService');
@@ -10,9 +11,10 @@ interface SettingsServiceInterface {
 }
 
 
-class SettingsService implements SettingsServiceInterface {
+class SettingsService extends BaseService implements SettingsServiceInterface {
 
   constructor(public page: SettingsPa) {
+    super();
   }
 
 

@@ -10,7 +10,7 @@ describe('First login', () => {
     beforeAll(async () => {
       anyUser = service.common.user.any().allocate();
       await service.common.app.relaunch();
-      await service.login.first.page.verifyIsOpen();
+      await service.login.first.verifyPageIsOpen();
     });
     afterAll(() => anyUser.free());
 

@@ -26,13 +26,15 @@ function getUsers(): { [name: number]: userInterface } {
       password: defaultPassword,
       balanceCount: 1,
     },
-    1972816: {
-      login: 'card_balance',
-      password: defaultPassword,
-      balanceCount: 2,
-      cardsCount: 1,
-      transactions: true,
-    },
+    // associated with too many devices
+    // 1972816: {
+    //   login: 'card_balance',
+    //   password: defaultPassword,
+    //   balanceCount: 2,
+    //   cardsCount: 1,
+    //   optInCards: true,
+    //   transactions: true,
+    // },
     1972846: {
       login: 'optin1',
       password: defaultPassword,

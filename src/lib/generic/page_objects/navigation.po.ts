@@ -1,6 +1,6 @@
 import {Link} from "../components/link";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
-import {BasePagePo} from "./basePage.po";
+import {BasePo} from "./base.po";
 
 
 interface NavigationPoInterface {
@@ -11,7 +11,7 @@ interface NavigationPoInterface {
 }
 
 
-class NavigationPo extends BasePagePo implements NavigationPoInterface {
+class NavigationPo extends BasePo implements NavigationPoInterface {
 
   name = 'Navigation';
 

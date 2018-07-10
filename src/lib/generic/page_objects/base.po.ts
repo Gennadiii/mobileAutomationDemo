@@ -1,10 +1,10 @@
-interface BasePagePoInterface {
+interface BasePoInterface {
   staticElements: Array<Promise<boolean>>;
   content: Array<Promise<boolean>>;
 }
 
 
-class BasePagePo implements BasePagePoInterface {
+class BasePo implements BasePoInterface {
 
   name = 'Base';
 
@@ -20,4 +20,4 @@ class BasePagePo implements BasePagePoInterface {
 }
 
 
-export {BasePagePo};
+export {BasePo};
