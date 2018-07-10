@@ -1,6 +1,7 @@
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Button} from "../../components/button";
 import {BaseLoginPo} from "./baseLogin.po";
+import {InputField} from "../../components/inputField";
 
 
 interface SecondLoginPoInterface extends BaseLoginPo {
@@ -14,18 +15,15 @@ class SecondLoginPo extends BaseLoginPo implements SecondLoginPoInterface {
 
   name = 'SecondLogin';
 
-  optionsButton = new Button(this.ef.autoId('More options'));
-  changeLanguageButton = new Button(this.ef.all.xpath('//android.widget.TextView[@resource-id]', {index: 0}));
-  switchAccountButton = new Button(this.ef.all.xpath('//android.widget.TextView[@resource-id]', {index: 1}));
+  optionsButton;
+  changeLanguageButton;
+  switchAccountButton;
 
 
   constructor(protected ef: ElementFinderInterface) {
     super(ef);
   }
 
-  get staticElements() {
-    return [this.optionsButton];
-  }
 
   get content() {
     return [

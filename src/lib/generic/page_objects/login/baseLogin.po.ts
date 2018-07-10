@@ -10,9 +10,9 @@ import {InputField} from "../../components/inputField";
 interface BaseLoginPoInterface extends BasePagePo {
   userIcon: Icon;
   userTitle: Label;
+  passwordField: InputField;
   forgotPasswordLink: Link;
   signInButton: Button;
-  passwordField: InputField;
   passwordValidationError: Label;
 }
 
@@ -25,8 +25,9 @@ class BaseLoginPo extends BasePagePo implements BaseLoginPoInterface {
   userTitle = new Label(this.ef.autoId('UserTitle'));
   forgotPasswordLink = new Link(this.ef.autoId('ForgotPassword'));
   signInButton = new Button(this.ef.autoId(`SignIn`));
-  passwordField = new InputField(this.ef.className('android.widget.EditText'));
   passwordValidationError = new Label(this.ef.autoId('PasswordValidationError'));
+
+  passwordField;
 
 
   constructor(protected ef: ElementFinderInterface) {
