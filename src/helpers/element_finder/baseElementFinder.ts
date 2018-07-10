@@ -11,13 +11,10 @@ interface BaseElementFinderInterface {
 
 class BaseElementFinder implements BaseElementFinderInterface {
 
-  public autoIdAttribute;
-
   protected searchFunction;
 
 
-  constructor(public accessibilityLabelName) {
-    this.autoIdAttribute = 'contentDescription';
+  constructor(public accessibilityLabelName, public autoIdAttribute) {
   }
 
   id(id, options?) {

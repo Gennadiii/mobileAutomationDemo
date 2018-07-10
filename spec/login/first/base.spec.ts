@@ -21,7 +21,7 @@ describe('First login', () => {
     it('successful login', async () => {
       await service.login.first.as(anyUser);
       expect(await service.home.page.isOpen())
-        .toBe(true, `Landing page didn't get opened`);
+        .toBe(true, `Home page didn't get opened`);
     });
 
   });

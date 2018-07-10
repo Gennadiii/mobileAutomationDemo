@@ -7,7 +7,7 @@ import {assembleServices} from "./genericServices";
 
 function assembleAndroid(): assemblerInterface {
 
-  const elementFinder = new ElementFinder('content-desc');
+  const elementFinder = new ElementFinder('content-desc', 'contentDescription');
 
   return assembleServices(
     elementFinder,

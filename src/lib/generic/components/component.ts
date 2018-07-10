@@ -76,8 +76,8 @@ class Component implements ComponentInterface {
           return isDisplayed;
         }
         const currentState = await driver.takeScreenshot();
-        await helper.dateTime.sleep(200);
         await driver.scrollDown();
+        await helper.dateTime.sleep(200);
         if (currentState === await driver.takeScreenshot()) {
           log.info(`Reached the bottom`);
           break;
@@ -107,9 +107,7 @@ function throwUnexpectedError(efFunc, err) {
 }
 
 function throwNoSuchElementError(efFunc) {
-  const errorMessage = `Element is not found using: "${efFunc.using}" with value: ${efFunc.value}`;
-  driver.implicitWait > 1000 && log.warn(errorMessage);
-  throw new Error(`NoSuchElement: ${errorMessage}`);
+  throw new Error(`NoSuchElement: Element is not found using: "${efFunc.using}" with value: ${efFunc.value}`);
 }
 
 
