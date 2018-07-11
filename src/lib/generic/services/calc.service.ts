@@ -1,4 +1,5 @@
 import {CalcPa} from "../page_actions/calc.pa";
+import {BaseService} from "./base.service";
 
 
 interface CalcServiceInterface {
@@ -7,9 +8,10 @@ interface CalcServiceInterface {
 }
 
 
-class CalcService implements CalcServiceInterface {
+class CalcService extends BaseService implements CalcServiceInterface {
 
   constructor(public page: CalcPa) {
+    super();
   }
 
 

@@ -1,12 +1,12 @@
 import {helper} from "../../../helpers/helper";
-import {BasePagePa} from "./basePage.pa";
+import {BasePa} from "./base.pa";
 import {ResultPo} from "../page_objects/result.po";
 
 
 const log = helper.logger.get('ResultPa');
 
 
-interface ResultPaInterface extends BasePagePa {
+interface ResultPaInterface extends BasePa {
   // actions
   calculate: () => Promise<void>;
   // get
@@ -16,7 +16,7 @@ interface ResultPaInterface extends BasePagePa {
 }
 
 
-class ResultPa extends BasePagePa implements ResultPaInterface {
+class ResultPa extends BasePa implements ResultPaInterface {
 
   constructor(public page: ResultPo) {
     super();

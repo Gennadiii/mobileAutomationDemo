@@ -1,7 +1,7 @@
-import {BasePagePa} from "../page_actions/basePage.pa";
 import {FieldsService} from "./fields.service";
 import {OperationsService} from "./operations.service";
 import {ResultService} from "./result.service";
+import {BaseService} from "./base.service";
 
 
 interface AccumulatedCalcServiceInterface {
@@ -9,14 +9,14 @@ interface AccumulatedCalcServiceInterface {
 }
 
 
-class AccumulatedCalcService implements AccumulatedCalcServiceInterface {
+class AccumulatedCalcService extends BaseService implements AccumulatedCalcServiceInterface {
 
-  page = new BasePagePa();
+  protected staticLogicalPages = [this.fields.page, this.result.page];
 
   constructor(public fields: FieldsService,
               public operations: OperationsService,
               public result: ResultService) {
-    this.page.setPages([this.fields.page, this.result.page]);
+    super();
   }
 
 

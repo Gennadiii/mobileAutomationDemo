@@ -1,4 +1,5 @@
 import {ResultPa} from "../page_actions/Result.pa";
+import {BaseService} from "./base.service";
 
 
 interface ResultServiceInterface {
@@ -6,9 +7,10 @@ interface ResultServiceInterface {
 }
 
 
-class ResultService implements ResultServiceInterface {
+class ResultService extends BaseService implements ResultServiceInterface {
 
   constructor(public page: ResultPa) {
+    super();
   }
 
 

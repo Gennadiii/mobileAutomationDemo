@@ -1,4 +1,5 @@
 import {FieldsPa} from "../page_actions/Fields.pa";
+import {BaseService} from "./base.service";
 
 
 interface FieldsServiceInterface {
@@ -6,9 +7,10 @@ interface FieldsServiceInterface {
 }
 
 
-class FieldsService implements FieldsServiceInterface {
+class FieldsService extends BaseService implements FieldsServiceInterface {
 
   constructor(public page: FieldsPa) {
+    super();
   }
 
 

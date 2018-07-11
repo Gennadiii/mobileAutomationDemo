@@ -1,4 +1,4 @@
-import {BasePagePo} from "./basePage.po";
+import {BasePo} from "./base.po";
 import {InputField} from "../components/inputField";
 import {Button} from "../components/button";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
@@ -6,7 +6,7 @@ import {Label} from "../components/label";
 import {OperationsPicker} from "../components/operationsPicker";
 
 
-interface CalcPoInterface extends BasePagePo {
+interface CalcPoInterface extends BasePo {
   firstNumField: InputField;
   secondNumField: InputField;
   operationsPicker: OperationsPicker;
@@ -15,7 +15,7 @@ interface CalcPoInterface extends BasePagePo {
 }
 
 
-class CalcPo extends BasePagePo implements CalcPoInterface {
+class CalcPo extends BasePo implements CalcPoInterface {
 
   name = 'Calc';
 

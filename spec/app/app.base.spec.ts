@@ -8,7 +8,7 @@ describe('Smoke', () => {
   beforeAll(async () => await driver.appRelaunch());
 
   it('calculator screen loads', async () => {
-    expect(await service.calc.page.isOpen())
+    expect(await service.calc.pageIsOpen())
       .toBeTruthy(`Landing page didn't get opened`);
 
     expect(await service.dividedCalcService.fieldsPage.isOpen())

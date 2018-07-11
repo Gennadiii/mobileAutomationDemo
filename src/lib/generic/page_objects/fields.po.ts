@@ -1,15 +1,15 @@
-import {BasePagePo} from "./basePage.po";
+import {BasePo} from "./base.po";
 import {InputField} from "../components/inputField";
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
 
 
-interface FieldsPoInterface extends BasePagePo {
+interface FieldsPoInterface extends BasePo {
   firstNumField: InputField;
   secondNumField: InputField;
 }
 
 
-class FieldsPo extends BasePagePo implements FieldsPoInterface {
+class FieldsPo extends BasePo implements FieldsPoInterface {
 
   name = 'Calc - Fields';
 

@@ -7,10 +7,10 @@ describe('Division', () => {
 
   beforeAll(async () => {
     await driver.appRelaunch();
-    await service.accumulatedCalc.page.verifyIsOpen();
+    await service.accumulatedCalc.verifyPageIsOpen();
   });
 
-  it('division calculates correctly', async () => {
+  it('calculates correctly', async () => {
     expect(await service.accumulatedCalc.divide(84, 2))
       .toEqual(42);
   });

@@ -1,14 +1,14 @@
 import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
-import {BasePagePo} from "../../generic/page_objects/basePage.po";
+import {BasePo} from "../../generic/page_objects/base.po";
 import {OperationsPicker} from "../../generic/components/operationsPicker";
 
 
-interface OperationsPoInterface extends BasePagePo {
+interface OperationsPoInterface extends BasePo {
   operationsPicker: OperationsPicker;
 }
 
 
-class OperationsPo extends BasePagePo implements OperationsPoInterface {
+class OperationsPo extends BasePo implements OperationsPoInterface {
 
   name = 'Calc - Operations';
 

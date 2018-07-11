@@ -1,15 +1,15 @@
-import {BasePagePa} from "./basePage.pa";
+import {BasePa} from "./base.pa";
 import {operationsInterface} from "../components/operationsPicker";
 import {OperationsPo} from "../../android/page_objects/operations.po";
 
 
-interface OperationsPaInterface extends BasePagePa {
+interface OperationsPaInterface extends BasePa {
   // actions
   changeOperationTo: () => Promise<operationsInterface>;
 }
 
 
-class OperationsPa extends BasePagePa implements OperationsPaInterface {
+class OperationsPa extends BasePa implements OperationsPaInterface {
 
   constructor(public page: OperationsPo) {
     super();

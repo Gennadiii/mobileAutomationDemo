@@ -1,5 +1,5 @@
 import {helper} from "../../../helpers/helper";
-import {BasePagePa} from "./basePage.pa";
+import {BasePa} from "./base.pa";
 import {CalcPo} from "../page_objects/calc.po";
 import {operationsInterface} from "../components/operationsPicker";
 
@@ -7,7 +7,7 @@ import {operationsInterface} from "../components/operationsPicker";
 const log = helper.logger.get('CalcPa');
 
 
-interface CalcPaInterface extends BasePagePa {
+interface CalcPaInterface extends BasePa {
   // actions
   enterFirstNum: (num: number) => Promise<void>;
   enterSecondNum: (num: number) => Promise<void>;
@@ -20,7 +20,7 @@ interface CalcPaInterface extends BasePagePa {
 }
 
 
-class CalcPa extends BasePagePa implements CalcPaInterface {
+class CalcPa extends BasePa implements CalcPaInterface {
 
   constructor(public page: CalcPo) {
     super();

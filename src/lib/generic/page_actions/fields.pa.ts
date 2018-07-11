@@ -1,12 +1,12 @@
 import {helper} from "../../../helpers/helper";
-import {BasePagePa} from "./basePage.pa";
+import {BasePa} from "./base.pa";
 import {FieldsPo} from "../page_objects/fields.po";
 
 
 const log = helper.logger.get('FieldsPa');
 
 
-interface FieldsPaInterface extends BasePagePa {
+interface FieldsPaInterface extends BasePa {
   // actions
   enterFirstNum: (num: number) => Promise<void>;
   enterSecondNum: (num: number) => Promise<void>;
@@ -14,7 +14,7 @@ interface FieldsPaInterface extends BasePagePa {
 }
 
 
-class FieldsPa extends BasePagePa implements FieldsPaInterface {
+class FieldsPa extends BasePa implements FieldsPaInterface {
 
   constructor(public page: FieldsPo) {
     super();
