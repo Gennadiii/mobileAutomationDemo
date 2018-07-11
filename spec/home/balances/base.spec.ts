@@ -13,6 +13,7 @@ describe('Home', () => {
       beforeAll(async () => {
         userWithoutExpandableBalances = service.common.user
           .balanceCount(data.home.balance.maxCollapsedCount)
+          .sameCurrencies()
           .withCards()
           .allocate();
         userWithExpandableBalances = service.common.user
@@ -37,7 +38,7 @@ describe('Home', () => {
 
       });
 
-      it('more button is absent for user with not expandable balances', async () => {
+      it('more button is present for user with expandable balances', async () => {
         await service.login.first.as(userWithExpandableBalances);
         expect(await service.home.balanceSection.page.isMoreButtonDisplayed())
           .toBe(true, 'More button is not displayed');

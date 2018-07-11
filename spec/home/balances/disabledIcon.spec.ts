@@ -24,7 +24,7 @@ describe('Home', () => {
           .toBe(true, 'Icon is not displayed');
       });
 
-      it('disabled balance icon is displayed for user with blocked balance', async () => {
+      it('disabled balance icon is displayed for user with blocked card', async () => {
         await service.login.first.as(blockedCardUser);
         expect(await service.home.balanceSection.page.isDisabledBalanceIconDisplayed())
           .toBe(true, 'Icon is not displayed');
