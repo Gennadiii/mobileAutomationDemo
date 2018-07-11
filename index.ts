@@ -65,8 +65,7 @@ void async function main() {
     const getServices = (await import("./src/assembler/assembler")).getServices;
     jasmine.env.service = getServices({platform});
 
-    const tests = specs || (await selectTests())
-      .map(test => `${__dirname}/spec/${test}`);
+    const tests = specs || (await selectTests()).map(getAbsoluteTestPath);
 
     await driver.waitUntilInitialized(appium, initializationWaitTimeout);
 
@@ -78,3 +77,8 @@ void async function main() {
     process.exit(13);
   }
 }();
+
+
+function getAbsoluteTestPath(test) {
+  return `${__dirname}/spec/${test}`;
+}

@@ -70,4 +70,3 @@ interface userInterface {
   transactions?: boolean;
   transactionsCount?: number;
 }
-

@@ -12,6 +12,11 @@ interface BasePaInterface {
 }
 
 
+/**
+ * BasePa is the parent class for each page actions class.
+ * It's purpose is to check that certain elements are displayed.
+ * Elements are taken from this.page property which is passed in every child page action class in constructor
+ */
 class BasePa implements BasePaInterface {
 
   protected page;

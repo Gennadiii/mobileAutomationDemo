@@ -91,12 +91,12 @@ class Driver implements DriverInterface {
       throw new Error(`screenPercentage should be from 1 to 100`);
     }
     log.info(`Scrolling down: ${screenPercentage}%`);
-    const screenPercentageWithoutNavigationSection = 0.92;
-    const screenSizeWithoutNavigationSection = (await this.getScreenSize()).height *
-      screenPercentageWithoutNavigationSection *
+    const scrollableScreenPartPercentage = 0.92;
+    const startScrollYPoint = (await this.getScreenSize()).height *
+      scrollableScreenPartPercentage *
       screenPercentage / 100;
     await this.swipe({
-      startPoint: {y: screenSizeWithoutNavigationSection},
+      startPoint: {y: startScrollYPoint},
       endPoint: {y: 1}
     });
   }

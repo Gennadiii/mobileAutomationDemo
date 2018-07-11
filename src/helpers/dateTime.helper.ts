@@ -6,7 +6,7 @@ const log = logger.get('dateTimeHelper');
 
 const dateTimeHelper = {
 
-  sleep(timeout, params = {ignoreLog: true}) {
+  sleep(timeout, params = {ignoreLog: false}) {
     const {ignoreLog} = params;
     ignoreLog || log.info(`Sleeping: ${timeout / 1000} seconds`);
     return new Promise(resolve => setTimeout(resolve, timeout));

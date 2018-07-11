@@ -18,6 +18,7 @@ class ElementFinder extends BaseElementFinder implements ElementFinderInterface 
     super(accessibilityLabelName, autoIdAttribute);
   }
 
+
   get all(): ElementsFinder {
     return new ElementsFinder(this.accessibilityLabelName, this.autoIdAttribute);
   }

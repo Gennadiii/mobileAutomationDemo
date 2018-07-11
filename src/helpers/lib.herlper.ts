@@ -7,6 +7,52 @@ const fs = require('fs');
 const log = logger.get('libHelper');
 
 
+/**
+ * The idea is to get rid of multiple imports when building services
+ * Lib helper provides single object with all the page elements, page objects, page actions and services
+ * For lib to build classes should be named the same as files:
+ * if file name is "login.po.ts" then class name should be "LoginPo"
+ * If this rule is not followed lib helper will throw exception with file name containing the issue
+ * the lib object will look like this:
+ * {
+  generic: {
+    page_objects: {
+      FirstLoginPo,
+    },
+    page_actions: {
+      FirstLoginPa,
+    },
+    services: {
+      LoginService,
+    }
+  },
+  android: {
+    page_objects: {
+      FirstLoginPo,
+    },
+    page_actions: {
+      FirstLoginPa,
+    },
+    services: {
+      LoginService,
+    }
+  },
+  ios: {
+    page_objects: {
+      FirstLoginPo,
+    },
+    page_actions: {
+      FirstLoginPa,
+    },
+    services: {
+      LoginService,
+    }
+  }
+}
+ * Lib uses dynamic import which is asynchronous so it has "all" property.
+ * The idea is that you build lib and wait for it to build asynchronously.
+ * Build puts result in this "all" property which can be used without "await" after that
+ */
 const libHelper = {
 
   all: null,
@@ -24,7 +70,7 @@ const libHelper = {
       libTypes.forEach(libType => {
         lib[platform][libType] = {};
 
-        fsHelper.getFiles(`${libDir}/${platform}/${libType}`)
+        fsHelper.getFilesRecursively(`${libDir}/${platform}/${libType}`)
           .forEach(async file => {
             const className = getClassName(file);
             lib[platform][libType][className] = null;

@@ -18,14 +18,14 @@ interface assemblerInterface {
 
 const getPlatformServices = {
 
-  Android: assembleAndroid,
+  android: assembleAndroid,
   ios: assembleIos
 
 };
 
 function getServices(params: getServicesInterface): assemblerInterface {
   const {platform} = params;
-  return getPlatformServices[platform]();
+  return getPlatformServices[platform.toLowerCase()]();
 }
 
 
