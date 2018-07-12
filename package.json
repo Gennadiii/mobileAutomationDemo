@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "appium",
     "test": "node dist/index.js",
     "linter": "tslint -p tsconfig.json",
     "postinstall": "tsc"

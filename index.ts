@@ -9,7 +9,7 @@ const log = helper.logger.get('index');
 
 
 const {
-  platform, deviceName, app, implicitWait = 2 * 1000, appiumPort = 4723, specs
+  platform, deviceName, app, implicitWait = 2 * 1000, appiumPort = 4723, androidAutomationName = 'Appium', specs
 } = process.env;
 let platformName = null;
 let automationName = null;
@@ -24,7 +24,7 @@ switch (platform.toLowerCase()) {
     break;
   case 'android':
     platformName = 'Android';
-    automationName = 'UiAutomator2';
+    automationName = androidAutomationName;
     initializationWaitTimeout = 60 * 1000;
     break;
   default:
