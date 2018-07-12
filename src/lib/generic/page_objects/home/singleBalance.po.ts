@@ -1,9 +1,11 @@
 import {BasePo} from "../base.po";
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Label} from "../../components/label";
+import {Section} from "../../components/section";
 
 
 interface SingleBalancePoInterface extends BasePo {
+  section: Section;
   balanceTitle: Label;
   balanceAmount: Label;
   cardTitle: Label;
@@ -17,6 +19,7 @@ class SingleBalancePo extends BasePo implements SingleBalancePoInterface {
 
   name = 'Home - Single Balance';
 
+  section = new Section(this.ef.autoId('SingleBalance'));
   balanceTitle = new Label(this.ef.autoId('OneBalanceTitle'));
   balanceAmount = new Label(this.ef.autoId('OneBalanceAmount'));
   cardTitle = new Label(this.ef.autoId('CardTitle'));

@@ -7,8 +7,10 @@ const log = helper.logger.get('HomeSBPa');
 
 
 interface SingleBalancePaInterface extends BasePa {
+  // check
   balanceContentIsDisplayed: () => Promise<boolean>;
   cardContentIsNotDisplayed: () => Promise<boolean>;
+  sectionIsDisplayed: () => Promise<boolean>;
 }
 
 
@@ -19,6 +21,7 @@ class SingleBalancePa extends BasePa implements SingleBalancePaInterface {
   }
 
 
+  // check
   balanceContentIsDisplayed() {
     log.info(`Checking if balance content is displayed`);
     const isDisplayedArr = this.page.balanceElements
@@ -31,6 +34,11 @@ class SingleBalancePa extends BasePa implements SingleBalancePaInterface {
     const isNotDisplayedArr = this.page.cardElements
       .map(element => element.isDisplayed());
     return helper.promise.allFalse(isNotDisplayedArr);
+  }
+
+  sectionIsDisplayed() {
+    log.info(`Checking if balance section is displayed`);
+    return this.page.section.isDisplayed();
   }
 
 }

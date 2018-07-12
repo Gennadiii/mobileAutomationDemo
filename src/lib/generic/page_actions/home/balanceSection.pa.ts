@@ -19,6 +19,7 @@ interface BalanceSectionPaInterface extends BasePa {
   isAmountDisplayed: () => Promise<boolean>;
   isCardNumberDisplayed: () => Promise<boolean>;
   isDisabledBalanceIconDisplayed: () => Promise<boolean>;
+  sectionIsDisplayed: () => Promise<boolean>;
 }
 
 
@@ -74,6 +75,11 @@ class BalanceSectionPa extends BasePa implements BalanceSectionPaInterface {
   isDisabledBalanceIconDisplayed() {
     log.info(`Check if amount is displayed`);
     return this.page.disabledBalanceIcons.getElementByIndex(0).isDisplayed();
+  }
+
+  sectionIsDisplayed() {
+    log.info(`Checking if balance section is displayed`);
+    return this.page.items.getElementByIndex(0).isDisplayed();
   }
 
 }

@@ -50,6 +50,11 @@ function getUsers(): { [name: number]: userInterface } {
       optInCards: true,
       sameCurrencies: true,
     },
+    1972814: {
+      login: 'gbt',
+      password: defaultPassword,
+      balanceCount: 0,
+    }
   };
 }
 
