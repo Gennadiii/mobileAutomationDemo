@@ -24,6 +24,8 @@ iOS: XCode and iOS simulator should be installed. Tests will create simulator in
 
 Android: emulator should be up and running
 
+dotenv-safe module is used for test run configuration. Specific environment variables should be added to .env file which should be created and placed in project's root directory
+
 1. Add .env file in root directory
 
 Obligatory variables:
