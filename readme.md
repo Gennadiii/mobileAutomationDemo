@@ -110,3 +110,4 @@ service1(): Service1 {
 6. Every test should clear data that was created for it in runtime.
 7. Add unique per page id with business value of an element for locators. Best is when dev team adds those id's when developing new features. All intractable components should have id's. Also elements that identify a page like page header. Existing id's should not change except cases when business value of an element changes.
  with single report inside
+ 8. Run ```npm run codeCheck``` before commit. Don't commit until amount of errors is more than 0.

@@ -7,6 +7,7 @@
     "start": "appium",
     "test": "node dist/index.js",
     "linter": "tslint -p tsconfig.json",
+    "codeCheck": "tsc && npm run linter",
     "postinstall": "tsc"
   },
   "dependencies": {
