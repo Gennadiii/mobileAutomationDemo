@@ -16,8 +16,6 @@ interface FirstLoginServiceInterface {
 
 class FirstLoginService extends BaseService implements FirstLoginServiceInterface {
 
-  private firstLogin = true;
-
   constructor(private app: AppService,
               private homeService: HomeService,
               public page: FirstLoginPa) {
@@ -27,17 +25,12 @@ class FirstLoginService extends BaseService implements FirstLoginServiceInterfac
   async as(user: userInterface) {
     const {login, password} = user;
     log.info(`Logging in as "${login}"`);
-    await this.relaunchAfterFirstLogin();
+    await this.app.relaunch();
+    await this.page.verifyIsOpen();
     await this.page.enterLogin(login);
     await this.page.enterPassword(password);
     await this.page.clickSignInButton();
     await this.homeService.verifyPageIsOpen();
-  }
-
-  private async relaunchAfterFirstLogin() {
-    this.firstLogin || await this.app.relaunch();
-    this.firstLogin = false;
-    await this.page.verifyIsOpen();
   }
 
 }
