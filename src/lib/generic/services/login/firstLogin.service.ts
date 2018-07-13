@@ -22,11 +22,14 @@ class FirstLoginService extends BaseService implements FirstLoginServiceInterfac
     super();
   }
 
-  async as(user: userInterface) {
+  async as(user: userInterface, params: asInterface = {withRelaunch: true}) {
     const {login, password} = user;
+    const {withRelaunch} = params;
     log.info(`Logging in as "${login}"`);
-    await this.app.relaunch();
-    await this.page.verifyIsOpen();
+    if (withRelaunch) {
+      await this.app.relaunch();
+      await this.page.verifyIsOpen();
+    }
     await this.page.enterLogin(login);
     await this.page.enterPassword(password);
     await this.page.clickSignInButton();
@@ -37,3 +40,9 @@ class FirstLoginService extends BaseService implements FirstLoginServiceInterfac
 
 
 export {FirstLoginService};
+
+
+interface asInterface {
+  withRelaunch: boolean;
+}
+

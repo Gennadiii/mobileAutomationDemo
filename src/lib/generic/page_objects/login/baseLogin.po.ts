@@ -27,7 +27,7 @@ class BaseLoginPo extends BasePo implements BaseLoginPoInterface {
   signInButton = new Button(this.ef.autoId(`SignIn`));
   passwordValidationError = new Label(this.ef.autoId('PasswordValidationError'));
 
-  passwordField;
+  passwordField: InputField;
 
 
   constructor(protected ef: ElementFinderInterface) {

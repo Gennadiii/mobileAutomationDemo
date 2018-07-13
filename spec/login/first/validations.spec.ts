@@ -2,7 +2,7 @@ import {assemblerInterface} from "../../../src/assembler/assembler";
 
 
 describe('First login', () => {
-  describe('Validations', () => {
+  describe('Basic validations', () => {
 
     const service: assemblerInterface = (jasmine.getEnv() as any).service;
     let anyUser = null;

@@ -26,6 +26,7 @@ interface UserServiceInterface {
   // other
   any: () => UserServiceInterface;
   name: (name: string) => UserServiceInterface;
+  passwordLength: (length: number) => UserServiceInterface;
 }
 
 
@@ -140,6 +141,12 @@ class UserService implements UserServiceInterface {
 
   any() {
     this.filter(() => true);
+    return this;
+  }
+
+  passwordLength(length) {
+    log.info(`Filtering users with password length: ${length}`);
+    this.filter(([id, user]) => user.password.length === length);
     return this;
   }
 

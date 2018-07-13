@@ -26,7 +26,7 @@ class FirstLoginPo extends BaseLoginPo implements FirstLoginPoInterface {
   signupLink = new Link(this.ef.autoId('Signup'));
   loginValidationError = new Label(this.ef.autoId('UsernameValidationError'));
 
-  loginField;
+  loginField: InputField;
 
 
   constructor(protected ef: ElementFinderInterface) {
