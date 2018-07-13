@@ -11,6 +11,10 @@ interface ComponentsListInterface {
 }
 
 
+/**
+ * Since appium can't look for nested elements it's only possible to work with a list of identical elements
+ * For example if we have list of key - value pairs we can only create 2 component lists of keys and values separately
+ */
 class ComponentsList implements ComponentsListInterface {
 
   constructor(protected ef, protected DesiredComponent, protected elementsFinder) {

@@ -24,6 +24,11 @@ class Component implements ComponentInterface {
   constructor(protected ef) {
   }
 
+  /**
+   * Looks for element by calling element finder function
+   * Implicitly waits for an element. Returns element if found or throws error
+   * @return {Promise<any>}
+   */
   get element() {
     return (async () => {
       const getTime = () => +new Date();
@@ -38,7 +43,7 @@ class Component implements ComponentInterface {
             throwUnexpectedError(this.ef, err);
           }
         }
-        await helper.dateTime.sleep(100);
+        await helper.dateTime.sleep(100, {ignoreLog: true});
       }
       throwNoSuchElementError(this.ef);
     })();
@@ -70,6 +75,12 @@ class Component implements ComponentInterface {
     }
   }
 
+  /**
+   * Looks for element. If not found - scrolls down. Limited by amounts of scrolls in order to prevent infinite loop
+   * Takes screenshots before and after scrolls. Stops if screenshots are identical which means the bottom is reached
+   * @param {{maxScrolls: number}} params
+   * @return {Promise<any>}
+   */
   async scrollUntilDisplayed(params = {maxScrolls: 3}) {
     let {maxScrolls} = params;
     log.info(`Looking for element with max scrolls: ${maxScrolls}`);
@@ -81,7 +92,7 @@ class Component implements ComponentInterface {
           return isDisplayed;
         }
         const currentState = await driver.takeScreenshot();
-        await helper.dateTime.sleep(200);
+        await helper.dateTime.sleep(200, {ignoreLog: true});
         await driver.scrollDown();
         if (currentState === await driver.takeScreenshot()) {
           log.info(`Reached the bottom`);

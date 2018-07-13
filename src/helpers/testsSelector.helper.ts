@@ -15,6 +15,17 @@ let selectedFeatureChangedFromLastRun = true;
 let testsPaths = null;
 
 
+/**
+ * The idea is to make it easy to select tests to run locally
+ * All tests should be in "spec" folder in project's root
+ * Inside of spec folder should be folders with test areas (login, home, etc.)
+ * selectTests method will prompt for test area. It also has "smoke" and "other than smoke" options
+ * After area is chosen there will be multi-select prompt with area's tests
+ * Chosen tests will be logged and sent to execution
+ * Chosen areas and tests will be remembered and preselected next time
+ * If area is changed from lats time there will be no preselected tests
+ * @return {Promise<string[]>}
+ */
 async function selectTests(): Promise<string[]> {
   try {
 

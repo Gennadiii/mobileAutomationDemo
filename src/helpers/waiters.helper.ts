@@ -5,7 +5,7 @@ import {driver} from "../../index";
 const waitersHelper = {
 
   /**
-   * @summary uses poll method for a certain amount of time
+   * @summary uses poll method for a certain amount of time while callback returns false
    * @param {Function} callback - function to poll
    * @param {Number} timeout - time given for polling
    * @param {Number} interval - time between queries
@@ -17,6 +17,13 @@ const waitersHelper = {
     return poll(callback, continuePolling, interval, false);
   },
 
+  /**
+   * Does the same as wait method but sets implicit wait to minimum before wait and restores to default time after
+   * @param callback
+   * @param timeout
+   * @param {number} interval
+   * @return {Promise<any>}
+   */
   async appiumWait(callback, timeout, interval = 100): Promise<any> {
     driver.setImplicitTimeout(200);
     try {
@@ -27,7 +34,7 @@ const waitersHelper = {
   },
 
   /**
-   * @summary uses poll method with number of tries
+   * @summary uses poll method with number of tries while callback returns false
    * @param {Function} callback - function to poll
    * @param params
    * retryNumber - number of tries
@@ -51,7 +58,7 @@ export {waitersHelper};
  * @param {Function} callback - function to poll
  * @param {Function} continuePolling - function of outer function which decides when to stop polling
  * @param {Number} interval - time between queries
- * @param cbContinueCondition - primitive which returns the function when doesn't find what needed
+ * @param cbContinueCondition - primitive which indicates that polling should continue
  */
 async function poll(callback, continuePolling, interval, cbContinueCondition) {
   if (!continuePolling()) {
@@ -63,6 +70,6 @@ async function poll(callback, continuePolling, interval, cbContinueCondition) {
     console.info(); // New line after buffer write
     return result;
   }
-  await dateTimeHelper.sleep(interval);
+  await dateTimeHelper.sleep(interval, {ignoreLog: true});
   return poll(callback, continuePolling, interval, cbContinueCondition);
 }

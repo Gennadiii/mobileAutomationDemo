@@ -10,16 +10,21 @@ interface BaseElementFinderInterface {
 }
 
 
+/**
+ * BaseElementFinder provides simple api for finding elements
+ * It uses searchFunction which should be defined in child classes
+ * and provide automation tool function for locating elements
+ * Each method doesn't actually look for an element
+ * but returns function which if called - looks for element. This provide lazy search
+ */
 class BaseElementFinder implements BaseElementFinderInterface {
-
-  public autoIdAttribute;
 
   protected searchFunction;
 
 
-  constructor(public accessibilityLabelName) {
-    this.autoIdAttribute = 'contentDescription';
+  constructor(public accessibilityLabelName, public autoIdAttribute) {
   }
+
 
   id(id, options?) {
     return this.searchFunction('id', id, options);

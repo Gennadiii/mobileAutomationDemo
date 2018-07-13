@@ -11,26 +11,26 @@ interface ElementFinderInterface extends BaseElementFinder {
 
 class ElementFinder extends BaseElementFinder implements ElementFinderInterface {
 
-  protected searchFunction = findElementBy;
+  protected searchFunction = this.findElementBy;
 
 
-  constructor(public accessibilityLabelName) {
-    super(accessibilityLabelName);
+  constructor(public accessibilityLabelName, public autoIdAttribute) {
+    super(accessibilityLabelName, autoIdAttribute);
   }
 
+
   get all(): ElementsFinder {
-    return new ElementsFinder(this.accessibilityLabelName);
+    return new ElementsFinder(this.accessibilityLabelName, this.autoIdAttribute);
+  }
+
+  private findElementBy(using: string, value: string) {
+    const elementFinder: any = () => driver.element(using, value);
+    elementFinder.using = using;
+    elementFinder.value = value;
+    return elementFinder;
   }
 
 }
 
 
 export {ElementFinder, ElementFinderInterface};
-
-
-function findElementBy(using: string, value: string) {
-  const elementFinder: any = () => driver.element(using, value);
-  elementFinder.using = using;
-  elementFinder.value = value;
-  return elementFinder;
-}

@@ -5,6 +5,19 @@ import {logger} from "./logger.helper";
 const log = logger.get('assembler');
 
 
+/**
+ * Helps to assemble services
+ * Services may consist of:
+ * 1. Page actions with page objects (page objects need elementFinder)
+ * 2. Other services
+ * 3. Both
+ * @param {serviceFactoryInterface} params
+ * service - service class which should be instantiated
+ * elementFinder - specific for platform instance of ElementFinder
+ * parts - partInterface - page object and page action classes (service can consist of several pages)
+ * completeServices
+ * @return service instance
+ */
 const assembler = {
 
   serviceFactory(params: serviceFactoryInterface) {

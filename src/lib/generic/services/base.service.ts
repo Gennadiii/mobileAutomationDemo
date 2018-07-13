@@ -10,6 +10,13 @@ interface BaseServiceInterface {
 const log = helper.logger.get('BaseService');
 
 
+/**
+ * BaseService is the parent class for each service class.
+ * Main purpose of base service is to check that physical page is opened
+ * Service can consist of single or multiple pages
+ * To check all pages including logical you have to add those logical pages
+ * in staticLogicalPages property of child class
+ */
 class BaseService implements BaseServiceInterface {
 
   protected staticLogicalPages = [];
