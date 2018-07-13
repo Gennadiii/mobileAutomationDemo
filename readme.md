@@ -15,7 +15,10 @@
 * Each action taken by test should be logged. It eases debug process and logs could be used as bug description
 
 ## Reporters
-Currently 2 reporters are used: console reporter and html reporter which creates "reporter" folder in project's root directory
+Currently 3 reporters are used:
+ * console reporter
+ * html reporter which creates "reporter" folder in project's root directory
+ * screenshot reporter which saves screenshots of failed tests into screenshots folder in root directory
 
 ## How to run against simulators
 
@@ -25,7 +28,7 @@ iOS: XCode and iOS simulator should be installed. Tests will create simulator in
 Android: emulator should be up and running
 
 dotenv-safe module is used for test run configuration. Specific environment variables should be added to .env file which should be created and placed in project's root directory
-
+1. Install NodeJS 8+
 1. Add .env file in root directory
 
 Obligatory variables:

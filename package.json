@@ -17,7 +17,7 @@
     "appium": "1.8.1",
     "dotenv-safe": "5.0.1",
     "html": "1.0.0",
-    "jasmine": "2.8.0",
+    "jasmine": "3.1.0",
     "jasmine-pretty-html-reporter": "0.2.5",
     "jasmine-spec-reporter": "4.2.1",
     "multiselect-prompt": "0.3.1",
