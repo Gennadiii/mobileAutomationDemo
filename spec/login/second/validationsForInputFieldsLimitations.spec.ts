@@ -16,6 +16,7 @@ describe('Second login', () => {
     });
 
     afterAll(() => anyUser.free());
+    afterEach(async () => await service.login.second.page.clearPassword());
 
 
     it(`password field length is up to ${data.login.passwordMaxCharacters} characters`,
@@ -32,8 +33,6 @@ describe('Second login', () => {
 
         expect(await service.login.second.page.passwordValidationIsDisplayed())
           .toBe(true, 'Password validation is not displayed');
-
-        await service.login.second.page.clearPassword();
       });
 
 
@@ -51,8 +50,6 @@ describe('Second login', () => {
 
         expect(await service.login.second.page.passwordValidationIsDisplayed())
           .toBe(false, 'Password validation is displayed');
-
-        await service.login.second.page.clearPassword();
       });
 
 
@@ -70,7 +67,6 @@ describe('Second login', () => {
 
         expect(await service.login.second.page.passwordValidationIsDisplayed())
           .toBe(true, 'Password validation is not displayed');
-        await service.login.second.page.clearPassword();
       });
 
   });

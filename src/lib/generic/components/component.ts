@@ -92,7 +92,7 @@ class Component implements ComponentInterface {
         break;
       }
     }
-    return await this.isDisplayed();
+    return this.isDisplayed();
   }
 
   // wait

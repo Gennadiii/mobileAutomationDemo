@@ -8,7 +8,7 @@ const log = helper.logger.get('LongComponentsList');
 
 interface LongComponentsListInterface extends ComponentsList {
   // get
-  length: (params?: sizeInterface) => Promise<number>;
+  length: (params?: lengthInterface) => Promise<number>;
 }
 
 
@@ -28,10 +28,10 @@ class LongComponentsList extends ComponentsList implements LongComponentsListInt
    * Otherwise finds all elements on the screen (by partial locator like "item"),
    * takes elements' full autoIdAttribute (like "item1", "item2") and adds them to set
    * then scrolls down and repeats until set's size before and after scroll is identical
-   * @param {sizeInterface} params
+   * @param {lengthInterface} params
    * @return {Promise<number>}
    */
-  async length(params: sizeInterface = {withScroll: true, maxScrolls: 4}) {
+  async length(params: lengthInterface = {withScroll: true, maxScrolls: 4}) {
     log.info(`Getting count`);
     const {withScroll} = params;
     let {maxScrolls} = params;
@@ -61,7 +61,7 @@ class LongComponentsList extends ComponentsList implements LongComponentsListInt
 export {LongComponentsList};
 
 
-interface sizeInterface {
+interface lengthInterface {
   withScroll: boolean;
   maxScrolls?: number;
 }

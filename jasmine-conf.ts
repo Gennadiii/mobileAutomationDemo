@@ -50,7 +50,7 @@ export {jasmine};
 
 
 async function saveScreenshot(screenshot, name) {
-  const path = `${process.cwd()}/screenshots/${suiteStartTime}-${process.env.platform}-${process.env.deviceName}`;
+  const path = `${process.cwd()}/screenshots/${suiteStartTime}-${process.env.deviceName}`;
   const screenshotPath = `${path}/${name}.png`;
 
   fs.existsSync(path) || await createFullPath(path);
