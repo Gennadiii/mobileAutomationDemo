@@ -31,14 +31,17 @@ class LongComponentsList extends ComponentsList implements LongComponentsListInt
    * @param {lengthInterface} params
    * @return {Promise<number>}
    */
-  async length(params: lengthInterface = {withScroll: true, maxScrolls: 4}) {
+  async length(params?: lengthInterface) {
     log.info(`Getting count`);
-    const {withScroll} = params;
-    let {maxScrolls} = params;
+    const {withScroll = true, waitForElement = false, indexOfElementToWaitFor} = params;
+    let {maxScrolls = 4} = params;
     if (!withScroll) {
       return super.length();
     }
     const elementsAttributes = new Set();
+
+
+    waitForElement && await this.getElementByIndex(indexOfElementToWaitFor).verifyDisplayed();
 
     while (maxScrolls--) {
       const elements = await this.elementsFinder();
@@ -58,11 +61,13 @@ class LongComponentsList extends ComponentsList implements LongComponentsListInt
 }
 
 
-export {LongComponentsList};
+export {LongComponentsList, lengthInterface};
 
 
 interface lengthInterface {
   withScroll: boolean;
   maxScrolls?: number;
+  waitForElement?: boolean;
+  indexOfElementToWaitFor?: number;
 }
 

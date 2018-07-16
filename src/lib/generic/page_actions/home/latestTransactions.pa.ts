@@ -1,27 +1,23 @@
-import {BasePa} from "../base.pa";
 import {helper} from "../../../../helpers/helper";
 import {LatestTransactionsPo} from "../../page_objects/home/latestTransactions.po";
+import {BaseTransactionsPa} from "../baseTransactions.pa";
 
 
 const log = helper.logger.get('HomeLTPa');
 
 
-interface LatestTransactionsPaInterface extends BasePa {
+interface LatestTransactionsPaInterface extends BaseTransactionsPa {
   // actions
   clickAllTransactionsLink: () => Promise<void>;
   // check
-  emptyTransactionsContentIsDisplayed: () => Promise<boolean>;
-  latestIsDisplayed: () => Promise<boolean>;
   findAllTransactionsLink: () => Promise<boolean>;
-  // get
-  countTransactions: () => Promise<number>;
 }
 
 
-class LatestTransactionsPa extends BasePa implements LatestTransactionsPaInterface {
+class LatestTransactionsPa extends BaseTransactionsPa implements LatestTransactionsPaInterface {
 
   constructor(public page: LatestTransactionsPo) {
-    super();
+    super(page);
   }
 
 
@@ -32,27 +28,9 @@ class LatestTransactionsPa extends BasePa implements LatestTransactionsPaInterfa
   }
 
   // check
-  emptyTransactionsContentIsDisplayed() {
-    log.info(`Checking if empty transactions content is displayed`);
-    const isDisplayedArr = this.page.emptyTransactionsContent
-      .map(element => element.isDisplayed());
-    return helper.promise.allTrue(isDisplayedArr);
-  }
-
-  latestIsDisplayed() {
-    log.info(`Checking if latest transaction is displayed`);
-    return this.page.items.getElementByIndex(0).isDisplayed();
-  }
-
   findAllTransactionsLink() {
     log.info(`Looking for all transactions link`);
     return this.page.allTransactionsLink.scrollUntilDisplayed({maxScrolls: 6});
-  }
-
-  // get
-  countTransactions() {
-    log.info(`Counting transactions`);
-    return this.page.items.length();
   }
 
 }

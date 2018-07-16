@@ -15,6 +15,8 @@ interface ComponentInterface {
   scrollUntilDisplayed: (params: scrollUntilDisplayedInterface) => Promise<boolean>;
   // wait
   waitUntilDisplayed: (timeout: number) => Promise<boolean>;
+  // verify
+  verifyDisplayed: () => Promise<any>;
 }
 
 
@@ -99,6 +101,11 @@ class Component implements ComponentInterface {
   waitUntilDisplayed(timeout) {
     log.info(`Waiting until element is displayed using "${this.ef.using}" with value: ${this.ef.value}`);
     return helper.waiters.appiumWait(() => this.isDisplayed(), timeout);
+  }
+
+  // verify
+  async verifyDisplayed() {
+    return (await this.element).isDisplayed();
   }
 
 }

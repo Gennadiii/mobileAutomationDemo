@@ -5,11 +5,7 @@ import {Link} from "../../components/link";
 
 
 interface LatestTransactionsPoInterface extends BaseTransactionsPo {
-  title: Label;
-  noTransactionsTitle: Label;
-  noTransactionsText: Label;
   allTransactionsLink: Link;
-  emptyTransactionsContent: Label[];
 }
 
 
@@ -17,17 +13,11 @@ class LatestTransactionsPo extends BaseTransactionsPo implements LatestTransacti
 
   name = 'Home - Latest transactions';
 
-  title = new Label(this.ef.autoId('LatestActivityLabel'));
-  noTransactionsTitle = new Label(this.ef.autoId('NoTransactionsHomeTitle'));
-  noTransactionsText = new Label(this.ef.autoId('NoTransactionsHomeText'));
-  allTransactionsLink = new Link(this.ef.autoId('AllActivities'));
-
-  emptyTransactionsContent = [this.noTransactionsTitle, this.noTransactionsText];
-
 
   constructor(protected ef: ElementFinderInterface) {
     super(ef);
   }
+
 
   get staticElements() {
     return [this.title];
