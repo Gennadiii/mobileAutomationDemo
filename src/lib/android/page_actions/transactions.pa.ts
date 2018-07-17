@@ -17,13 +17,14 @@ class TransactionsPa extends GenericTransactionsPa implements TransactionsPaInte
   }
 
 
-  // check
-  async countIsMoreThan(count) {
-    log.info(`Checking if transactions count is more than "${count}"`);
-    return super.countIsMoreThan(count, {
+  // get
+  async countTransactions(waitUntilProgressBarDisappears) {
+    log.info(`Counting transactions`);
+    return this.page.items.length({
+      waitUntilProgressBarDisappears,
       withScroll: true,
       waitForElement: true,
-      indexOfElementToWaitFor: 1,
+      indexOfElementToWaitFor: 1
     });
   }
 

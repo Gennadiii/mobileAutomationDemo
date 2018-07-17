@@ -33,13 +33,17 @@ class LongComponentsList extends ComponentsList implements LongComponentsListInt
    */
   async length(params?: lengthInterface) {
     log.info(`Getting count`);
-    const {withScroll = true, waitForElement = false, indexOfElementToWaitFor} = params;
+    const {
+      withScroll = true,
+      waitForElement = false,
+      indexOfElementToWaitFor,
+      waitUntilProgressBarDisappears
+    } = params;
     let {maxScrolls = 4} = params;
     if (!withScroll) {
       return super.length();
     }
     const elementsAttributes = new Set();
-
 
     waitForElement && await this.getElementByIndex(indexOfElementToWaitFor).verifyDisplayed();
 
@@ -54,6 +58,7 @@ class LongComponentsList extends ComponentsList implements LongComponentsListInt
         return elementsAttributes.size;
       }
       await driver.scrollDown();
+      waitUntilProgressBarDisappears && await waitUntilProgressBarDisappears();
     }
     return elementsAttributes.size;
   }
@@ -61,7 +66,7 @@ class LongComponentsList extends ComponentsList implements LongComponentsListInt
 }
 
 
-export {LongComponentsList, lengthInterface};
+export {LongComponentsList};
 
 
 interface lengthInterface {
@@ -69,5 +74,6 @@ interface lengthInterface {
   maxScrolls?: number;
   waitForElement?: boolean;
   indexOfElementToWaitFor?: number;
+  waitUntilProgressBarDisappears?: () => Promise<boolean>;
 }
 

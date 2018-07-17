@@ -10,6 +10,7 @@ describe('Transactions', () => {
 
     beforeAll(() => userWithMoreThan10Transactions = service.common.user
       .transactionsMoreThan(data.home.latestTransactions.maxDisplayedCount)
+      .transactionsLessThan(data.home.latestTransactions.maxDisplayedCount + 5)
       .allocate());
     afterAll(() => userWithMoreThan10Transactions.free());
 
@@ -17,8 +18,8 @@ describe('Transactions', () => {
       await service.login.first.as(userWithMoreThan10Transactions);
       await service.common.navigateTo.transactions();
 
-      expect(await service.transactions.page.countIsMoreThan(data.home.latestTransactions.maxDisplayedCount))
-        .toBe(true, `count is less than expected`);
+      expect(await service.transactions.countTransactions())
+        .toBeGreaterThan(data.home.latestTransactions.maxDisplayedCount, `count is less than expected`);
     });
   });
 });

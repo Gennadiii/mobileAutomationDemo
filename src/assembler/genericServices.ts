@@ -5,50 +5,50 @@ import {assemblerInterface} from "./assembler";
 function assembleServices(elementFinder, lib, driver): assemblerInterface {
 
   const {
-      page_objects: {
-        FirstLoginPo,
-        SecondLoginPo,
-        BalanceSectionPo,
-        LatestTransactionsPo,
-        NavigationPo,
-        TransactionsPo,
-        SettingsPo,
-        HomePo,
-        FingerprintPo,
-        LanguagePo,
-        CommonPo,
-        SingleBalancePo,
-      },
-      page_actions: {
-        FirstLoginPa,
-        SecondLoginPa,
-        BalanceSectionPa,
-        LatestTransactionsPa,
-        NavigationPa,
-        TransactionsPa,
-        SettingsPa,
-        HomePa,
-        FingerprintPa,
-        LanguagePa,
-        CommonPa,
-        SingleBalancePa,
-      },
-      services: {
-        LoginService,
-        FirstLoginService,
-        SecondLoginService,
-        BalanceSectionService,
-        LatestTransactionsService,
-        HomeService,
-        AppService,
-        UserService,
-        CommonService,
-        NavigationService,
-        TransactionsService,
-        SettingsService,
-        FingerprintService,
-        SingleBalanceService,
-      }
+    page_objects: {
+      FirstLoginPo,
+      SecondLoginPo,
+      BalanceSectionPo,
+      LatestTransactionsPo,
+      NavigationPo,
+      TransactionsPo,
+      SettingsPo,
+      HomePo,
+      FingerprintPo,
+      LanguagePo,
+      CommonPo,
+      SingleBalancePo,
+    },
+    page_actions: {
+      FirstLoginPa,
+      SecondLoginPa,
+      BalanceSectionPa,
+      LatestTransactionsPa,
+      NavigationPa,
+      TransactionsPa,
+      SettingsPa,
+      HomePa,
+      FingerprintPa,
+      LanguagePa,
+      CommonPa,
+      SingleBalancePa,
+    },
+    services: {
+      LoginService,
+      FirstLoginService,
+      SecondLoginService,
+      BalanceSectionService,
+      LatestTransactionsService,
+      HomeService,
+      AppService,
+      UserService,
+      CommonService,
+      NavigationService,
+      TransactionsService,
+      SettingsService,
+      FingerprintService,
+      SingleBalanceService,
+    }
   } = lib;
 
 
@@ -133,7 +133,10 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
     transactions: helper.assembler.serviceFactory({
       elementFinder,
       service: TransactionsService,
-      parts: [{po: TransactionsPo, pa: TransactionsPa}]
+      parts: [
+        {po: TransactionsPo, pa: TransactionsPa},
+        {po: CommonPo, pa: CommonPa},
+      ]
     }),
 
     settings: helper.assembler.serviceFactory({
