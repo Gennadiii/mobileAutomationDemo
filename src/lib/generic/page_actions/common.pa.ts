@@ -21,11 +21,13 @@ class CommonPa extends BasePa implements CommonPaInterface {
   }
 
 
+  // check
   isErrorMessageDisplayed() {
     log.info(`Checking if error message is displayed`);
     return this.page.errorMessage.isDisplayed();
   }
 
+  // wait
   waitUntilProgressBarDisappears() {
     log.info(`Waiting until progress bar disappears`);
     return this.page.progressBar.waitUntilDisappear(1000);

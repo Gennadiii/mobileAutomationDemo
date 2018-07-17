@@ -1,5 +1,6 @@
 import {logger} from "./logger.helper";
 import {waitersHelper} from "./waiters.helper";
+import {dateTimeHelper} from "./dateTime.helper";
 const wd = require('wd');
 
 
@@ -99,6 +100,22 @@ class Driver implements DriverInterface {
       startPoint: {y: startScrollYPoint},
       endPoint: {y: 1}
     });
+  }
+
+  async scrollToBottom(params: scrollToBottomInterface = {}) {
+    log.info(`Scrolling to the bottom`);
+    let {maxScrolls = 4} = params;
+    while (maxScrolls--) {
+      const currentState = await this.takeScreenshot();
+      await dateTimeHelper.sleep(200, {ignoreLog: true});
+      await this.scrollDown();
+      await dateTimeHelper.sleep(1000, {ignoreLog: true});
+      if (currentState === await this.takeScreenshot()) {
+        log.info(`Reached the bottom`);
+        return;
+      }
+    }
+    throw new Error(`Couldn't reach the bottom`);
   }
 
   // set
@@ -203,4 +220,9 @@ interface pointCoordinatesInterface {
 interface screenSizeInterface {
   height: number;
   width: number;
+}
+
+
+interface scrollToBottomInterface {
+  maxScrolls?: number;
 }

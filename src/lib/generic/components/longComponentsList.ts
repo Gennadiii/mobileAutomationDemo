@@ -31,7 +31,7 @@ class LongComponentsList extends ComponentsList implements LongComponentsListInt
    * @param {lengthInterface} params
    * @return {Promise<number>}
    */
-  async length(params?: lengthInterface) {
+  async length(params: lengthInterface = {}) {
     log.info(`Getting count`);
     const {
       withScroll = true,
@@ -70,7 +70,7 @@ export {LongComponentsList};
 
 
 interface lengthInterface {
-  withScroll: boolean;
+  withScroll?: boolean;
   maxScrolls?: number;
   waitForElement?: boolean;
   indexOfElementToWaitFor?: number;
