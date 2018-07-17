@@ -5,6 +5,7 @@ import {CommonPa} from "../page_actions/common.pa";
 
 interface TransactionsServiceInterface {
   openFilters: () => Promise<void>;
+  count: () => Promise<number>;
 }
 
 
@@ -20,7 +21,7 @@ class TransactionsService extends BaseService implements TransactionsServiceInte
     await this.page.clickFiltersButton();
   }
 
-  countTransactions() {
+  count() {
     return this.page.countTransactions(this.commonPage.waitUntilProgressBarDisappears.bind(this.commonPage));
   }
 

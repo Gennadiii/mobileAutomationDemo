@@ -20,6 +20,7 @@ class LatestTransactionsService extends BaseService implements LatestTransaction
 
   // get
   count() {
+    log.info(`Counting transactions`);
     return this.page.countTransactions();
   }
 

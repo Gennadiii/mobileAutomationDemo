@@ -18,7 +18,7 @@ describe('Transactions', () => {
       await service.login.first.as(userWithMoreThan10Transactions);
       await service.common.navigateTo.transactions();
 
-      expect(await service.transactions.countTransactions())
+      expect(await service.transactions.count())
         .toBeGreaterThan(data.home.latestTransactions.maxDisplayedCount, `count is less than expected`);
     });
   });

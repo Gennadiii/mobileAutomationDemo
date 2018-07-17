@@ -18,6 +18,7 @@ interface DriverInterface {
   appRelaunch: () => Promise<any>;
   swipe: (params: swipeInterface) => Promise<void>;
   scrollDown: (screenPercentage?: number) => Promise<void>;
+  scrollToBottom: (params?: scrollToBottomInterface) => Promise<void>;
   // set
   setImplicitTimeout: (time: number) => void;
   // get
