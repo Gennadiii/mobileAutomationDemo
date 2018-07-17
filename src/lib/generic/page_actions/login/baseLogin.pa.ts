@@ -42,7 +42,8 @@ class BaseLoginPa extends BasePa implements BaseLoginPaInterface {
   // check
   async passwordValidationIsDisplayed() {
     log.info(`Checking if password validation error is present`);
-    return await this.page.passwordValidationError.isDisplayed();
+    // password validation message for iOS isVisible option is always false
+    return await this.page.passwordValidationError.isPresent();
   }
 
 }

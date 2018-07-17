@@ -11,6 +11,7 @@ interface ComponentInterface {
   getLocation: () => Promise<pointCoordinatesInterface>;
   getAttribute: (attribute: string) => Promise<string>;
   // check
+  isPresent: () => Promise<boolean>;
   isDisplayed: () => Promise<boolean>;
   scrollUntilDisplayed: (params: scrollUntilDisplayedInterface) => Promise<boolean>;
   // wait
@@ -60,9 +61,10 @@ class Component implements ComponentInterface {
   }
 
   // check
-  async isDisplayed() {
+  async isPresent() {
     try {
-      return (await this.element).isDisplayed();
+      await this.element;
+      return true;
     } catch (err) {
       if (err.message.includes('NoSuchElement')) {
         return false;
@@ -70,6 +72,10 @@ class Component implements ComponentInterface {
         throw err;
       }
     }
+  }
+
+  async isDisplayed() {
+    return await this.isPresent() && (await this.element).isDisplayed();
   }
 
   /**
