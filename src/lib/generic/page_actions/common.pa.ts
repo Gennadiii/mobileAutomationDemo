@@ -7,6 +7,8 @@ const log = helper.logger.get('CommonPa');
 
 
 interface CommonPaInterface extends BasePa {
+  // action
+  clickBackButton: () => Promise<void>;
   // check
   isErrorMessageDisplayed: () => Promise<boolean>;
   // wait
@@ -20,6 +22,12 @@ class CommonPa extends BasePa implements CommonPaInterface {
     super();
   }
 
+
+  // action
+  async clickBackButton() {
+    log.info(`Clicking back button`);
+    await this.page.backButton.click();
+  }
 
   // check
   isErrorMessageDisplayed() {

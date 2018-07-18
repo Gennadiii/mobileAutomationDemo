@@ -60,7 +60,10 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
   const homeService = helper.assembler.serviceFactory({
     elementFinder,
     service: HomeService,
-    parts: [{po: HomePo, pa: HomePa}],
+    parts: [
+      {po: HomePo, pa: HomePa},
+      {po: CommonPo, pa: CommonPa},
+    ],
     completeServices: {
       homeBalanceSectionService: helper.assembler.serviceFactory({
         elementFinder,

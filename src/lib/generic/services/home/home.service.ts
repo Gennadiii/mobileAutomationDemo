@@ -6,6 +6,7 @@ import {BaseService} from "../base.service";
 import {helper} from "../../../../helpers/helper";
 import {ViewBalanceService} from "./viewBalance.service";
 import {driver} from "../../../../../index";
+import {CommonPa} from "../../page_actions/common.pa";
 
 
 const log = helper.logger.get('HomeService');
@@ -28,7 +29,8 @@ class HomeService extends BaseService implements HomeServiceInterface {
               public latestTransactions: LatestTransactionsService,
               public singleBalance: SingleBalanceService,
               public viewBalance: ViewBalanceService,
-              public page: HomePa) {
+              public page: HomePa,
+              private commonPage: CommonPa) {
     super();
   }
 
@@ -44,7 +46,8 @@ class HomeService extends BaseService implements HomeServiceInterface {
       if (await this.viewBalance.cardPage.isOpen({timeout: 200})) {
         return;
       }
-      await driver.appium.pressKeycode(4); // todo add ios support and move to proper place
+      // await this.commonPage.clickBackButton();
+      await driver.appium.pressKeycode(4); // todo replace with above after adding locators for app back button
     }
     throw new Error(`User has too many balances. Please consider other users`);
   }

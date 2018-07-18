@@ -31,7 +31,7 @@ async function allBoolean(arr, expectation: boolean) {
   let finalResult = true;
   resolvedPromisesArr.forEach((promise, index) => {
     const result = promise === expectation;
-    result || log.error(`Promise by index "${index}" resolved as ${!expectation}`);
+    result || log.warn(`Promise by index "${index}" resolved as ${!expectation}`);
     if (result === false) {
       finalResult = false;
     }
