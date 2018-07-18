@@ -24,6 +24,7 @@ describe('Second login', () => {
       });
 
     it('error appears when logging in using wrong password', async () => {
+      pending('Until anti-harvesting problem is solved');
       await service.login.second.page.enterPassword('wrongPassword');
       await service.login.second.page.clickSignInButton();
 

@@ -21,6 +21,7 @@ describe('Second login', () => {
 
     it(`password field length is up to ${data.login.passwordMaxCharacters} characters`,
       async () => {
+        pending('Until anti-harvesting problem is solved');
         await service.login.second.page.enterPassword(data.login.getPasswordWithMaxCharacters());
         await service.login.second.page.clickSignInButton();
 
@@ -38,6 +39,7 @@ describe('Second login', () => {
 
     it(`minimum password length is ${data.login.passwordMinCharacters} characters`,
       async () => {
+        pending('Until anti-harvesting problem is solved');
         await service.login.second.page.enterPassword(data.login.getPasswordWithMinCharactersMinusOne());
         await service.login.second.page.clickSignInButton();
 
