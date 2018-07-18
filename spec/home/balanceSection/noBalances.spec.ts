@@ -17,7 +17,7 @@ describe('Home', () => {
       afterAll(() => noBalancesUser.free());
 
       it('balance section is not displayed', async () => {
-        expect(await service.home.sectionIsNotDisplayed())
+        expect(await service.home.balanceSectionIsNotDisplayed())
           .toBe(true, 'Section is displayed');
       });
 

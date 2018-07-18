@@ -1,9 +1,10 @@
 import {helper} from "../../../helpers/helper";
+import {isOpenInterface} from "../page_actions/base.pa";
 
 
 interface BaseServiceInterface {
-  pageIsOpen: () => Promise<boolean>;
-  verifyPageIsOpen: () => Promise<void>;
+  pageIsOpen: (params: isOpenInterface) => Promise<boolean>;
+  verifyPageIsOpen: (params: isOpenInterface) => Promise<void>;
 }
 
 
@@ -22,19 +23,19 @@ class BaseService implements BaseServiceInterface {
   protected staticLogicalPages = [];
   protected page;
 
-  async pageIsOpen() {
+  async pageIsOpen(params: isOpenInterface = {timeout: 20 * 1000}) {
     log.info(`Checking if physical "${this.page.page.name}" page is open`);
     let result = true;
-    result = result && this.page.isOpen();
+    result = result && this.page.isOpen(params);
     /* tslint:disable-next-line */ // replace with "for await of" after moving to node 10
     for (let j = 0; j < this.staticLogicalPages.length; j++) {
-      result = result && await this.staticLogicalPages[j].isOpen();
+      result = result && await this.staticLogicalPages[j].isOpen(params);
     }
     return result;
   }
 
-  async verifyPageIsOpen() {
-    if (!await this.pageIsOpen()) {
+  async verifyPageIsOpen(params: isOpenInterface = {timeout: 20 * 1000}) {
+    if (!await this.pageIsOpen(params)) {
       throw new Error(`Physical "${this.page.page.name}" page didn't get opened`);
     }
   }

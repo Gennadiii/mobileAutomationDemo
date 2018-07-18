@@ -4,13 +4,18 @@ import {HomePa} from "../../page_actions/home/home.pa";
 import {SingleBalanceService} from "./singleBalance.service";
 import {BaseService} from "../base.service";
 import {helper} from "../../../../helpers/helper";
+import {ViewBalanceService} from "./viewBalance.service";
+import {driver} from "../../../../../index";
 
 
 const log = helper.logger.get('HomeService');
 
 
 interface HomeServiceInterface {
-  sectionIsNotDisplayed: () => Promise<boolean>;
+  // action
+  findBalanceWithCard: () => Promise<void>;
+  // check
+  balanceSectionIsNotDisplayed: (params: findBalanceWithCardInterface) => Promise<boolean>;
 }
 
 
@@ -22,12 +27,30 @@ class HomeService extends BaseService implements HomeServiceInterface {
   constructor(public balanceSection: BalanceSectionService,
               public latestTransactions: LatestTransactionsService,
               public singleBalance: SingleBalanceService,
+              public viewBalance: ViewBalanceService,
               public page: HomePa) {
     super();
   }
 
 
-  sectionIsNotDisplayed() {
+  // action
+  async findBalanceWithCard(params: findBalanceWithCardInterface = {includeHiddenBalances: false}) {
+    log.info(`Looking for balance with card`);
+    const {includeHiddenBalances} = params;
+    let indexCounter = 0;
+    includeHiddenBalances && this.balanceSection.page.expand();
+    while (indexCounter < 5) {
+      await this.balanceSection.page.openBalance(indexCounter++);
+      if (await this.viewBalance.cardPage.isOpen({timeout: 200})) {
+        return;
+      }
+      await driver.appium.pressKeycode(4); // todo add ios support and move to proper place
+    }
+    throw new Error(`User has too many balances. Please consider other users`);
+  }
+
+  // check
+  balanceSectionIsNotDisplayed() {
     log.info(`Checking if balance section is displayed`);
     return helper.promise.allFalse([
       this.balanceSection.page.sectionIsDisplayed(),
@@ -39,3 +62,9 @@ class HomeService extends BaseService implements HomeServiceInterface {
 
 
 export {HomeService};
+
+
+interface findBalanceWithCardInterface {
+  includeHiddenBalances: boolean;
+}
+

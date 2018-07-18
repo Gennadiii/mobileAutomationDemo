@@ -6,9 +6,9 @@ const log = helper.logger.get('BasePa');
 
 interface BasePaInterface {
   // checks
-  isOpen: () => Promise<boolean>;
-  verifyIsOpen: () => Promise<void>;
-  contentIsDisplayed: () => Promise<boolean>;
+  isOpen: (params: isOpenInterface) => Promise<boolean>;
+  verifyIsOpen: (params: isOpenInterface) => Promise<void>;
+  contentIsDisplayed: (params: isOpenInterface) => Promise<boolean>;
 }
 
 
@@ -21,7 +21,7 @@ class BasePa implements BasePaInterface {
 
   protected page;
 
-  isOpen(params = {timeout: 20 * 1000}) {
+  isOpen(params: isOpenInterface = {timeout: 20 * 1000}) {
     const {timeout} = params;
     return this.checkElementsDisplayed(
       this.page.staticElements,
@@ -29,7 +29,7 @@ class BasePa implements BasePaInterface {
       'page is opened');
   }
 
-  contentIsDisplayed(params = {timeout: 20 * 1000}) {
+  contentIsDisplayed(params: isOpenInterface = {timeout: 20 * 1000}) {
     const {timeout} = params;
     return this.checkElementsDisplayed(
       this.page.content,
@@ -37,8 +37,8 @@ class BasePa implements BasePaInterface {
       'page content is displayed');
   }
 
-  async verifyIsOpen() {
-    if (!await this.isOpen()) {
+  async verifyIsOpen(params: isOpenInterface = {timeout: 20 * 1000}) {
+    if (!await this.isOpen(params)) {
       throw new Error(`"${this.page.name}" page didn't get opened`);
     }
   }
@@ -55,4 +55,10 @@ class BasePa implements BasePaInterface {
 }
 
 
-export {BasePa};
+export {BasePa, isOpenInterface};
+
+
+interface isOpenInterface {
+  timeout: number;
+}
+

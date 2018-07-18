@@ -18,6 +18,8 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
       LanguagePo,
       CommonPo,
       SingleBalancePo,
+      ViewBalancePo,
+      CardPo,
     },
     page_actions: {
       FirstLoginPa,
@@ -32,6 +34,8 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
       LanguagePa,
       CommonPa,
       SingleBalancePa,
+      ViewBalancePa,
+      CardPa,
     },
     services: {
       LoginService,
@@ -48,6 +52,7 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
       SettingsService,
       FingerprintService,
       SingleBalanceService,
+      ViewBalanceService,
     }
   } = lib;
 
@@ -71,6 +76,15 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
         elementFinder,
         service: SingleBalanceService,
         parts: [{po: SingleBalancePo, pa: SingleBalancePa}]
+      }),
+      viewBalanceService: helper.assembler.serviceFactory({
+        elementFinder,
+        service: ViewBalanceService,
+        parts: [
+          {po: ViewBalancePo, pa: ViewBalancePa},
+          {po: CardPo, pa: CardPa},
+          {po: LatestTransactionsPo, pa: LatestTransactionsPa},
+        ]
       }),
     },
   });

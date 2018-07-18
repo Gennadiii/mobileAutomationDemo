@@ -8,8 +8,6 @@ const log = helper.logger.get('InteractableComponent');
 interface InteractableComponentInterface extends Component {
   // get
   getText: () => Promise<string>;
-  // actions
-  click: () => Promise<void>;
 }
 
 
@@ -20,17 +18,9 @@ class InteractableComponent extends Component implements InteractableComponentIn
   }
 
   // get
-
   async getText() {
     log.info(`Getting text`);
     return (await this.element).text();
-  }
-
-
-  // actions
-
-  async click() {
-    await (await this.element).click();
   }
 
 }

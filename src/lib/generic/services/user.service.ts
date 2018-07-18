@@ -23,6 +23,7 @@ interface UserServiceInterface {
   withCards: () => UserServiceInterface;
   withoutCards: () => UserServiceInterface;
   cardBlocked: () => UserServiceInterface;
+  standardCard: () => UserServiceInterface;
   // other
   any: () => UserServiceInterface;
   name: (name: string) => UserServiceInterface;
@@ -129,6 +130,12 @@ class UserService implements UserServiceInterface {
   cardBlocked() {
     log.info(`Filtering users with blocked cards`);
     this.filter(([id, user]) => user.blockedCard);
+    return this;
+  }
+
+  standardCard() {
+    log.info(`Filtering users with standard cards`);
+    this.filter(([id, user]) => user.standardCard);
     return this;
   }
 

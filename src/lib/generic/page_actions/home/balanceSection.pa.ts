@@ -1,6 +1,7 @@
 import {BasePa} from "../base.pa";
 import {helper} from "../../../../helpers/helper";
 import {BalanceSectionPo} from "../../page_objects/home/balanceSection.po";
+import {Section} from "../../components/section";
 
 
 const log = helper.logger.get('HomeBSPa');
@@ -9,9 +10,11 @@ const log = helper.logger.get('HomeBSPa');
 interface BalanceSectionPaInterface extends BasePa {
   // actions
   expand: () => Promise<void>;
+  openBalance: (index: number) => Promise<void>;
   // get
   countMain: () => Promise<number>;
   countAll: () => Promise<number>;
+  getBalanceByIndex: (index: number) => Promise<Section>;
   // check
   areSomeBalancesHidden: () => Promise<boolean>;
   isMoreButtonDisplayed: () => Promise<boolean>;
@@ -35,6 +38,12 @@ class BalanceSectionPa extends BasePa implements BalanceSectionPaInterface {
     await this.page.moreButton.click();
   }
 
+  async openBalance(index) {
+    log.info(`Opening balance "${index + 1}"`);
+    const balance = await this.getBalanceByIndex(index);
+    await balance.click();
+  }
+
   // get
   async countMain() {
     log.info(`Counting main balances`);
@@ -44,6 +53,15 @@ class BalanceSectionPa extends BasePa implements BalanceSectionPaInterface {
   async countAll() {
     log.info(`Counting all balances`);
     return await this.page.items.length({withScroll: true});
+  }
+
+  async getBalanceByIndex(index: number) {
+    log.info(`Getting balance by index "${index + 1}"`);
+    const balance = this.page.items.getElementByIndex(index);
+    if (!await balance.isDisplayed()) {
+      throw new Error(`Balance is not found`);
+    }
+    return balance;
   }
 
   // check

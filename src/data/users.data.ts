@@ -35,14 +35,21 @@ function getUsers(): { [name: number]: userInterface } {
     //   optInCards: true,
     //   transactions: true,
     // },
-    1972846: {
-      login: 'optin1',
+    1972844: {
+      login: 'card_balance1',
       password: defaultPassword,
-      balanceCount: 4,
+      balanceCount: 2,
       optInCards: true,
-      transactions: true,
-      transactionsCount: 11,
+      standardCard: true,
     },
+    // 1972846: {
+    //   login: 'optin1',
+    //   password: defaultPassword,
+    //   balanceCount: 4,
+    //   optInCards: true,
+    //   transactions: true,
+    //   transactionsCount: 11,
+    // },
     1972806: {
       login: 'sev_balances',
       password: defaultPassword,
@@ -74,4 +81,5 @@ interface userInterface {
   optInCards?: boolean;
   transactions?: boolean;
   transactionsCount?: number;
+  standardCard?: boolean;
 }

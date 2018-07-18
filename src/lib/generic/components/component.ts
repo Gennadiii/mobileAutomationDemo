@@ -7,6 +7,8 @@ const log = helper.logger.get('Component');
 
 
 interface ComponentInterface {
+  // actions
+  click: () => Promise<void>;
   // get
   getLocation: () => Promise<pointCoordinatesInterface>;
   getAttribute: (attribute: string) => Promise<string>;
@@ -50,6 +52,11 @@ class Component implements ComponentInterface {
       }
       throwNoSuchElementError(this.ef);
     })();
+  }
+
+  // actions
+  async click() {
+    await (await this.element).click();
   }
 
   // get
