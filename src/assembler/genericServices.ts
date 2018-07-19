@@ -57,6 +57,16 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
   } = lib;
 
 
+  const viewBalanceService = helper.assembler.serviceFactory({
+    elementFinder,
+    service: ViewBalanceService,
+    parts: [
+      {po: ViewBalancePo, pa: ViewBalancePa},
+      {po: CardPo, pa: CardPa},
+      {po: LatestTransactionsPo, pa: LatestTransactionsPa},
+    ]
+  });
+
   const homeService = helper.assembler.serviceFactory({
     elementFinder,
     service: HomeService,
@@ -68,27 +78,20 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
       homeBalanceSectionService: helper.assembler.serviceFactory({
         elementFinder,
         service: BalanceSectionService,
-        parts: [{po: BalanceSectionPo, pa: BalanceSectionPa}]
+        parts: [{po: BalanceSectionPo, pa: BalanceSectionPa}],
+        completeServices: {viewBalanceService}
       }),
       homeLatestTransactionsService: helper.assembler.serviceFactory({
         elementFinder,
         service: LatestTransactionsService,
-        parts: [{po: LatestTransactionsPo, pa: LatestTransactionsPa}]
+        parts: [{po: LatestTransactionsPo, pa: LatestTransactionsPa}],
       }),
       singleBalanceService: helper.assembler.serviceFactory({
         elementFinder,
         service: SingleBalanceService,
-        parts: [{po: SingleBalancePo, pa: SingleBalancePa}]
+        parts: [{po: SingleBalancePo, pa: SingleBalancePa}],
       }),
-      viewBalanceService: helper.assembler.serviceFactory({
-        elementFinder,
-        service: ViewBalanceService,
-        parts: [
-          {po: ViewBalancePo, pa: ViewBalancePa},
-          {po: CardPo, pa: CardPa},
-          {po: LatestTransactionsPo, pa: LatestTransactionsPa},
-        ]
-      }),
+      viewBalanceService,
     },
   });
 

@@ -43,11 +43,12 @@ class HomeService extends BaseService implements HomeServiceInterface {
     includeHiddenBalances && this.balanceSection.page.expand();
     while (indexCounter < 5) {
       await this.balanceSection.page.openBalance(indexCounter++);
-      if (await this.viewBalance.cardPage.isOpen({timeout: 200})) {
+      if (await this.viewBalance.cardPage.isOpen({timeout: 500})) {
         return;
       }
       // await this.commonPage.clickBackButton();
-      await driver.appium.pressKeycode(4); // todo replace with above after adding locators for app back button
+      await driver.appium.pressKeycode(4);
+      // todo replace with above after adding locators for app back button (current solution works for android only)
     }
     throw new Error(`User has too many balances. Please consider other users`);
   }
