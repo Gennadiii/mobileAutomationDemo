@@ -61,7 +61,16 @@ function getUsers(): { [name: number]: userInterface } {
       login: 'gbt',
       password: defaultPassword,
       balanceCount: 0,
-    }
+    },
+    1972857: {
+      login: 'sev_block_card',
+      password: '123456q',
+      transactions: true,
+      transactionsCount: 1,
+      balanceCount: 2,
+      optInCards: true,
+      blockedCard: true,
+    },
   };
 }
 

@@ -8,7 +8,6 @@ import {Link} from "../components/link";
 
 
 interface BaseTransactionsPoInterface extends BasePo {
-  title: Label;
   items: ComponentsList;
   dates: ComponentsList;
   descriptions: ComponentsList;
@@ -25,7 +24,6 @@ class BaseTransactionsPo extends BasePo implements BaseTransactionsPoInterface {
 
   name = 'Base transactions (SHOULD NOT APPEAR IN LOGS!)';
 
-  title = new Label(this.ef.autoId('LatestActivityLabel'));
   items = new LongComponentsList(this.ef, Section, this.ef.all.autoId('ActivityItem', {partial: true}));
   dates = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityDateTitle'));
   descriptions = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityTitle'));
@@ -34,13 +32,23 @@ class BaseTransactionsPo extends BasePo implements BaseTransactionsPoInterface {
   statuses = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityStatus'));
   noTransactionsText = new Label(this.ef.autoId('NoTransactionsHomeText'));
   noTransactionsTitle = new Label(this.ef.autoId('NoTransactionsHomeTitle'));
-  allTransactionsLink = new Link(this.ef.autoId('AllActivities'));
 
   emptyTransactionsContent = [this.noTransactionsTitle, this.noTransactionsText];
 
 
   constructor(protected ef: ElementFinderInterface) {
     super();
+  }
+
+
+  get content() {
+    return [
+      this.dates.getElementByIndex(0),
+      this.descriptions.getElementByIndex(0),
+      this.currencies.getElementByIndex(0),
+      this.amounts.getElementByIndex(0),
+      this.statuses.getElementByIndex(0),
+    ];
   }
 
 }

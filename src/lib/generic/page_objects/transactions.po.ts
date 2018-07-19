@@ -6,7 +6,7 @@ import {ComponentsList} from "../components/componentsList";
 
 
 interface TransactionsPoInterface extends BaseTransactionsPo {
-  title: Label;
+  pageTitle: Label;
   filtersButton: Button;
   runningBalances: ComponentsList;
   allTransactionsLabel: Label;
@@ -17,7 +17,7 @@ class TransactionsPo extends BaseTransactionsPo implements TransactionsPoInterfa
 
   name = 'Transactions';
 
-  title = new Label(this.ef.autoId('PageTitle'));
+  pageTitle = new Label(this.ef.autoId('PageTitle'));
   allTransactionsLabel = new Label(this.ef.autoId('AllTransactionsTitle'));
   filtersButton = new Button(this.ef.autoId('Filters'));
   runningBalances = new ComponentsList(this.ef, Label, this.ef.all.autoId('ActivityRunningBalance'));
@@ -29,7 +29,16 @@ class TransactionsPo extends BaseTransactionsPo implements TransactionsPoInterfa
 
 
   get staticElements() {
-    return [this.title];
+    return [this.pageTitle, this.filtersButton];
+  }
+
+  get content() {
+    return [
+      this.filtersButton,
+      this.pageTitle,
+      this.allTransactionsLabel,
+      ...super.content,
+    ];
   }
 
 }

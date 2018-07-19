@@ -5,6 +5,7 @@ import {Link} from "../../components/link";
 
 
 interface LatestTransactionsPoInterface extends BaseTransactionsPo {
+  title: Label;
   allTransactionsLink: Link;
 }
 
@@ -12,6 +13,9 @@ interface LatestTransactionsPoInterface extends BaseTransactionsPo {
 class LatestTransactionsPo extends BaseTransactionsPo implements LatestTransactionsPoInterface {
 
   name = 'Home - Latest transactions';
+
+  title = new Label(this.ef.autoId('LatestActivityLabel'));
+  allTransactionsLink = new Link(this.ef.autoId('AllActivities'));
 
 
   constructor(protected ef: ElementFinderInterface) {
