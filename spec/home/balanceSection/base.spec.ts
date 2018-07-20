@@ -7,7 +7,7 @@ describe('Home', () => {
     describe('Base', () => {
 
       const service: assemblerInterface = (jasmine.getEnv() as any).service;
-      let userWithExpandableBalances = null;
+      // let userWithExpandableBalances = null;
       let userWithoutExpandableBalances = null;
 
       beforeAll(async () => {
@@ -16,12 +16,12 @@ describe('Home', () => {
           .sameCurrencies()
           .withCards()
           .allocate();
-        userWithExpandableBalances = service.common.user
-          .balancesMoreThan(data.home.balance.maxCollapsedCount)
-          .allocate();
+        // userWithExpandableBalances = service.common.user
+        //   .balancesMoreThan(data.home.balance.maxCollapsedCount)
+        //   .allocate();
       });
       afterAll(() => {
-        userWithExpandableBalances.free();
+        // userWithExpandableBalances.free();
         userWithoutExpandableBalances.free();
       });
 
@@ -39,7 +39,8 @@ describe('Home', () => {
       });
 
       it('more button is present for user with expandable balances', async () => {
-        await service.login.first.as(userWithExpandableBalances);
+        pending(`Until optin1 user is fixed`);
+        // await service.login.first.as(userWithExpandableBalances);
         expect(await service.home.balanceSection.page.isMoreButtonDisplayed())
           .toBe(true, 'More button is not displayed');
       });

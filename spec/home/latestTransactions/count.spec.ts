@@ -7,19 +7,20 @@ describe('Home', () => {
     describe('Count', () => {
 
       const service: assemblerInterface = (jasmine.getEnv() as any).service;
-      let userWithMoreThan10Transactions = null;
+      // let userWithMoreThan10Transactions = null;
       const expectedTransactionsAmount = data.home.latestTransactions.maxDisplayedCount;
 
-      beforeAll(async () => {
-        userWithMoreThan10Transactions = service.common.user
-          .transactionsMoreThan(expectedTransactionsAmount)
-          .allocate();
-        await service.login.first.as(userWithMoreThan10Transactions);
-      });
-      afterAll(() => userWithMoreThan10Transactions.free());
+      // beforeAll(async () => {
+      //   userWithMoreThan10Transactions = service.common.user
+      //     .transactionsMoreThan(expectedTransactionsAmount)
+      //     .allocate();
+      //   await service.login.first.as(userWithMoreThan10Transactions);
+      // });
+      // afterAll(() => userWithMoreThan10Transactions.free());
 
 
       it(`only "${expectedTransactionsAmount}" transactions are displayed`, async () => {
+        pending(`Until optin1 user is fixed`);
         const latestTransactionsCount = await service.home.latestTransactions.count();
         expect(latestTransactionsCount)
           .toEqual(expectedTransactionsAmount, `Expected transactions amount is "${expectedTransactionsAmount}"

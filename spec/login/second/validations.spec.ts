@@ -6,7 +6,7 @@ describe('Second login', () => {
 
     const service: assemblerInterface = (jasmine.getEnv() as any).service;
     let anyUser = null;
-
+    //
     beforeAll(async () => {
       anyUser = service.common.user.any().allocate();
       await service.login.first.as(anyUser);
