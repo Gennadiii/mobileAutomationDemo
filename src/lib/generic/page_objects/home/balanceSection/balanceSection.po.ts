@@ -1,10 +1,10 @@
-import {BasePo} from "../base.po";
-import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
-import {Button} from "../../components/button";
-import {ComponentsList} from "../../components/componentsList";
-import {Section} from "../../components/section";
-import {Label} from "../../components/label";
-import {LongComponentsList} from "../../components/longComponentsList";
+import {BasePo} from "../../base.po";
+import {ElementFinderInterface} from "../../../../../helpers/element_finder/elementFinder.helper";
+import {Button} from "../../../components/button";
+import {ComponentsList} from "../../../components/componentsList";
+import {Section} from "../../../components/section";
+import {Label} from "../../../components/label";
+import {LongComponentsList} from "../../../components/longComponentsList";
 
 
 interface BalanceSectionPoInterface extends BasePo {

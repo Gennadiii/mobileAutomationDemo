@@ -1,6 +1,6 @@
-import {helper} from "../../../../helpers/helper";
-import {LatestTransactionsPo} from "../../page_objects/home/latestTransactions.po";
-import {BaseTransactionsPa} from "../baseTransactions.pa";
+import {helper} from "../../../../../helpers/helper";
+import {LatestTransactionsPo} from "../../../page_objects/home/latestTransactions/latestTransactions.po";
+import {BaseTransactionsPa} from "../../baseTransactions.pa";
 
 
 const log = helper.logger.get('HomeLTPa');

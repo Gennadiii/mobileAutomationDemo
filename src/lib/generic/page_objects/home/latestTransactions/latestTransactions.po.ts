@@ -1,7 +1,7 @@
-import {Label} from "../../components/label";
-import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
-import {BaseTransactionsPo} from "../baseTransactions.po";
-import {Link} from "../../components/link";
+import {Label} from "../../../components/label";
+import {ElementFinderInterface} from "../../../../../helpers/element_finder/elementFinder.helper";
+import {BaseTransactionsPo} from "../../baseTransactions.po";
+import {Link} from "../../../components/link";
 
 
 interface LatestTransactionsPoInterface extends BaseTransactionsPo {
@@ -29,7 +29,7 @@ class LatestTransactionsPo extends BaseTransactionsPo implements LatestTransacti
 
   get content() {
     return [
-      this.title,
+      this.staticElements,
       this.items.getElementByIndex(0),
       this.dates.getElementByIndex(0),
       this.descriptions.getElementByIndex(0),

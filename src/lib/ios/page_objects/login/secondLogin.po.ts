@@ -2,7 +2,7 @@ import {ElementFinderInterface} from "../../../../helpers/element_finder/element
 import {InputField} from "../../../generic/components/inputField";
 import {SecondLoginPo as GenericSecondLoginPo} from "../../../generic/page_objects/login/secondLogin.po";
 import {Button} from "../../../generic/components/button";
-import {LoginProvider} from "../providers/loginProvider";
+import {componentProvider} from "../../../../helpers/componentProvider.helper";
 
 
 interface SecondLoginPoInterface extends GenericSecondLoginPo {
@@ -18,7 +18,7 @@ class SecondLoginPo extends GenericSecondLoginPo implements SecondLoginPoInterfa
   name = 'IosSecondLogin';
 
   optionsButton = new Button(this.ef.autoId('Toolbar'));
-  passwordField = LoginProvider.getPassword(this.ef);
+  passwordField = componentProvider.ios.login.password(this.ef);
   changeLanguageButton = new Button(this.ef.all.className('XCUIElementTypeButton', {index: 0}));
   switchAccountButton = new Button(this.ef.all.className('XCUIElementTypeButton', {index: 1}));
 

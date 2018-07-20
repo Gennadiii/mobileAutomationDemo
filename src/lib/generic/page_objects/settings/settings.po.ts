@@ -1,6 +1,6 @@
-import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
-import {BasePo} from "./base.po";
-import {Button} from "../components/button";
+import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
+import {BasePo} from "../base.po";
+import {Button} from "../../components/button";
 
 
 interface SettingsPoInterface {

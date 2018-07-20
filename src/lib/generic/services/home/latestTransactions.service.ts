@@ -1,5 +1,5 @@
 import {helper} from "../../../../helpers/helper";
-import {LatestTransactionsPa} from "../../page_actions/home/latestTransactions.pa";
+import {LatestTransactionsPa} from "../../page_actions/home/latestTransactions/latestTransactions.pa";
 import {BaseService} from "../base.service";
 
 

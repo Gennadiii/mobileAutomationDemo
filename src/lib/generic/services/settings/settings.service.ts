@@ -1,6 +1,6 @@
-import {SettingsPa} from "../page_actions/Settings.pa";
-import {helper} from "../../../helpers/helper";
-import {BaseService} from "./base.service";
+import {SettingsPa} from "../../page_actions/settings/settings.pa";
+import {helper} from "../../../../helpers/helper";
+import {BaseService} from "../base.service";
 
 
 const log = helper.logger.get('SettingsService');

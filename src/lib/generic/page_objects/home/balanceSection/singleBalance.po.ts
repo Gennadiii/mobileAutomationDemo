@@ -1,7 +1,7 @@
-import {BasePo} from "../base.po";
-import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
-import {Label} from "../../components/label";
-import {Section} from "../../components/section";
+import {BasePo} from "../../base.po";
+import {ElementFinderInterface} from "../../../../../helpers/element_finder/elementFinder.helper";
+import {Label} from "../../../components/label";
+import {Section} from "../../../components/section";
 
 
 interface SingleBalancePoInterface extends BasePo {
@@ -42,8 +42,7 @@ class SingleBalancePo extends BasePo implements SingleBalancePoInterface {
 
   get content() {
     return [
-      this.balanceTitle,
-      this.balanceAmount,
+      this.staticElements,
       this.cardTitle,
       this.cardNumber,
       this.cardAmount,

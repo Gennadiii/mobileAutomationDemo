@@ -66,7 +66,7 @@ class LongComponentsList extends ComponentsList implements LongComponentsListInt
 }
 
 
-export {LongComponentsList};
+export {LongComponentsList, lengthInterface};
 
 
 interface lengthInterface {

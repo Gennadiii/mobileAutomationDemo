@@ -2,7 +2,6 @@ import {ElementFinderInterface} from "../../../helpers/element_finder/elementFin
 import {BasePo} from "./base.po";
 import {ComponentsList} from "../components/componentsList";
 import {Button} from "../components/button";
-import {Component} from "../components/component";
 
 
 interface LanguagePoInterface {

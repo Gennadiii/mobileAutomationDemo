@@ -1,8 +1,8 @@
-import {BasePa} from "../base.pa";
-import {helper} from "../../../../helpers/helper";
-import {BalanceSectionPo} from "../../page_objects/home/balanceSection.po";
-import {Section} from "../../components/section";
-import {Label} from "../../components/label";
+import {BasePa} from "../../base.pa";
+import {helper} from "../../../../../helpers/helper";
+import {BalanceSectionPo} from "../../../page_objects/home/balanceSection/balanceSection.po";
+import {Section} from "../../../components/section";
+import {Label} from "../../../components/label";
 
 
 const log = helper.logger.get('HomeBSPa');

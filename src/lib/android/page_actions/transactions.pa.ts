@@ -1,6 +1,6 @@
 import {helper} from "../../../helpers/helper";
-import {TransactionsPa as GenericTransactionsPa} from "../../generic/page_actions/transactions.pa";
-import {TransactionsPo} from "../../generic/page_objects/transactions.po";
+import {TransactionsPa as GenericTransactionsPa} from "../../generic/page_actions/transactions/transactions.pa";
+import {TransactionsPo} from "../../generic/page_objects/transactions/transactions.po";
 
 
 const log = helper.logger.get('AndroidTransactionsPa');

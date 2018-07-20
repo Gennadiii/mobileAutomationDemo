@@ -1,25 +1,22 @@
-import {TransactionsPa} from "../page_actions/Transactions.pa";
-import {BaseService} from "./base.service";
-import {CommonPa} from "../page_actions/common.pa";
+import {TransactionsPa} from "../../page_actions/transactions/transactions.pa";
+import {BaseService} from "../base.service";
+import {CommonPa} from "../../page_actions/common.pa";
+import {FiltersService} from "./filters.service";
 
 
 interface TransactionsServiceInterface {
-  openFilters: () => Promise<void>;
   count: () => Promise<number>;
 }
 
 
 class TransactionsService extends BaseService implements TransactionsServiceInterface {
 
-  constructor(public page: TransactionsPa,
+  constructor(public filters: FiltersService,
+              public page: TransactionsPa,
               private commonPage: CommonPa) {
     super();
   }
 
-
-  async openFilters() {
-    await this.page.clickFiltersButton();
-  }
 
   count() {
     return this.page.countTransactions(this.commonPage.waitUntilProgressBarDisappears.bind(this.commonPage));

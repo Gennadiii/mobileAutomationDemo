@@ -9,7 +9,7 @@ const mkdirp = require('mkdirp');
 
 const log = helper.logger.get('jasmine');
 const jasmine = new Jasmine();
-jasmine.jasmine.DEFAULT_TIMEOUT_INTERVAL = 1.5 * 60 * 1000;
+jasmine.jasmine.DEFAULT_TIMEOUT_INTERVAL = 2 * 60 * 1000;
 const specReporter = new SpecReporter({
   spec: {
     displayPending: true

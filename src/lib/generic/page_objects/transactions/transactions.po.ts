@@ -1,8 +1,8 @@
-import {ElementFinderInterface} from "../../../helpers/element_finder/elementFinder.helper";
-import {Button} from "../components/button";
-import {Label} from "../components/label";
-import {BaseTransactionsPo} from "./baseTransactions.po";
-import {ComponentsList} from "../components/componentsList";
+import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
+import {Button} from "../../components/button";
+import {Label} from "../../components/label";
+import {BaseTransactionsPo} from "../baseTransactions.po";
+import {ComponentsList} from "../../components/componentsList";
 
 
 interface TransactionsPoInterface extends BaseTransactionsPo {
@@ -34,8 +34,7 @@ class TransactionsPo extends BaseTransactionsPo implements TransactionsPoInterfa
 
   get content() {
     return [
-      this.filtersButton,
-      this.pageTitle,
+      ...this.staticElements,
       this.allTransactionsLabel,
       ...super.content,
     ];

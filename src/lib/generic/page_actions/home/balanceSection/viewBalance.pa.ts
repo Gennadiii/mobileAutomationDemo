@@ -1,6 +1,6 @@
-import {BasePa} from "../base.pa";
-import {helper} from "../../../../helpers/helper";
-import {ViewBalancePo} from "../../page_objects/home/ViewBalance.po";
+import {BasePa} from "../../base.pa";
+import {helper} from "../../../../../helpers/helper";
+import {ViewBalancePo} from "../../../page_objects/home/balanceSection/viewBalance.po";
 
 
 const log = helper.logger.get('HomeViewBalancePa');

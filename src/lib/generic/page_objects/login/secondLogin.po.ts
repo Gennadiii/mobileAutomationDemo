@@ -1,7 +1,6 @@
 import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
 import {Button} from "../../components/button";
 import {BaseLoginPo} from "./baseLogin.po";
-import {InputField} from "../../components/inputField";
 
 
 interface SecondLoginPoInterface extends BaseLoginPo {

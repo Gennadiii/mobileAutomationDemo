@@ -1,5 +1,5 @@
 import {helper} from "../../../../helpers/helper";
-import {SingleBalancePa} from "../../page_actions/home/SingleBalance.pa";
+import {SingleBalancePa} from "../../page_actions/home/balanceSection/singleBalance.pa";
 import {BaseService} from "../base.service";
 
 

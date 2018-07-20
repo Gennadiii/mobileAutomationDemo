@@ -1,6 +1,6 @@
-import {BasePo} from "../base.po";
-import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
-import {Label} from "../../components/label";
+import {BasePo} from "../../base.po";
+import {ElementFinderInterface} from "../../../../../helpers/element_finder/elementFinder.helper";
+import {Label} from "../../../components/label";
 
 
 interface CardPoInterface extends BasePo {
@@ -32,8 +32,7 @@ class CardPo extends BasePo implements CardPoInterface {
 
   get content() {
     return [
-      this.title,
-      this.number,
+      this.staticElements,
       this.amount,
       this.currency,
     ];

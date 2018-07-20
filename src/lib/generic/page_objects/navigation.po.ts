@@ -27,17 +27,12 @@ class NavigationPo extends BasePo implements NavigationPoInterface {
 
 
   get staticElements() {
-    return [
-      this.homeLink,
-      this.transactionsLink,
-      this.actionsLink,
-      this.settingsLink,
-    ];
+    return [this.homeLink];
   }
 
   get content() {
     return [
-      this.homeLink,
+      ...this.staticElements,
       this.transactionsLink,
       this.actionsLink,
       this.settingsLink,

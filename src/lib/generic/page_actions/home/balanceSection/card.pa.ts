@@ -1,6 +1,6 @@
-import {BasePa} from "../base.pa";
-import {helper} from "../../../../helpers/helper";
-import {CardPo} from "../../page_objects/home/Card.po";
+import {BasePa} from "../../base.pa";
+import {helper} from "../../../../../helpers/helper";
+import {CardPo} from "../../../page_objects/home/balanceSection/card.po";
 
 
 const log = helper.logger.get('HomeCardPa');

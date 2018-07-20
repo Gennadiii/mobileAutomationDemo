@@ -1,8 +1,8 @@
 import {helper} from "../../../../helpers/helper";
 import {
   LatestTransactionsPa as GenericLatestTransactionsPa
-} from "../../../generic/page_actions/home/latestTransactions.pa";
-import {LatestTransactionsPo} from "../../../generic/page_objects/home/latestTransactions.po";
+} from "../../../generic/page_actions/home/latestTransactions/latestTransactions.pa";
+import {LatestTransactionsPo} from "../../../generic/page_objects/home/latestTransactions/latestTransactions.po";
 
 
 const log = helper.logger.get('IosHomeLTPa');

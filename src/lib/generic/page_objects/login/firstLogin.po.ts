@@ -37,8 +37,9 @@ class FirstLoginPo extends BaseLoginPo implements FirstLoginPoInterface {
     return [this.signupLink];
   }
 
-  get content(): any[] {
+  get content() {
     return [
+      ...this.staticElements,
       this.languageButton,
       this.userIcon,
       this.userTitle,
@@ -47,7 +48,6 @@ class FirstLoginPo extends BaseLoginPo implements FirstLoginPoInterface {
       this.passwordField,
       this.forgotPasswordLink,
       this.signInButton,
-      this.signupLink,
     ];
   }
 

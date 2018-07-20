@@ -1,6 +1,6 @@
-import {BasePa} from "../base.pa";
-import {helper} from "../../../../helpers/helper";
-import {SingleBalancePo} from "../../page_objects/home/SingleBalance.po";
+import {BasePa} from "../../base.pa";
+import {helper} from "../../../../../helpers/helper";
+import {SingleBalancePo} from "../../../page_objects/home/balanceSection/singleBalance.po";
 
 
 const log = helper.logger.get('HomeSBPa');

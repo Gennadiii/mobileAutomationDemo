@@ -1,6 +1,6 @@
-import {BasePo} from "../base.po";
-import {ElementFinderInterface} from "../../../../helpers/element_finder/elementFinder.helper";
-import {Label} from "../../components/label";
+import {BasePo} from "../../base.po";
+import {ElementFinderInterface} from "../../../../../helpers/element_finder/elementFinder.helper";
+import {Label} from "../../../components/label";
 
 
 interface ViewBalancePoInterface extends BasePo {
@@ -27,7 +27,7 @@ class ViewBalancePo extends BasePo implements ViewBalancePoInterface {
   }
 
   get content() {
-    return [this.title, this.amount];
+    return [this.staticElements];
   }
 
 }

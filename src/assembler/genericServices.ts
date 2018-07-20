@@ -20,6 +20,11 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
       SingleBalancePo,
       ViewBalancePo,
       CardPo,
+      FiltersPo,
+      DateFilterPo,
+      BalanceFilterPo,
+      StatusFilterPo,
+      TypeFilterPo,
     },
     page_actions: {
       FirstLoginPa,
@@ -36,6 +41,11 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
       SingleBalancePa,
       ViewBalancePa,
       CardPa,
+      FiltersPa,
+      DateFilterPa,
+      BalanceFilterPa,
+      StatusFilterPa,
+      TypeFilterPa,
     },
     services: {
       LoginService,
@@ -53,6 +63,7 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
       FingerprintService,
       SingleBalanceService,
       ViewBalanceService,
+      FiltersService,
     }
   } = lib;
 
@@ -156,7 +167,20 @@ function assembleServices(elementFinder, lib, driver): assemblerInterface {
       parts: [
         {po: TransactionsPo, pa: TransactionsPa},
         {po: CommonPo, pa: CommonPa},
-      ]
+      ],
+      completeServices: {
+        filtersService: helper.assembler.serviceFactory({
+          elementFinder,
+          service: FiltersService,
+          parts: [
+            {po: FiltersPo, pa: FiltersPa},
+            {po: DateFilterPo, pa: DateFilterPa},
+            {po: BalanceFilterPo, pa: BalanceFilterPa},
+            {po: StatusFilterPo, pa: StatusFilterPa},
+            {po: TypeFilterPo, pa: TypeFilterPa},
+          ],
+        }),
+      }
     }),
 
     settings: helper.assembler.serviceFactory({

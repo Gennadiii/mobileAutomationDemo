@@ -1,8 +1,8 @@
 import {helper} from "../../../../helpers/helper";
-import {ViewBalancePa} from "../../page_actions/home/ViewBalance.pa";
+import {ViewBalancePa} from "../../page_actions/home/balanceSection/viewBalance.pa";
 import {BaseService} from "../base.service";
-import {CardPa} from "../../page_actions/home/card.pa";
-import {LatestTransactionsPa} from "../../page_actions/home/latestTransactions.pa";
+import {CardPa} from "../../page_actions/home/balanceSection/card.pa";
+import {LatestTransactionsPa} from "../../page_actions/home/latestTransactions/latestTransactions.pa";
 
 
 const log = helper.logger.get(`HomeVBService`);

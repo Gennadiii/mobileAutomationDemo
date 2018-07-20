@@ -1,6 +1,6 @@
-import {SettingsPo} from "../page_objects/Settings.po";
-import {helper} from "../../../helpers/helper";
-import {BasePa} from "./base.pa";
+import {SettingsPo} from "../../page_objects/settings/settings.po";
+import {helper} from "../../../../helpers/helper";
+import {BasePa} from "../base.pa";
 
 
 const log = helper.logger.get('SettingsPa');

@@ -30,7 +30,7 @@ class HomePo extends BasePo implements HomePoInterface {
   }
 
   get content() {
-    return [this.userIcon, this.userTitle];
+    return [...this.staticElements, this.userTitle];
   }
 
 }
