@@ -15,9 +15,10 @@
 * Each action taken by test should be logged. It eases debug process and logs could be used as bug description
 
 ## Reporters
-Currently 3 reporters are used:
+Currently 4 reporters are used:
  * console reporter
- * html reporter which creates "reporter" folder in project's root directory
+ * html reporter which creates "reporters" folder in project's root directory
+ * xml junit reporter which creates "reporters" folder in project's root directory
  * screenshot reporter which saves screenshots of failed tests into screenshots folder in root directory
 
 ## How to run against simulators
