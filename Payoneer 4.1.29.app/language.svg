@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="94px" height="94px" viewBox="0 0 94 94" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>language</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="settings-ios" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="IOS-settings-Language-" transform="translate(-113.000000, -35.000000)" stroke="#FFFFFF" stroke-width="1.5">
+            <g id="language" transform="translate(115.000000, 37.000000)">
+                <circle id="Oval" opacity="0.722860031" cx="45" cy="45" r="45.75"></circle>
+                <path d="M62.9417534,24.7712265 C58.2704918,28.8266356 52.1721903,31.2812788 45.5005288,31.2812788 C38.9091159,31.2812788 32.8771403,28.8853307 28.2280367,24.9168689" id="Stroke-1"></path>
+                <path d="M27.4268565,64.4448154 C32.1736482,60.0526399 38.523702,57.3683077 45.5005288,57.3683077 C53.1728208,57.3683077 59.0868675,59.6144729 63.9443891,64.8082227" id="Stroke-4"></path>
+                <path d="M18.5961538,44.3247404 L72.4038462,44.3247404" id="Stroke-7"></path>
+                <path d="M45.5,71.2285865 L45.5,18.4208942" id="Stroke-10"></path>
+                <path d="M31,44.5 C31,29.864823 37.4912547,18 45.5,18 C53.5087453,18 60,29.864823 60,44.5 C60,59.135177 53.5087453,71 45.5,71 C37.4912547,71 31,59.135177 31,44.5 Z" id="Stroke-14"></path>
+                <path d="M19,44.5 C19,29.864823 30.8650587,18 45.5005265,18 C60.1359943,18 72,29.864823 72,44.5 C72,59.135177 60.1359943,71 45.5005265,71 C30.8650587,71 19,59.135177 19,44.5 Z" id="Stroke-16"></path>
+            </g>
+        </g>
+    </g>
+</svg>

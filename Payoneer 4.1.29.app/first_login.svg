@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="first-log-in-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="IOs-frist-login-2-factor" transform="translate(-114.000000, -53.000000)">
+            <g id="icon" transform="translate(117.000000, 56.000000)">
+                <circle id="Oval" stroke="#FFFFFF" stroke-width="3" opacity="0.722860031" cx="45" cy="45" r="46.5"></circle>
+                <circle id="Oval" fill="#FFFFFF" cx="45" cy="45" r="42"></circle>
+                <g id="Group-3" transform="translate(23.000000, 22.000000)" fill="#FF4800">
+                    <path d="M3.07814079,3.81493037 C3.24580415,7.56991891 6.53164146,21.9073116 6.53164146,21.9073116 C7.73808866,24.81225 8.77687251,21.9073116 8.77687251,21.9073116 C12.7515875,10.1290742 4.63084927,3.30345951 4.63084927,3.30345951 C2.55692644,2.10582528 3.07814079,3.81493037 3.07814079,3.81493037 M50.23346,1.76724597 C50.23346,1.76724597 54.208175,4.49749184 50.23346,5.01076365 C50.23346,5.01076365 35.3770286,6.71626684 24.3221816,16.9600917 C24.3221816,16.9600917 7.73808866,31.2938825 1.52178745,47 C1.52178745,47 -0.552135377,47 0.142209613,43.9293739 C0.832909747,40.8569468 4.97528813,27.3714052 23.4565284,10.8152375 C23.4565284,10.8152375 41.2525358,-5.23126024 50.23346,1.76724597" id="Fill-1"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

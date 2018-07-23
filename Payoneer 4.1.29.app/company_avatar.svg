@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="96px" height="96px" viewBox="0 0 96 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0.056843747 46.0967543 0.056843747 0.216170192 59.7100945 0.216170192 59.3638198 46.0967543"></polygon>
+    </defs>
+    <g id="Homepage-and-balances" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="homepage-company" transform="translate(-113.000000, -32.000000)">
+            <g id="icon" transform="translate(116.000000, 35.000000)">
+                <circle id="Oval" stroke="#FFFFFF" stroke-width="3" opacity="0.722860031" cx="45" cy="45" r="46.5"></circle>
+                <circle id="Oval" fill="#B9C8DB" cx="45" cy="45" r="42"></circle>
+                <g id="business-icon-copy" transform="translate(14.000000, 22.000000)">
+                    <g id="business-icon" transform="translate(1.297872, 0.000000)">
+                        <g id="Group-5" transform="translate(0.000000, 0.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <g id="Clip-2"></g>
+                            <polyline id="Stroke-1" stroke="#515D6F" stroke-width="1.5" fill="#FFFFFF" stroke-linejoin="round" mask="url(#mask-2)" points="53.4141742 46.0967543 53.4141742 17.6781682 39.6295656 17.6781682 39.6295656 46.0967543"></polyline>
+                            <polyline id="Stroke-3" stroke="#515D6F" stroke-width="1.5" fill="#FFFFFF" stroke-linejoin="round" mask="url(#mask-2)" points="7.41810898 46.0967543 7.41810898 1.40085598 39.5253521 1.40085598 39.5253521 46.0967543"></polyline>
+                            <path d="M0,46.0967543 L59.3638198,46.0967543 M18.189999,46.0967543 L18.189999,37.7960874 L28.5829308,37.7960874 L28.5829308,46.0967543" id="Stroke-4" stroke="#515D6F" stroke-width="1.5" stroke-linejoin="round" mask="url(#mask-2)"></path>
+                        </g>
+                        <polygon id="Fill-6" fill="#515D6F" points="44.252857 27.4083414 48.6866693 27.4083414 48.6866693 22.9482816 44.252857 22.9482816"></polygon>
+                        <polygon id="Fill-7" fill="#515D6F" points="44.252857 35.4707571 48.6866693 35.4707571 48.6866693 31.0106973 44.252857 31.0106973"></polygon>
+                        <polygon id="Fill-8" fill="#515D6F" points="12.9509004 12.0459132 17.3847126 12.0459132 17.3847126 7.58585342 12.9509004 7.58585342"></polygon>
+                        <polygon id="Fill-9" fill="#515D6F" points="21.2595614 12.0459132 25.6933736 12.0459132 25.6933736 7.58585342 21.2595614 7.58585342"></polygon>
+                        <polygon id="Fill-10" fill="#515D6F" points="29.5587484 12.0459132 33.9925607 12.0459132 33.9925607 7.58585342 29.5587484 7.58585342"></polygon>
+                        <polygon id="Fill-11" fill="#515D6F" points="12.9509004 20.3942302 17.3847126 20.3942302 17.3847126 15.9341705 12.9509004 15.9341705"></polygon>
+                        <polygon id="Fill-12" fill="#515D6F" points="21.2595614 20.3942302 25.6933736 20.3942302 25.6933736 15.9341705 21.2595614 15.9341705"></polygon>
+                        <polygon id="Fill-13" fill="#515D6F" points="29.5587484 20.3942302 33.9925607 20.3942302 33.9925607 15.9341705 29.5587484 15.9341705"></polygon>
+                        <polygon id="Fill-14" fill="#515D6F" points="12.9509004 28.7425473 17.3847126 28.7425473 17.3847126 24.2824875 12.9509004 24.2824875"></polygon>
+                        <polygon id="Fill-15" fill="#515D6F" points="21.2595614 28.7425473 25.6933736 28.7425473 25.6933736 24.2824875 21.2595614 24.2824875"></polygon>
+                        <polygon id="Fill-16" fill="#515D6F" points="29.5587484 28.7425473 33.9925607 28.7425473 33.9925607 24.2824875 29.5587484 24.2824875"></polygon>
+                        <path d="M23.3617021,37.7960874 L23.3617021,46.0967543" id="Stroke-17" stroke="#515D6F" stroke-width="1.5" stroke-linejoin="round"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
