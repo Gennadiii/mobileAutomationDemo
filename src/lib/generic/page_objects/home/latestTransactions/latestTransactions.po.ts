@@ -29,7 +29,7 @@ class LatestTransactionsPo extends BaseTransactionsPo implements LatestTransacti
 
   get content() {
     return [
-      this.staticElements,
+      ...this.staticElements,
       this.items.getElementByIndex(0),
       this.dates.getElementByIndex(0),
       this.descriptions.getElementByIndex(0),

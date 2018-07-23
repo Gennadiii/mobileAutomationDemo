@@ -42,7 +42,7 @@ class SingleBalancePo extends BasePo implements SingleBalancePoInterface {
 
   get content() {
     return [
-      this.staticElements,
+      ...this.staticElements,
       this.cardTitle,
       this.cardNumber,
       this.cardAmount,

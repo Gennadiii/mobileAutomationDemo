@@ -27,7 +27,7 @@ class ViewBalancePo extends BasePo implements ViewBalancePoInterface {
   }
 
   get content() {
-    return [this.staticElements];
+    return [...this.staticElements];
   }
 
 }

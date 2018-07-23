@@ -17,6 +17,7 @@ describe('Home', () => {
       afterAll(() => userWithBalancesAndCard.free());
 
       it('page content is displayed', async () => {
+        process.env.platform.toLowerCase() === 'ios' && pending('Until app back button locator is set');
         await service.login.first.as(userWithBalancesAndCard);
         await service.home.findBalanceWithCard();
 

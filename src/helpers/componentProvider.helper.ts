@@ -2,6 +2,7 @@ import {InputField} from "../lib/generic/components/inputField";
 import {Button} from "../lib/generic/components/button";
 
 
+// todo fix locators
 const componentProvider = {
   generic: {
     transactions: {

@@ -32,7 +32,7 @@ class CardPo extends BasePo implements CardPoInterface {
 
   get content() {
     return [
-      this.staticElements,
+      ...this.staticElements,
       this.amount,
       this.currency,
     ];
