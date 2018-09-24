@@ -1,6 +1,5 @@
 import {helper} from "../../../helpers/helper";
 import {pointCoordinatesInterface} from "../../../helpers/appium.helper";
-
 import {driver} from "../../../../index";
 
 
@@ -8,14 +7,22 @@ const log = helper.logger.get('Component');
 
 
 interface ComponentInterface {
+  // actions
+  click: () => Promise<void>;
   // get
   getLocation: () => Promise<pointCoordinatesInterface>;
-  getSize: () => Promise<elementSizeInterface>;
+  getAttribute: (attribute: string) => Promise<string>;
+  getSize: () => Promise<sizeInterfaceInterface>;
   // check
-  isDisplayed: () => Promise<boolean>;
+  isPresent: () => Promise<boolean>;
+  isDisplayed: (timeout?: number) => Promise<boolean>;
+  isDisplayedUsingSize: () => Promise<boolean>;
   scrollUntilDisplayed: (params: scrollUntilDisplayedInterface) => Promise<boolean>;
   // wait
-  waitUntilDisplayed: (timeout: number) => Promise<boolean>;
+  waitUntilDisplayed: (timeout: number, useSize?) => Promise<boolean>;
+  waitUntilDisappear: (timeout: number) => Promise<boolean>;
+  // verify
+  verifyDisplayed: () => Promise<any>;
 }
 
 
@@ -33,10 +40,11 @@ class Component implements ComponentInterface {
     return (async () => {
       const getTime = () => +new Date();
       const startTime = getTime();
-      while (getTime() - startTime < driver.implicitWait) {
+      do {
         try {
-          if (await this.ef()) {
-            return this.ef();
+          const foundElement = await this.ef();
+          if (foundElement) {
+            return foundElement;
           }
         } catch (err) {
           if (!err.message.includes('NoSuchElement')) {
@@ -44,9 +52,14 @@ class Component implements ComponentInterface {
           }
         }
         await helper.dateTime.sleep(100, {ignoreLog: true});
-      }
+      } while (getTime() - startTime < driver.implicitWait);
       throwNoSuchElementError(this.ef);
     })();
+  }
+
+  // actions
+  async click() {
+    await (await this.element).click();
   }
 
   // get
@@ -58,14 +71,15 @@ class Component implements ComponentInterface {
     return (await this.element).getAttribute(attribute);
   }
 
-  async getSize(): Promise<elementSizeInterface> {
+  async getSize(): Promise<sizeInterfaceInterface> {
     return (await this.element).getSize();
   }
 
   // check
-  async isDisplayed() {
+  async isPresent() {
     try {
-      return (await this.element).isDisplayed();
+      await this.element;
+      return true;
     } catch (err) {
       if (err.message.includes('NoSuchElement')) {
         return false;
@@ -73,6 +87,24 @@ class Component implements ComponentInterface {
         throw err;
       }
     }
+  }
+
+  async isDisplayed(timeout?: number) {
+    try {
+      timeout && driver.setImplicitTimeout(timeout);
+      if (await this.isPresent()) {
+        driver.setImplicitTimeout(0);
+        return await (await this.element).isDisplayed();
+      }
+      return false;
+    } finally {
+      timeout && driver.setImplicitTimeout(driver.defaultImplicitWait);
+    }
+  }
+
+  async isDisplayedUsingSize() {
+    const size = await this.isPresent() && await this.getSize();
+    return size && !!(size.width + size.height);
   }
 
   /**
@@ -84,31 +116,40 @@ class Component implements ComponentInterface {
   async scrollUntilDisplayed(params = {maxScrolls: 3}) {
     let {maxScrolls} = params;
     log.info(`Looking for element with max scrolls: ${maxScrolls}`);
-    try {
-      driver.setImplicitTimeout(500);
-      while (maxScrolls--) {
-        const isDisplayed = await this.isDisplayed();
-        if (isDisplayed) {
-          return isDisplayed;
-        }
-        const currentState = await driver.takeScreenshot();
-        await helper.dateTime.sleep(200, {ignoreLog: true});
-        await driver.scrollDown();
-        if (currentState === await driver.takeScreenshot()) {
-          log.info(`Reached the bottom`);
-          break;
-        }
+    while (maxScrolls--) {
+      const isDisplayed = await this.isDisplayed();
+      if (isDisplayed) {
+        return isDisplayed;
       }
-      return await this.isDisplayed();
-    } finally {
-      driver.setImplicitTimeout(driver.defaultImplicitWait);
+      const currentState = await driver.takeScreenshot();
+      await driver.scrollDown();
+      await helper.dateTime.sleep(200, {ignoreLog: true});
+      if (currentState === await driver.takeScreenshot()) {
+        log.info(`Reached the bottom`);
+        break;
+      }
     }
+    return this.isDisplayed();
   }
 
   // wait
-  waitUntilDisplayed(timeout) {
+  waitUntilDisplayed(timeout, params = {useSize: false, throwError: true}) {
     log.info(`Waiting until element is displayed using "${this.ef.using}" with value: ${this.ef.value}`);
-    return helper.waiters.appiumWait(() => this.isDisplayed(), timeout);
+    const {useSize, throwError} = params;
+    const isDisplayedFunc = useSize
+      ? this.isDisplayedUsingSize.bind(this)
+      : this.isDisplayed.bind(this);
+    return helper.waiters.appiumWait(() => isDisplayedFunc(), timeout, {throwError});
+  }
+
+  waitUntilDisappear(timeout) {
+    log.info(`Waiting until element disappears using "${this.ef.using}" with value: ${this.ef.value}`);
+    return helper.waiters.appiumWait(async () => !await this.isPresent(), timeout);
+  }
+
+  // verify
+  async verifyDisplayed() {
+    return (await this.element).isDisplayed();
   }
 
 }
@@ -123,9 +164,7 @@ function throwUnexpectedError(efFunc, err) {
 }
 
 function throwNoSuchElementError(efFunc) {
-  const errorMessage = `Element is not found using: "${efFunc.using}" with value: ${efFunc.value}`;
-  driver.implicitWait > 1000 && log.warn(errorMessage);
-  throw new Error(`NoSuchElement: ${errorMessage}`);
+  throw new Error(`NoSuchElement: Element is not found using: "${efFunc.using}" with value: ${efFunc.value}`);
 }
 
 
@@ -134,7 +173,8 @@ interface scrollUntilDisplayedInterface {
 }
 
 
-interface elementSizeInterface {
+interface sizeInterfaceInterface {
   width: number;
   height: number;
 }
+

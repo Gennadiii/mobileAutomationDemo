@@ -1,10 +1,11 @@
 import {driver} from "./index";
 import * as fs from "fs";
 import {helper} from "./src/helpers/helper";
+import {fsHelper} from "./src/helpers/fs.helper";
 const Jasmine = require('jasmine');
 const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 const HtmlReporter = require('jasmine-pretty-html-reporter').Reporter;
-const mkdirp = require('mkdirp');
+const jasmineReporters = require('jasmine-reporters');
 
 
 const log = helper.logger.get('jasmine');
@@ -15,13 +16,20 @@ const specReporter = new SpecReporter({
     displayPending: true
   }
 });
+
 const htmlReporter = new HtmlReporter({
-  path: 'report'
+  path: 'reports'
 });
+
+const junitReporter = new jasmineReporters.JUnitXmlReporter({
+  savePath: 'reports',
+  consolidateAll: false,
+});
+
 let suiteStartTime = null;
 const screenshotReporter = {
   jasmineStarted() {
-    suiteStartTime = helper.dateTime.getTimeStamp().replace(/:/g, '-');
+    suiteStartTime = helper.dateTime.getFullTimeStamp().replace(/:/g, '-');
   },
   async specDone(result) {
     try {
@@ -34,6 +42,8 @@ const screenshotReporter = {
     }
   },
 };
+
+
 jasmine.loadConfig({
   spec_dir: 'dist/spec',
   random: false,
@@ -43,6 +53,7 @@ jasmine.loadConfig({
 
 jasmine.addReporter(specReporter);
 jasmine.addReporter(htmlReporter);
+jasmine.addReporter(junitReporter);
 jasmine.addReporter(screenshotReporter);
 
 
@@ -50,18 +61,9 @@ export {jasmine};
 
 
 async function saveScreenshot(screenshot, name) {
-  const path = `${process.cwd()}/screenshots/${suiteStartTime}-${process.env.platform}-${process.env.deviceName}`;
+  const path = `${process.cwd()}/screenshots/${suiteStartTime}-${process.env.deviceName}-${process.env.testRunName}`;
   const screenshotPath = `${path}/${name}.png`;
 
-  fs.existsSync(path) || await createFullPath(path);
+  fs.existsSync(path) || await fsHelper.createFullPath(path);
   fs.writeFileSync(screenshotPath, screenshot, 'base64');
-}
-
-function createFullPath(path) {
-  return new Promise((resolve, reject) => {
-    mkdirp(path, err => {
-      err && reject(err);
-      resolve();
-    });
-  });
 }

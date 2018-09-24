@@ -17,12 +17,11 @@ interface BaseElementFinderInterface {
  * Each method doesn't actually look for an element
  * but returns function which if called - looks for element. This provide lazy search
  */
-class BaseElementFinder implements BaseElementFinderInterface {
+abstract class BaseElementFinder implements BaseElementFinderInterface {
 
-  protected searchFunction;
-
-
-  constructor(public accessibilityLabelName, public autoIdAttribute) {
+  protected constructor(public accessibilityLabelName,
+                        public autoIdAttribute,
+                        protected textTag) {
   }
 
 
@@ -49,8 +48,8 @@ class BaseElementFinder implements BaseElementFinderInterface {
   text(text, options = {partial: false}) {
     const {partial} = options;
     const locator = partial
-      ? `//*[contains(@text, '${text}')]`
-      : `//*[@text = '${text}']`;
+      ? `//*[contains(@${this.textTag}, '${text}')]`
+      : `//*[@${this.textTag} = '${text}']`;
     return this.searchFunction('xpath', locator, options);
   }
 
@@ -64,6 +63,8 @@ class BaseElementFinder implements BaseElementFinderInterface {
   element(using, value, options?) {
     return this.searchFunction(using, value, options);
   }
+
+  protected abstract searchFunction(using: string, value: string, options?: any): any;
 
 }
 

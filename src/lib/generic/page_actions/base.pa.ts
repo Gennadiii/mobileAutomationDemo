@@ -6,9 +6,8 @@ const log = helper.logger.get('BasePa');
 
 interface BasePaInterface {
   // checks
-  isOpen: () => Promise<boolean>;
-  verifyIsOpen: () => Promise<void>;
-  contentIsDisplayed: () => Promise<boolean>;
+  isOpen: (params: isOpenInterface) => Promise<boolean>;
+  verifyIsOpen: (params: isOpenInterface) => Promise<void>;
 }
 
 
@@ -21,38 +20,39 @@ class BasePa implements BasePaInterface {
 
   protected page;
 
-  isOpen(params = {timeout: 20 * 1000}) {
-    const {timeout} = params;
+  isOpen(params: isOpenInterface = {}) {
+    const {timeout = 20 * 1000, useSize} = params;
     return this.checkElementsDisplayed(
       this.page.staticElements,
       timeout,
-      'page is opened');
+      'page is opened',
+      useSize);
   }
 
-  contentIsDisplayed(params = {timeout: 20 * 1000}) {
-    const {timeout} = params;
-    return this.checkElementsDisplayed(
-      this.page.content,
-      timeout,
-      'page content is displayed');
-  }
-
-  async verifyIsOpen() {
-    if (!await this.isOpen()) {
+  async verifyIsOpen(params: isOpenInterface = {}) {
+    if (!await this.isOpen(params)) {
       throw new Error(`"${this.page.name}" page didn't get opened`);
     }
   }
 
-  private checkElementsDisplayed(elements, timeout, logMessage) {
+  protected checkElementsDisplayed(elements, timeout, logMessage, useSize) {
     const isDisplayedArr = [];
     log.info(`Checking if "${this.page.name}" ${logMessage}`);
+
     isDisplayedArr.push(...elements
-      .map(element => element.waitUntilDisplayed(timeout)
-        .catch(() => false)));
+      .map(element => element.waitUntilDisplayed(timeout, {useSize, throwError: false})));
     return helper.promise.allTrue(isDisplayedArr);
   }
 
 }
 
 
-export {BasePa};
+export {BasePa, isOpenInterface};
+
+
+interface isOpenInterface {
+  timeout?: number;
+  useSize?: boolean;
+  retry?: number;
+}
+

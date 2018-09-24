@@ -12,11 +12,11 @@ interface DriverInterface {
   defaultImplicitWait: number;
   // actions
   init: () => Promise<DriverInterface>;
-  appiumTerminate: () => Promise<any>;
   hideKeyboard: () => Promise<any>;
   appRelaunch: () => Promise<any>;
   swipe: (params: swipeInterface) => Promise<void>;
   scrollDown: (screenPercentage?: number) => Promise<void>;
+  quit: () => Promise<void>;
   // set
   setImplicitTimeout: (time: number) => void;
   // get
@@ -53,7 +53,6 @@ class Driver implements DriverInterface {
   }
 
   // actions
-
   async init() {
     log.info(`Initializing appium`);
     const driver = wd.promiseChainRemote('localhost', this.appiumPort);
@@ -64,8 +63,8 @@ class Driver implements DriverInterface {
     return this;
   }
 
-  async appiumTerminate() {
-    log.info(`Terminating appium`);
+  async quit() {
+    log.info(`Quitting appium`);
     await this.appium.quit();
   }
 
@@ -76,8 +75,7 @@ class Driver implements DriverInterface {
 
   async appRelaunch() {
     log.info(`Relaunching app`);
-    await this.appClose();
-    await this.appLaunch();
+    await this.appReset();
   }
 
   swipe(params: swipeInterface) {
@@ -100,7 +98,6 @@ class Driver implements DriverInterface {
   }
 
   // set
-
   // Implicit wait seems to be not working in Appium v.1.8.1
   // Own implementation of implicit wait is in Component's element getter
   setImplicitTimeout(time) {
@@ -108,7 +105,6 @@ class Driver implements DriverInterface {
   }
 
   // get
-
   element(using, value) {
     return this.appium.element(using, value);
   }
@@ -117,7 +113,7 @@ class Driver implements DriverInterface {
     return this.appium.elements(using, value);
   }
 
-  getScreenSize() {
+  getScreenSize(): Promise<screenSizeInterface> {
     return this.appium.getWindowSize();
   }
 
@@ -148,6 +144,11 @@ class Driver implements DriverInterface {
   private async appLaunch() {
     log.info(`Launching application`);
     await this.appium.launchApp();
+  }
+
+  private async appReset() {
+    log.info(`Resetting application`);
+    await this.appium.resetApp();
   }
 
 }
@@ -202,3 +203,14 @@ interface screenSizeInterface {
   height: number;
   width: number;
 }
+
+
+interface scrollToBottomInterface {
+  maxScrolls?: number;
+}
+
+
+interface swipeScreensInterface {
+  back?: boolean;
+}
+

@@ -15,9 +15,10 @@
 * Each action taken by test should be logged. It eases debug process and logs could be used as bug description
 
 ## Reporters
-Currently 3 reporters are used:
+Currently 4 reporters are used:
  * console reporter
- * html reporter which creates "reporter" folder in project's root directory
+ * html reporter which creates "reporters" folder in project's root directory
+ * xml junit reporter which creates "reporters" folder in project's root directory
  * screenshot reporter which saves screenshots of failed tests into screenshots folder in root directory
 
 ## How to run against simulators
@@ -29,41 +30,41 @@ Android: emulator should be up and running
 
 dotenv-safe module is used for test run configuration. Specific environment variables should be added to .env file which should be created and placed in project's root directory
 1. Install NodeJS 8+
-1. Add .env file in root directory
+2. Add .env file in root directory (or run ```npm run env -- android "Android Emulator"``` - 1st argument is platform, 2nd - device name)
 
-Obligatory variables:
+--- Obligatory variables:
 
-* platform=Android
-
+* platform=android
+* platform=ios
 * deviceName=Android Emulator
-
-* app=path/to/app.apk
+* deviceName=iPhone Simulator
 
 *For iOS use .app file (not .ipa)*
 
-Optional params:
+--- Optionally obligatory variables:
 
+* specs=**/*spec.js (__*NOTE:*__ This variable is obligatory for automatic CI runs. If it is not specified - you will be prompt to choose tests in console)
+
+--- Optional params:
+* app=path/to/app.apk (by default .apk and .app will be taken from repo)
 * implicitWait=10000
-
 * appiumPort=4723
-
 * androidAutomationName=UiAutomator2 (__*NOTE:*__ By default Appium driver is used for Android. It's 2 times slower but more stable than UiAutomator2 which can be used for local runs)
-
-* specs=**/*spec.js
 
 If specs option is not specified - you will be prompt to choose tests in console interactively
 
-2. Run ```npm install``` (it will also compile typescript)
+3. Run ```npm install``` (it will also compile typescript)
 
-2. Start appium server ```npm start```
+4. Start appium server ```npm start```
 
-2. Run ```npm test```
+5. Run ```npm test```
 
 ## Features
 1. Interactive console tests selector (testsSelector.helper.ts)
 2. Lazy search (element finder helper which is used in page objects doesn't look for element right away but returns a function which is called in component.ts when action is to be done with an element)
 3. Own implicit (component.ts element getter) and explicit (waiters.helper.ts) waiters
 4. Dynamic lib import (lib.helper.ts) imports all lib classes (page elements, page objects, page actions and services) and puts them into single object which is to be imported when assembling services
+5. Lib scaffolding (scaffold.helper.ts) run ```npm run scaffold``` command and follow instructions to automatically create classes
 
 ## Architecture
  ![Architecture simple schema](https://pictr.com/images/2018/07/11/qH7Ev.jpg)
@@ -104,6 +105,10 @@ service1(): Service1 {
     return new Service1(pageAction);
   }
   ```
+
+All those classes are automatically gathered into lib.all object (dynamic import feature). In order for this feature to work 2 rules have to be followed:
+* no duplicates in class names
+* class should be named in accordance with file name (e.g. firstLogin.po.ts -> FirstLoginPo; home.service.ts -> HomeService)
 
 ## Rules
 1. Every not trivial public function or method should accept object as a parameter in order to be safe in case of api change

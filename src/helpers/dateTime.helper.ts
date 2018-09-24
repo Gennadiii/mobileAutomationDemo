@@ -26,6 +26,21 @@ const dateTimeHelper = {
     return `${hours}:${minutes}:${seconds}:${milliseconds}`;
   },
 
+  getDateStamp(time = new Date()): string {
+    const year = time.getFullYear();
+    const m = time.getMonth();
+    const d = time.getDate();
+
+    const month = (m < 10 ? "0" : "") + m;
+    const day = (d < 10 ? "0" : "") + d;
+
+    return `${year}:${month}:${day}`;
+  },
+
+  getFullTimeStamp(time = new Date()): string {
+    return `${this.getDateStamp(time)}-${this.getTimeStamp(time)}`;
+  },
+
 };
 
 

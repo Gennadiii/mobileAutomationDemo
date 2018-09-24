@@ -5,23 +5,23 @@ import {logger} from "./logger.helper";
 const log = logger.get('assembler');
 
 
-/**
- * Helps to assemble services
- * Services may consist of:
- * 1. Page actions with page objects (page objects need elementFinder)
- * 2. Other services
- * 3. Both
- * @param {serviceFactoryInterface} params
- * service - service class which should be instantiated
- * elementFinder - specific for platform instance of ElementFinder
- * parts - partInterface - page object and page action classes (service can consist of several pages)
- * completeServices
- * @return service instance
- */
 const assembler = {
 
+  /**
+   * Helps to assemble services
+   * Services may consist of:
+   * 1. Page actions with page objects (page objects need elementFinder)
+   * 2. Other services
+   * 3. Both
+   * @param {serviceFactoryInterface} params
+   * service - service class which should be instantiated
+   * elementFinder - specific for platform instance of ElementFinder
+   * parts - partInterface - page object and page action classes (service can consist of several pages)
+   * assembledServices
+   * @return service instance
+   */
   serviceFactory(params: serviceFactoryInterface) {
-    const {service, elementFinder, parts, completeServices} = params;
+    const {service, elementFinder, parts, assembledServices} = params;
 
     const actions = parts && parts.map(part => {
       try {
@@ -35,7 +35,7 @@ const assembler = {
       }
     });
 
-    const services = completeServices && (Object as any).values(completeServices);
+    const services = assembledServices && (Object as any).values(assembledServices);
 
     if (actions && services) {
       return new service(...services, ...actions);
@@ -62,5 +62,5 @@ interface serviceFactoryInterface {
   service: any;
   elementFinder?: ElementFinderInterface;
   parts?: partInterface[];
-  completeServices?: object;
+  assembledServices?: object;
 }

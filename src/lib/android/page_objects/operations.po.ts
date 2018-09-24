@@ -11,13 +11,16 @@ interface OperationsPoInterface extends BasePo {
 class OperationsPo extends BasePo implements OperationsPoInterface {
 
   name = 'Calc - Operations';
-
-  // override
   operationsPicker = new OperationsPicker(this.ef.autoId('operationsPicker'), this.ef);
 
 
   constructor(protected ef: ElementFinderInterface) {
     super();
+  }
+
+
+  get staticElements() {
+    return [this.operationsPicker];
   }
 
 }

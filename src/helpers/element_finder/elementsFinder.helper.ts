@@ -14,14 +14,12 @@ interface ElementsFinderInterface {
 
 class ElementsFinder extends BaseElementFinder implements ElementsFinderInterface {
 
-  protected searchFunction = this.findElementsBy;
-
-
-  constructor(public accessibilityLabelName, public autoIdAttribute) {
-    super(accessibilityLabelName, autoIdAttribute);
+  constructor(public accessibilityLabelName, public autoIdAttribute, protected textTag) {
+    super(accessibilityLabelName, autoIdAttribute, textTag);
   }
 
-  private findElementsBy(using: string, value: string, options?: findElementsByInterface) {
+
+  protected searchFunction(using: string, value: string, options?: findElementsByInterface) {
     const defaults = {index: null};
     const resultingOptions = Object.assign(defaults, options);
     const {index} = resultingOptions;
@@ -40,11 +38,6 @@ class ElementsFinder extends BaseElementFinder implements ElementsFinderInterfac
 
 
 export {ElementsFinder};
-
-
-interface findElementsByInterface {
-  index?: number;
-}
 
 
 interface findElementsByInterface {

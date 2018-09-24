@@ -1,9 +1,10 @@
 import {helper} from "../../../helpers/helper";
+import {isOpenInterface} from "../page_actions/base.pa";
 
 
 interface BaseServiceInterface {
-  pageIsOpen: () => Promise<boolean>;
-  verifyPageIsOpen: () => Promise<void>;
+  pageIsOpen: (params: isOpenInterface) => Promise<boolean>;
+  verifyPageIsOpen: (params: isOpenInterface) => Promise<void>;
 }
 
 
@@ -22,22 +23,33 @@ class BaseService implements BaseServiceInterface {
   protected staticLogicalPages = [];
   protected page;
 
-  async pageIsOpen() {
-    this.page && log.info(`Checking if physical "${this.page.page.name}" page is open`);
-    let result = true;
-    if (this.page) {
-      result = result && this.page.isOpen();
+
+  // Hack for this poor example. Remove constructor for real examples
+  constructor() {
+    if (!this.page) {
+      this.page = {
+        isOpen() {
+          return Promise.resolve(true);
+        },
+        page: {name: 'No name'}
+      };
     }
-    /* tslint:disable-next-line */ // replace with "for await of" after moving to node 10
-    for (let j = 0; j < this.staticLogicalPages.length; j++) {
-      result = result && await this.staticLogicalPages[j].isOpen();
-    }
-    return result;
+
   }
 
-  async verifyPageIsOpen() {
-    if (!await this.pageIsOpen()) {
-      throw new Error(`Physical "${this.page && this.page.page.name}" page didn't get opened`);
+
+  async pageIsOpen(params: isOpenInterface = {timeout: 30 * 1000}) {
+    log.info(`Checking if physical "${this.page.page.name}" page is open`);
+    const isOpenArr = [
+      this.page.isOpen(params),
+      ...this.staticLogicalPages.map(page => page.isOpen(params)),
+    ];
+    return helper.promise.allTrue(isOpenArr);
+  }
+
+  async verifyPageIsOpen(params: isOpenInterface = {timeout: 30 * 1000}) {
+    if (!await this.pageIsOpen(params)) {
+      throw new Error(`Physical "${this.page.page.name}" page didn't get opened`);
     }
   }
 

@@ -41,11 +41,11 @@ async function selectTests(): Promise<string[]> {
 
 
     if (selectedFeature === testsCollections.smoke) {
-      testsPaths = fsHelper.getFiles(specsPath).filter(base);
+      testsPaths = fsHelper.getFilesRecursively(specsPath).filter(base);
     } else if (selectedFeature === testsCollections.otherThanSmoke) {
-      testsPaths = fsHelper.getFiles(specsPath).filter(otherThanBase);
+      testsPaths = fsHelper.getFilesRecursively(specsPath).filter(otherThanBase);
     } else {
-      testsPaths = fsHelper.getFiles(`${specsPath}/${selectedFeature}`);
+      testsPaths = fsHelper.getFilesRecursively(`${specsPath}/${selectedFeature}`);
     }
     const promptOptions = getPromptObj(testsPaths).filter(specs);
     selectedFeatureChangedFromLastRun || preselectLastInput(promptOptions);

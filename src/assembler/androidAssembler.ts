@@ -6,9 +6,10 @@ import {assembleServices} from "./genericServices";
 
 function assembleAndroid(): assemblerInterface {
 
-  const elementFinder = new ElementFinder('content-desc', 'contentDescription');
+  const elementFinder = new ElementFinder('content-desc', 'contentDescription', 'text');
 
   Object.assign(helper.lib.all.generic.page_objects, helper.lib.all.android.page_objects);
+  Object.assign(helper.lib.all.generic.page_actions, helper.lib.all.android.page_actions);
 
   return assembleServices(
     elementFinder,

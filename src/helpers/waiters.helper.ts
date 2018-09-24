@@ -21,13 +21,20 @@ const waitersHelper = {
    * Does the same as wait method but sets implicit wait to minimum before wait and restores to default time after
    * @param callback
    * @param timeout
-   * @param {number} interval
+   * @param {appiumWaitInterface} params
    * @return {Promise<any>}
    */
-  async appiumWait(callback, timeout, interval = 100): Promise<any> {
-    driver.setImplicitTimeout(200);
+  async appiumWait(callback, timeout, params: appiumWaitInterface = {}): Promise<any> {
+    const {throwError = true, interval = 100} = params;
+    driver.setImplicitTimeout(0);
     try {
-      return await this.wait(...arguments);
+      return await this.wait(callback, timeout, interval);
+    } catch (err) {
+      if (throwError) {
+        throw new Error(err);
+      } else {
+        return false;
+      }
     } finally {
       driver.setImplicitTimeout(driver.defaultImplicitWait);
     }
@@ -62,6 +69,7 @@ export {waitersHelper};
  */
 async function poll(callback, continuePolling, interval, cbContinueCondition) {
   if (!continuePolling()) {
+    console.info(); // New line after buffer write
     return Promise.reject(`Polling didn't give results.`);
   }
   const result = await callback();
@@ -73,3 +81,10 @@ async function poll(callback, continuePolling, interval, cbContinueCondition) {
   await dateTimeHelper.sleep(interval, {ignoreLog: true});
   return poll(callback, continuePolling, interval, cbContinueCondition);
 }
+
+
+interface appiumWaitInterface {
+  throwError?: boolean;
+  interval?: number;
+}
+
